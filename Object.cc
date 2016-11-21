@@ -2,9 +2,16 @@
 
 #include "Object.h"
 
-Object::Object(int width,int height,int x,int y,sf::Sprite s)
-  :Size{width,height}, Position{x,y}, bitmap{i}
+
+//Object::Object()
+//  :
+//{}
+
+Object::Object(int width,int height,int x,int y,sf::Texture & s)
+  :Size{width,height}, Position{x,y}
 {
+  sprite.setTexture(s);
+  sprite.setPosition(sf::Vector2f(x,y));
   Limit{x,x+width,y,y+height};
 }
 
@@ -18,7 +25,7 @@ Object::Position Object::get_position() const
   return Position;
 }
 
-sf::Image Object::get_bitmap() const
+sf::Sprite Object::get_sprite() const
 {
-  return bitmap;
+  return sprite;
 }
