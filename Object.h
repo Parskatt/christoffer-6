@@ -14,9 +14,11 @@ class Object
 
     Position get_position() const;
 
-    sf::Image get_bitmap() const;
+    sf::Image get_sprite() const;
 
   protected:
+    //Object();
+
     Object(int,int,int,int,sf::Image);
 
     struct Size
@@ -39,5 +41,5 @@ class Object
       int lower{};
     }
 
-    sf:Image bitmap;
+    sf:Sprite sprite{};
 }
