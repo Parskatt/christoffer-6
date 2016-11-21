@@ -2,11 +2,10 @@
 
 #include "Object.h"
 
-Object::Object(int x,int y,sf::Sprite s)
-  :Size{s.getGlobalBounds().width,s.getGlobalBounds().height},
-  Position{x,y}, bitmap{i}
+Object::Object(int width,int height,int x,int y,sf::Sprite s)
+  :Size{width,height}, Position{x,y}, bitmap{i}
 {
-  Limit{x,x + Size.width,y,y+Size.height};
+  Limit{x,x+width,y,y+height};
 }
 
 Object::Limit Object::get_limits() const
