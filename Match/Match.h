@@ -5,9 +5,11 @@
 #ifndef MATCH.H
 #define MATCH.H
 
-#include "Playing_field"
-#include "Physics_engine"
-#include "Player"
+#include "Playing_field.h"
+//#include "Object.h"
+//#include "Movable.h"
+//#include "Physics_engine.h"
+//#include "Player.h"
 #include <vector>
 
 class Match
@@ -17,29 +19,32 @@ class Match
 
     ~Match()=default;
 
+    void match_loop();
+
     void graphic_update();
 
-    void keyboard_handler();
+    //void keyboard_handler();
 
-    void position_update(Object object);
+    //void position_update(Object object);
 
-    void collision_update(Object object);
+    //void collision_update(Object object);
 
-    void position_update();
+    //void position_update();
 
-    bool dead_check();
+    //bool dead_check();
+
 
   protected:
-    std::vector movable_objects{};
-    std::vector nonmovable_objects{};
+    std::vector<Movable> movable_objects{};
+    std::vector<Object> nonmovable_objects{};
 
-    Player player1{};
-    Player player2{};
+    //Player player1{};
+    //Player player2{};
 
-    std::string p1_commands{};
-    std::string p2_commands{};
+    //std::string p1_commands{};
+    //std::string p2_commands{};
 
-    Physics_engine physics_engine{};
+    //Physics_engine physics_engine{};
 
     Playing_field playing_field{};
 
