@@ -1,7 +1,7 @@
 //Object
 
-#ifndef OBJECT.H
-#define OBJECT.H
+#ifndef OBJECT_H
+#define OBJECT_H
 
 
 #include <SFML/Graphics.hpp>
@@ -9,37 +9,53 @@
 
 class Object
 {
+private:
+  struct Size
+  {
+    int width{};
+    int height{};
+  };
+
+  struct Position
+  {
+    int xpos{};
+    int ypos{};
+  };
+
+  struct Limit
+  {
+    int left{};
+    int right{};
+    int upper{};
+    int lower{};
+  };
+
+  protected:
+    Object() = default;
+    Object(int,int,int,int,int);
+
+    int texture_index{};
+    //sf::Texture texture{};
+
+    Size size{};
+
+    Position pos{};
+
+    Limit lim{};
+
   public:
+
+    ~Object() = default;
+
     Limit get_limits() const;
 
     Position get_position() const;
 
-    sf::Image get_sprite() const;
+    //Antingen spara en texture och skapa en sprite vid utritning, eller som nu
+    //spara ett index till en texture som ligger någon annanstans
+    int get_texture_index() const;
 
-  protected:
-    //Object();
+    //sf::Texture const & get_texture() const;
+};
 
-    Object(int,int,int,int,sf::Image);
-
-    struct Size
-    {
-      int width{};
-      int height{};
-    }
-
-    struct Position
-    {
-      int xpos{};
-      int ypos{};
-    }
-
-    struct Limit
-    {
-      int left{};
-      int right{};
-      int upper{};
-      int lower{};
-    }
-
-    sf:Sprite sprite{};
-}
+#endif

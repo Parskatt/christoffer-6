@@ -1,26 +1,34 @@
+
 CXXFLAGS=-Wall -Wextra -std=c++11 -Wno-unused-parameter
 SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system
-OBJECTS =  Object.o Non_Movables.o Match.o
-MATCH = /Match
-SRC_DIR=src
+OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o
+MATCH = Match
+RIP = ../
 CCC = g++
+#CPPFLAGS += -I$(MATCH)
+#CPPFLAGS2 += -I$(RIP)
 
+game: $(OBJECTS) Makefile
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o game $(OBJECTS) $(SFML_FLAGS)
 
-game: $(SRC_DIR)/game.cc
-	g++ $(CXXFLAGS)$(LDFLAGS) $(MATCH)/Match.h $(MATCH)/Match.cc -o game $(OBJECTS) $(SFML_FLAGS)
+game.o: game.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c game.cc
 
-Object.o: $(SRC_DIR)/Object.h $(SRC_DIR)/Object.cc
-		$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Object.cc
+Object.o: Object.h Object.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Object.cc
 
-Non_Movables.o: $(MATCH)/Non_Movables.h $(MATCH)/Non_Movables.cc
-		$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Non_Movables.cc
+Non_movables.o: Non_movables.h Non_movables.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Non_movables.cc
 
-Match.o: $(MATCH)/Match.h $(MATCH)/Match.cc
+Match.o: Match.h Match.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match.cc
 
+Texture_handler.o: Texture_handler.h Texture_handler.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Texture_handler.cc
 
 
 
-
-.PHONY clean:
-	rm -f match
+clean:
+	@ \rm -rf *.o *.gch core
+#.PHONY clean:
+#	rm -f match

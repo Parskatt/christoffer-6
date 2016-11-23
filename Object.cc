@@ -1,31 +1,40 @@
 //Object.cc
 
 #include "Object.h"
-
+#include <iostream>
 
 //Object::Object()
 //  :
 //{}
 
-Object::Object(int width,int height,int x,int y,sf::Texture & s)
-  :Size{width,height}, Position{x,y}
+Object::Object(int width,int height,int x,int y,int index)
+  :Object()
 {
-  sprite.setTexture(s);
-  sprite.setPosition(sf::Vector2f(x,y));
-  Limit{x,x+width,y,y+height};
+  size.width = width;
+  size.height = height;
+  pos.xpos = x;
+  pos.ypos = y;
+  lim.left = x;
+  lim.right = x + width;
+  lim.upper = y;
+  lim.lower = y + height;
+
+  //sprite = sf::Sprite(s);
+  //sprite.setTexture(s);
+  //sprite.setPosition(sf::Vector2f(x,y));
 }
 
 Object::Limit Object::get_limits() const
 {
-  return Limit;
+  return lim;
 }
 
 Object::Position Object::get_position() const
 {
-  return Position;
+  return pos;
 }
 
-sf::Sprite Object::get_sprite() const
+int Object::get_texture_index() const
 {
-  return sprite;
+  return texture_index;
 }
