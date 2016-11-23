@@ -1,0 +1,142 @@
+/*
+*Match.cc
+*/
+
+#include "Match.h"
+
+
+
+Match::Match(int char1,int char2,int playfield)
+  :playing_field{1280,720,0,0,playfield}
+{
+  nonmovable_objects.push_back(playing_field);
+  (void)char1;
+  (void)char2;
+}
+
+/*Playing_field Match::make_playingfield(int i)
+{
+  switch(i)
+  {
+    case 1:
+    {
+      sf::Texture * background = new sf::Texture();
+      if ( !background->loadFromFile("background.png") )
+        throw 1;
+      return Playing_field{1280,720,0,0,*background};
+    }
+    break;
+    default:
+    {
+      sf::Texture * background = new sf::Texture();
+      if ( !background->loadFromFile("background.png"))
+
+        throw 1;
+      return Playing_field{1280,720,0,0,*background};
+    }
+  }
+}*/
+void Match::run()
+{
+      Texture_handler handler{};
+      bool running{true};
+      sf::Event event;
+      sf::Clock clock;
+      sf::Time targetFrameDelay {sf::milliseconds(10)};
+      sf::ContextSettings settings;
+      settings.antialiasingLevel = 8;
+      sf::RenderWindow window{sf::VideoMode{1280,720},"SFML Test", sf::Style::Default, settings};
+      while(running)
+      {
+        //keyboard_handler();
+        //position_update();
+        graphic_update(clock,window,handler);
+        auto frameDelay = clock.getElapsedTime();
+        if ( targetFrameDelay > frameDelay )
+        {
+            // only wait if it is actually needed
+            auto sleepTime = targetFrameDelay - frameDelay;
+            sf::sleep(sleepTime);
+        }
+        while(window.pollEvent(event))
+        {
+        if ( event.type == sf::Event::Closed )
+          running = false;
+        }
+        if (false)
+        {
+          running = false;
+        }
+      }
+}
+
+void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_handler & table)
+{
+      clock.restart();
+      window.clear();
+
+      // Draw things
+      /*
+      for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
+        {
+          window.draw(*it.get_sprite());
+        }
+      for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmoveable_objects.end(); ++it)
+        {
+          window.draw(*it.get_sprite());
+        }
+        */
+      //playing_field.get_sprite().getGlobalBounds().height;
+      sf::Sprite sprite{};
+      sprite.setTexture(table.get_texture(playing_field.get_texture_index()));
+      sprite.setPosition(sf::Vector2f(0,0));
+      window.draw(sprite);
+
+      // show the newly drawn things
+      window.display();
+}
+
+/*
+void keyboard_handler();
+
+void position_update(Object object)
+{
+  object.move();
+}
+
+void collision_update(Object object)
+{
+  for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
+      {
+        if(physics_engine.collision(object, *it))
+        //if(((object.get_limits().right < *it.get_limits().left)
+        //|| (object.get_limits().lower < *it.get_limits().upper))
+        {
+          std::cout << "attans!";
+        }
+      }
+}
+
+void position_update()
+{
+  physics_engine.gravity();
+  for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
+    {
+      position_update(*it);
+    }
+  for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
+      {
+        //collision_update(*it);
+      }
+  for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmoveable_objects.end(); ++it)
+      {
+        //collision_update(*it);
+      }
+
+}
+
+bool dead_check()
+{
+  return false;
+}
+*/
