@@ -3,13 +3,14 @@
 */
 
 #include "Match.h"
-
+#include <iostream>
 
 
 Match::Match(int char1,int char2,int playfield)
   :playing_field{1280,720,0,0,playfield}
 {
   nonmovable_objects.push_back(playing_field);
+  nonmovable_objects.push_back(playing_field.get_platform());//Platform{1280,200,0,500,1});
   (void)char1;
   (void)char2;
 }
@@ -80,17 +81,21 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
         {
           window.draw(*it.get_sprite());
-        }
-      for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmoveable_objects.end(); ++it)
+	  }*/
+      for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)
         {
-          window.draw(*it.get_sprite());
+           sf::Sprite sprite{};
+	   sprite.setTexture(table.get_texture(it->get_texture_index()));
+	   sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
+	   window.draw(sprite);
         }
-        */
       //playing_field.get_sprite().getGlobalBounds().height;
+      /*
       sf::Sprite sprite{};
       sprite.setTexture(table.get_texture(playing_field.get_texture_index()));
       sprite.setPosition(sf::Vector2f(0,0));
       window.draw(sprite);
+      */
 
       // show the newly drawn things
       window.display();
