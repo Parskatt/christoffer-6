@@ -5,7 +5,7 @@
 #ifndef NON_MOVABLES_H
 #define NON_MOVABLES_H
 #include <SFML/Graphics.hpp>
-#include "Object.h"
+#include "../Object.h"
 
 //
 //Platform
