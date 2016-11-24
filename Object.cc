@@ -17,6 +17,7 @@ Object::Object(int width,int height,int x,int y,int index)
   lim.right = x + width;
   lim.upper = y;
   lim.lower = y + height;
+  texture_index = index;
 
   //sprite = sf::Sprite(s);
   //sprite.setTexture(s);
