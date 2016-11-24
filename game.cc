@@ -2,8 +2,8 @@
 //Game.cc
 //
 
-#include "Match.h"
-#include "Non_movables.h"
+#include "Match/Match.h"
+#include "Match/Non_movables.h"
 #include <SFML/Graphics.hpp>
 
 int main()

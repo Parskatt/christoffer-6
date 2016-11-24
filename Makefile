@@ -2,8 +2,8 @@
 CXXFLAGS=-Wall -Wextra -std=c++11 -Wno-unused-parameter
 SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o
-MATCH = Match
-RIP = ../
+#MATCH = Match
+#RIP = ../
 CCC = g++
 #CPPFLAGS += -I$(MATCH)
 #CPPFLAGS2 += -I$(RIP)
@@ -17,11 +17,11 @@ game.o: game.cc
 Object.o: Object.h Object.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Object.cc
 
-Non_movables.o: Non_movables.h Non_movables.cc
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Non_movables.cc
+Non_movables.o: Match/Non_movables.h Match/Non_movables.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Non_movables.cc
 
-Match.o: Match.h Match.cc
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match.cc
+Match.o: Match/Match.h Match/Match.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Match.cc
 
 Texture_handler.o: Texture_handler.h Texture_handler.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Texture_handler.cc
