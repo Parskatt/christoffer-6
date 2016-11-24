@@ -7,11 +7,11 @@
 Texture_handler::Texture_handler()
   :textures{2} //number of textures
 {
-    if (!textures[0].loadFromFile("background.png"))
+    if (!textures[0].loadFromFile("Bilder/background.png"))
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
-    if (!textures[1].loadFromFile("platform.jpg"))
+    if (!textures[1].loadFromFile("Bilder/platform.jpg"))
     {
       throw 1;
     }
