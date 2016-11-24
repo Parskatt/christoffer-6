@@ -3,7 +3,6 @@
 */
 
 #include "Non_movables.h"
-
 //
 //Platform
 //
