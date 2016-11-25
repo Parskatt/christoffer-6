@@ -34,7 +34,7 @@ Object::Position Object::get_position() const
   return pos;
 }
 
-int Object::get_texture_index() const
+int Object::get_texture_index()
 {
   return texture_index;
 }

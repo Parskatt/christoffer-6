@@ -27,7 +27,7 @@ class Match
 
     void graphic_update(sf::Clock &,sf::RenderWindow &,Texture_handler &);
 
-    //void keyboard_handler();
+    void keyboard_handler();
 
     //void position_update(Object object);
 
@@ -45,8 +45,8 @@ class Match
     //Player player1{};
     //Player player2{};
 
-    //std::string p1_commands{};
-    //std::string p2_commands{};
+    std::vector<sf::Keyboard> p1_commands{};
+    std::vector<sf::Keyboard> p2_commands{};
 
     //Physics_engine physics_engine{};
 

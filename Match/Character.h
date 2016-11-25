@@ -5,6 +5,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#include "Match.h"
 #include "Movable.h"
 #include "Non_movables.h"
 
@@ -19,6 +20,8 @@ class Character : public Movable
 	    int y_speed{};
     };
 
+    Speed_vector speed_vector{};
+
     int health{};
 
     Health_bar health_bar;
@@ -28,6 +31,8 @@ class Character : public Movable
   public:
 
     ~Character() = default;
+
+    Character() = default;
 
     Character(int,int,int,int,int,int,int};
 
@@ -45,7 +50,7 @@ class Character : public Movable
 
     int get_texture_index() override;
 
-    void attack(int, Match match);
+    void attack(int, Match & match);
 
     void lose_health(int);
 
