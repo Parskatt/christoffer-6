@@ -32,7 +32,7 @@ private:
 
   protected:
     Object() = default;
-    Object(int,int,int,int,int);
+    Object(int width ,int height,int x,int y,int index);
 
     int texture_index{};
     //sf::Texture texture{};
@@ -53,7 +53,7 @@ private:
 
     //Antingen spara en texture och skapa en sprite vid utritning, eller som nu
     //spara ett index till en texture som ligger någon annanstans
-    int get_texture_index() const;
+    int get_texture_index();
 
     //sf::Texture const & get_texture() const;
 };

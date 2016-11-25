@@ -45,7 +45,7 @@ class Character : public Movable
 
     int get_texture_index() override;
 
-    void attack(int);
+    void attack(int, Match match);
 
     void lose_health(int);
 
