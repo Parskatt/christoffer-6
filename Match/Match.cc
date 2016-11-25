@@ -15,28 +15,6 @@ Match::Match(int char1,int char2,int playfield)
   (void)char2;
 }
 
-/*Playing_field Match::make_playingfield(int i)
-{
-  switch(i)
-  {
-    case 1:
-    {
-      sf::Texture * background = new sf::Texture();
-      if ( !background->loadFromFile("background.png") )
-        throw 1;
-      return Playing_field{1280,720,0,0,*background};
-    }
-    break;
-    default:
-    {
-      sf::Texture * background = new sf::Texture();
-      if ( !background->loadFromFile("background.png"))
-
-        throw 1;
-      return Playing_field{1280,720,0,0,*background};
-    }
-  }
-}*/
 void Match::run()
 {
       Texture_handler handler{};
@@ -101,9 +79,35 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       window.display();
 }
 
-/*
-void keyboard_handler();
 
+void keyboard_handler()
+{
+  while(window.pollEvent(event))
+  {
+    if(event.key.code == sf::Keyboard::Left)
+    {
+      player1.send_key(1);
+    }
+    else if(event.key.code == sf::Keyboard::Right)
+    {
+      player1.send_key(2);
+    }
+    else if(event.key.code == sf::Keyboard::Up)
+    {
+      player1.send_key(3);
+    }
+    else if(event.key.code == sf::Keyboard::Down)
+    {
+      player1.send_key(4);
+    }
+    else if(event.key.code == sf::Keyboard::Space)
+    {
+      player1.send_key(5);
+    }
+
+}
+
+/*
 void position_update(Object object)
 {
   object.move();
@@ -121,6 +125,7 @@ void collision_update(Object object)
         }
       }
 }
+
 
 void position_update()
 {
