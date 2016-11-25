@@ -15,7 +15,7 @@ class Movable : public Object
 
     Movable() = default;
 
-    Movable(int,int);
+    Movable(int width ,int height ,int x, int y,int index,int speed,int direction);
 
     virtual void move() = 0;
 
