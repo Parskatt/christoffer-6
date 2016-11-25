@@ -2,6 +2,11 @@
 //Player.h
 //
 
+#ifndef PLAYER_H
+#define PLAYER_H
+
+#include "Character.h"
+
 class Player
 {
   public:
@@ -14,3 +19,5 @@ class Player
 
     Character curr_character;
 };
+
+#endif

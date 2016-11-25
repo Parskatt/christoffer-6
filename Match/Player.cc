@@ -25,32 +25,32 @@ Player::send_key(int key) //Borde va enum
     //Gå ät vänster
     case 1:
     {
-      curr_character.set_x_speed(-1)
+      curr_character.set_x_speed(-1);
       break;
     }
-
-    case 1:
+    //Gå åt höger
+    case 2:
+    {
+      curr_character.set_x_speed(1);
+      break;
+    }
+    //Hoppa
+    case 3:
+    {
+      curr_character.jump();
+      break;
+    }
+    //Ducka??????
+    case 4:
     {
       break;
     }
-
-    case 1:
+    //Slagattack
+    case 5:
     {
+      curr_character.attack(1);
       break;
     }
-
-    case 1:
-    {
-      break;
-    }
-
-    case 1:
-    {
-      break;
-    }
-
-
-
   }
 
 }

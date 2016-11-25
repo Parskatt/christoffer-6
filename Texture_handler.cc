@@ -11,7 +11,7 @@ Texture_handler::Texture_handler()
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
-    if (!textures[1].loadFromFile("Bilder/platform.jpg"))
+    if (!textures[1].loadFromFile("Bilder/platform.png"))
     {
       throw 1;
     }

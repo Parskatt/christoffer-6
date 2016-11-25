@@ -1,28 +1,54 @@
+//
+//Character.h
+//
+
+#ifndef CHARACTER_H
+#define CHARACTER_H
+
 #include "Movable.h"
 #include "Non_movables.h"
+
+
 class Character : public Movable
 {
-private:
+  private:
+
     struct Speed_vector
     {
-	int x_speed{};
-	int y_speed{};
+	    int x_speed{};
+	    int y_speed{};
     };
-    int speed{};
+
     int health{};
+
     Health_bar health_bar;
-    unique_ptr<Attack> curr_attack{};
-public:
+
+    unique_ptr<Attack> curr_attack{new Attack()}; //Kanske måsvingar vit Attack
+
+  public:
+
+    ~Character() = default;
+
     Character(int,int,int,int,int,int,int};
+
     void set_x_speed(int);
+
     void set_y_speed(int);
-    int get_y_speed();
-    int get_x_speed();
-    int get_speed();
+
+    int get_x_speed(); const
+
+    int get_y_speed(); const
+
     void move();
+
     void jump();
+
     int get_texture_index() override;
+
     void attack(int);
-    void lose_health(int damage);
-    
-}
+
+    void lose_health(int);
+
+};
+
+#endif
