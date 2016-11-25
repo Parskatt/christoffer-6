@@ -9,6 +9,6 @@ class Attack
 private:
 public:
 protected:
-    Attack{int width,int height,int x,int y,int direction, Match match}
+    Attack{int width,int height,int x,int y,int direction, Match match, int Projectile_type}
 }
     

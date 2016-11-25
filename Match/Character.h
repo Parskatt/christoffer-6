@@ -26,7 +26,7 @@ class Character : public Movable
 
     Health_bar health_bar;
 
-    unique_ptr<Attack> curr_attack{new Attack()}; //Kanske måsvingar vit Attack
+    // unique_ptr<Attack> curr_attack{new Attack()}; //Kanske måsvingar vit Attack
 
   public:
 
@@ -34,7 +34,7 @@ class Character : public Movable
 
     Character() = default;
 
-    Character(int,int,int,int,int,int,int};
+    Character(int,int,int,int,int,int,int);
 
     void set_x_speed(int);
 
@@ -46,7 +46,7 @@ class Character : public Movable
 
     void move();
 
-    void jump();
+    //void jump();
 
     int get_texture_index() override;
 

@@ -10,7 +10,7 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
 {
     speed_vector.x_speed = 0;
     speed_vector.y_speed = 0;
-    curr_attack{} = nullptr;
+    //curr_attack{} = nullptr;
 }
 
 void Character::set_x_speed(int x_speed)
@@ -44,10 +44,10 @@ void Character::move()
     pos.ypos = pos.ypos + speed_vector.y_speed;
 }
 
-void Character::jump()
+/*void Character::jump()
 {
 
-}
+}*/
 
 int Character::get_texture_index() override
 {
@@ -67,8 +67,8 @@ void Character::attack(int attack_type,Match & match)
     {
     	if(attack_type == 1)
     	{
-    	    curr_attack = new Punch{int Size.width, int Size.height, int Position.xpos, int Position.ypos
-    				    ,int direction,Match match};
+    	    curr_attack = new Punch{Size.width,Size.height,Position.xpos,Position.ypos
+    				    ,direction,match};
     	}
     }
 }
