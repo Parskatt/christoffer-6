@@ -15,11 +15,11 @@ class Movable : public Object
 
     Movable() = default;
 
-    Movable(int width ,int height ,int x, int y,int index,int speed,int direction);
+    Movable(int,int,int,int,int,int,int,int);
 
     virtual void move() = 0;
 
-    int get_speed(); const
+    int get_speed() const;
 
     int get_fallable() const;
 

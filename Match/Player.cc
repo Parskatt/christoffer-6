@@ -4,17 +4,18 @@
 
 #include "Player.h"
 
-Player::Player(int char)
+Player::Player(int character)//, Match & match)
 {
-  switch(char)
+  switch(character)
   {
     case 1:
     {
-      curr_character = Character{1,1,1,1,1};
+      curr_character = Character{100,100,600,350,2,10,100,1};
+      //match.nonmovable_objects.push_back(curr_character);
       break;
     }
     default:
-      curr_character = Character{1,1,1,1,1};
+      //curr_character = Character{1,1,1,1,1}//,match};
   }
 }
 
@@ -37,7 +38,7 @@ Player::send_key(int key) //Borde va enum
     //Hoppa
     case 3:
     {
-      curr_character.jump();
+      //curr_character.jump();
       break;
     }
     //Ducka??????
@@ -48,9 +49,13 @@ Player::send_key(int key) //Borde va enum
     //Slagattack
     case 5:
     {
-      curr_character.attack(1);
+      //curr_character.attack(1);
       break;
     }
   }
 
+}
+Character Player::get_curr_character()
+{
+  return curr_character;
 }

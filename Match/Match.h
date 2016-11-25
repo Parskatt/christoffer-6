@@ -10,7 +10,7 @@
 //#include "Object.h"
 //#include "Movable.h"
 //#include "Physics_engine.h"
-//#include "Player.h"
+#include "Player.h"
 #include <vector>
 
 class Match
@@ -27,7 +27,7 @@ class Match
 
     void graphic_update(sf::Clock &,sf::RenderWindow &,Texture_handler &);
 
-    void keyboard_handler(sf::RenderWindow &);
+    void keyboard_handler(sf::RenderWindow &, sf::Event &);
 
     //void position_update(Object object);
 
@@ -41,8 +41,8 @@ class Match
   protected:
     //std::vector<Movable> movable_objects{};
     std::vector<Object> nonmovable_objects{};
-
-    //Player player1{};
+    Playing_field playing_field;
+    Player player1{};
     //Player player2{};
 
     std::vector<sf::Keyboard> p1_commands{};
@@ -50,7 +50,6 @@ class Match
 
     //Physics_engine physics_engine{};
 
-    Playing_field playing_field;
 
 };
 

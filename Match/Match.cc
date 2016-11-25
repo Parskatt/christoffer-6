@@ -4,13 +4,15 @@
 
 #include "Match.h"
 #include <iostream>
-
+#include <typeinfo>
+#include <string>
 
 Match::Match(int char1,int char2,int playfield)
-  :playing_field{1280,720,0,0,playfield}
+  :playing_field{1280,720,0,0,playfield}, player1{1}
 {
   nonmovable_objects.push_back(playing_field);
   nonmovable_objects.push_back(playing_field.get_platform());//Platform{1280,200,0,500,1});
+  nonmovable_objects.push_back(player1.get_curr_character());
   (void)char1;
   (void)char2;
 }
@@ -27,7 +29,7 @@ void Match::run()
     sf::RenderWindow window{sf::VideoMode{1280,720},"SFML Test", sf::Style::Default, settings};
     while(running)
     {
-      keyboard_handler(window);
+      keyboard_handler(window,event);
       //position_update();
       graphic_update(clock,window,handler);
       auto frameDelay = clock.getElapsedTime();
@@ -64,7 +66,7 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
 }
 
 
-void Match::keyboard_handler(sf::RenderWindow & window)
+void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event)
 {
 
   while(window.pollEvent(event))
@@ -72,14 +74,15 @@ void Match::keyboard_handler(sf::RenderWindow & window)
     int i{};
     for(std::vector<sf::Keyboard>::iterator it{p1_commands.begin()}; it != p1_commands.end(); ++it)
     {
-      if(event.key.code == *it)
+      const std::type_info r1 = typeid(event.key.code);
+      if (dynamic_cast<r1.name()>(*it))//if(event.key.code == *it) if (dynamic_cast<event.key.code>(*it))
       {
-        player1.send_key(i)
+        player1.send_key(i);
       }
       ++i;
     }
 
-    int y{};
+    /*int y{};
     for(std::vector<sf::Keyboard>::iterator it{p2_commands.begin()}; it != p2_commands.end(); ++it)
     {
       if(event.key.code == *it)
@@ -87,7 +90,7 @@ void Match::keyboard_handler(sf::RenderWindow & window)
         player2.send_key(y)
       }
       ++y;
-    }
+    }*/
   }
 /*
     if(event.key.code == sf::Keyboard::Left)

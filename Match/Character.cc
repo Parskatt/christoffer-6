@@ -48,7 +48,7 @@ void Character::move()
 {
 
 }*/
-
+/*
 int Character::get_texture_index() override
 {
     if(curr_attack != nullptr)
@@ -60,6 +60,7 @@ int Character::get_texture_index() override
 	     return texture_index;
     }
 }
+*/
 /*
 void Character::attack(int attack_type,Match & match)
 {

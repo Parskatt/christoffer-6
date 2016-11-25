@@ -34,23 +34,23 @@ class Character : public Movable
 
     Character() = default;
 
-    Character(int,int,int,int,int,int,int);
+    Character(int,int,int,int,int,int,int,int);
 
     void set_x_speed(int);
 
     void set_y_speed(int);
 
-    int get_x_speed(); const
+    int get_x_speed() const;
 
-    int get_y_speed(); const
+    int get_y_speed() const;
 
     void move();
 
     //void jump();
 
-    int get_texture_index() override;
+    int get_texture_index();// override;
 
-    void attack(int, Match & match);
+    //void attack(int, Match & match);
 
     void lose_health(int);
 
