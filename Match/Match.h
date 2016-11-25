@@ -27,7 +27,7 @@ class Match
 
     void graphic_update(sf::Clock &,sf::RenderWindow &,Texture_handler &);
 
-    void keyboard_handler();
+    void keyboard_handler(sf::RenderWindow &);
 
     //void position_update(Object object);
 
