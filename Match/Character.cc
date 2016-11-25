@@ -60,7 +60,7 @@ int Character::get_texture_index() override
 	     return texture_index;
     }
 }
-
+/*
 void Character::attack(int attack_type,Match & match)
 {
     if(curr_attack == nullptr)
@@ -72,7 +72,7 @@ void Character::attack(int attack_type,Match & match)
     	}
     }
 }
-
+*/
 void Character::lose_health(int damage)
 {
   health -= damage;
