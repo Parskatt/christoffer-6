@@ -9,6 +9,5 @@ class Attack
 private:
 public:
 protected:
-    Attack{int width,int height,int x,int y,int direction, Match match, int Projectile_type}
+    Attack{int width,int height,int x,int y,int direction,std::vector<Movable> movable_objects, int Projectile_type}
 }
-    

@@ -33,7 +33,7 @@ int Character::get_y_speed() const
     return speed_vector.y_speed;
 }
 
-int Character::get_speed()
+int Character::get_speed() const
 {
     return speed;
 }

@@ -14,11 +14,11 @@ class Player
 
     Player() = default;
 
-    Player(int);
+    Player(int, std::vector<Movable> &);
 
     void send_key(int);
 
-    Character get_curr_character();
+    //Character get_curr_character();
 
   private:
 

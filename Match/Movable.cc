@@ -11,12 +11,17 @@ Movable::Movable(int width ,int height ,int x, int y,int index,int speed,int dir
 
 }
 
-int get_speed() const
+int Movable::get_speed() const
 {
   return speed;
 }
 
-int get_fallable() const
+int Movable::get_fallable() const
 {
   return fallable;
+}
+
+void Movable::move()
+{
+  //pos.xpos = pos.xpos + direction * speed.x_speed;
 }

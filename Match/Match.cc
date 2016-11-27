@@ -8,11 +8,10 @@
 #include <string>
 
 Match::Match(int char1,int char2,int playfield)
-  :playing_field{1280,720,0,0,playfield}, player1{1}
+  :movable_objects{}, nonmovable_objects{}, playing_field{1280,720,0,0,playfield}, player1{1,movable_objects}
 {
   nonmovable_objects.push_back(playing_field);
   nonmovable_objects.push_back(playing_field.get_platform());//Platform{1280,200,0,500,1});
-  nonmovable_objects.push_back(player1.get_curr_character());
   (void)char1;
   (void)char2;
 }
@@ -60,6 +59,13 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       	   sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
       	   window.draw(sprite);
         }
+      for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it)
+        {
+           sf::Sprite sprite{};
+           sprite.setTexture(table.get_texture(it->get_texture_index()));
+           sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
+           window.draw(sprite);
+        }
 
       // show the newly drawn things
       window.display();
@@ -71,11 +77,10 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event)
 
   while(window.pollEvent(event))
   {
-    int i{};
-    for(std::vector<sf::Keyboard>::iterator it{p1_commands.begin()}; it != p1_commands.end(); ++it)
+    int i{0};
+    for(std::vector<sf::Keyboard::Key>::iterator it{p1_commands.begin()}; it != p1_commands.end(); ++it)
     {
-      const std::type_info r1 = typeid(event.key.code);
-      if (dynamic_cast<r1.name()>(*it))//if(event.key.code == *it) if (dynamic_cast<event.key.code>(*it))
+      if (event.key.code == *it)
       {
         player1.send_key(i);
       }

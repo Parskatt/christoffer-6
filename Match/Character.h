@@ -5,7 +5,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "Match.h"
+//#include "Match.h"
 #include "Movable.h"
 #include "Non_movables.h"
 
@@ -43,6 +43,8 @@ class Character : public Movable
     int get_x_speed() const;
 
     int get_y_speed() const;
+
+    int get_speed() const;
 
     void move();
 

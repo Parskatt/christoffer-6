@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include "Non_movables.h"
 #include "../Texture_handler.h"
-//#include "Object.h"
+//#include "../Object.h"
 //#include "Movable.h"
 //#include "Physics_engine.h"
 #include "Player.h"
@@ -20,8 +20,8 @@ class Match
 
     ~Match()=default;
 
-    //Playing_field make_playingfield(int); //bEHÖVER VI GÖRA SÅ?
-    //Character make_character(int);
+    Playing_field make_playingfield(int); //bEHÖVER VI GÖRA SÅ?
+    //Character make_character(int,std::vector<Movable> &);
 
     void run();
 
@@ -39,14 +39,14 @@ class Match
 
 
   protected:
-    //std::vector<Movable> movable_objects{};
+    std::vector<Movable> movable_objects{};
     std::vector<Object> nonmovable_objects{};
     Playing_field playing_field;
     Player player1{};
     //Player player2{};
 
-    std::vector<sf::Keyboard> p1_commands{};
-    std::vector<sf::Keyboard> p2_commands{};
+    std::vector<sf::Keyboard::Key> p1_commands{};
+    std::vector<sf::Keyboard::Key> p2_commands{};
 
     //Physics_engine physics_engine{};
 

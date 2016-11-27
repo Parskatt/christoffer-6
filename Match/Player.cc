@@ -4,22 +4,21 @@
 
 #include "Player.h"
 
-Player::Player(int character)//, Match & match)
+Player::Player(int character,std::vector<Movable> & movable_objects)//, Match & match) fel ändrar till listan ist. /johan
 {
   switch(character)
   {
     case 1:
-    {
       curr_character = Character{100,100,600,350,2,10,100,1};
-      //match.nonmovable_objects.push_back(curr_character);
+      movable_objects.push_back(curr_character);
       break;
-    }
     default:
-      //curr_character = Character{1,1,1,1,1}//,match};
+      curr_character = Character{100,100,600,350,2,10,100,1};
+      movable_objects.push_back(curr_character);
   }
 }
 
-Player::send_key(int key) //Borde va enum
+void Player::send_key(int key) //Borde va enum
 {
   switch(key)
   {
@@ -55,7 +54,8 @@ Player::send_key(int key) //Borde va enum
   }
 
 }
+/*
 Character Player::get_curr_character()
 {
   return curr_character;
-}
+}*/
