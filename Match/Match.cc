@@ -52,7 +52,7 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       window.clear();
 
       // Draw things
-      for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)
+      for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
         {
            sf::Sprite sprite{};
       	   sprite.setTexture(table.get_texture(it->get_texture_index()));

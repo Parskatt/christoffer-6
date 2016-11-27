@@ -26,7 +26,7 @@ class Character : public Movable
 
     Health_bar health_bar;
 
-    // unique_ptr<Attack> curr_attack{new Attack()}; //Kanske måsvingar vit Attack
+    // unique_ptr<Attack> curr_attack{new Attack()}; //Kanske måsvingar vid Attack
 
   public:
 

@@ -2,8 +2,8 @@
 //Movable.h
 //
 
-#ifndef MOVABLES_H
-#define MOVABLES_H
+#ifndef MOVABLE_H
+#define MOVABLE_H
 
 #include "../Object.h"
 
