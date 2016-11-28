@@ -11,9 +11,9 @@ class Movable : public Object
 {
   public: //Lägger alla metoder som public tillsvidare, några borde kunna va protected
 
-    ~Movable() = default;
+    virtual ~Movable() = default;
 
-    void move();
+    void move(); //Borde väl va virtual .... = 0???--------------------------
 
     int get_speed() const;
 

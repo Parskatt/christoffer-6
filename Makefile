@@ -13,7 +13,7 @@ game: $(OBJECTS) Makefile
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o game $(OBJECTS) $(SFML_FLAGS)
 
 menu: $(OBJECTS2) Makefile
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o game $(OBJECTS2) $(SFML_FLAGS)
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o menu $(OBJECTS2) $(SFML_FLAGS)
 
 Menu.o: Menu/Menu.h Menu/Menu.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Menu.cc

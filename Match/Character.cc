@@ -5,6 +5,7 @@
 
 #include "Character.h"
 
+
 Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)
     :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{}
 {
