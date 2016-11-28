@@ -2,7 +2,7 @@
 CXXFLAGS=-Wall -Wextra -std=c++11 -Wno-unused-parameter
 SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o Player.o Movable.o Character.o
-OBJECTS2 = game_menu.o Menu.o Play_Button.o Menu_Texture_handler.o Object.o
+OBJECTS2 = game_menu.o Menu.o Menu_Button.o Menu_Texture_handler.o Object.o
 #MATCH = Match
 #RIP = ../
 CCC = g++
@@ -13,13 +13,13 @@ game: $(OBJECTS) Makefile
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o game $(OBJECTS) $(SFML_FLAGS)
 
 menu: $(OBJECTS2) Makefile
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o game $(OBJECTS2) $(SFML_FLAGS)
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o menu $(OBJECTS2) $(SFML_FLAGS)
 
 Menu.o: Menu/Menu.h Menu/Menu.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Menu.cc
 
-Play_Button.o: Menu/Play_Button.h Menu/Play_Button.cc
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Play_Button.cc
+Menu_Button.o: Menu/Menu_Button.h Menu/Menu_Button.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Menu_Button.cc
 
 Menu_Texture_handler.o: Menu_Texture_handler.h Menu_Texture_handler.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu_Texture_handler.cc

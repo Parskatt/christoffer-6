@@ -26,14 +26,22 @@ void Menu::menu_loop()
   {
     if(state == "main")
     {
-      Play_Button Play{500,500,500,500,0};
+      Play_Button Play{320,100,480,210,0};
+      Play_Button Instructions{320,100,480,310,1};
+      Play_Button Quit{320,100,480,410,2};
       main_buttons.push_back(Play);
+      main_buttons.push_back(Instructions);
+      main_buttons.push_back(Quit);
       main_loop(clock,window,handler,event);
-    }/*
+      //break;
+    }
     else if(state == "char1")
     {
-      choose_char1_loop(clock,window,handler,event);
+      std::cout << "i char1";
+      break;
+      //choose_char1_loop(clock,window,handler,event);
     }
+    /*
     else if(state == "char2")
     {
       choose_char2_loop(clock,window,handler,event);
@@ -65,9 +73,8 @@ void Menu::menu_loop()
 
 void Menu::main_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_Texture_handler & table,sf::Event & event)
 {
-  //auto mouse = sf::Mouse::getPosition(window);
   //Grafik
-  for(std::vector<Object>::iterator it = main_buttons.begin() ; it != main_buttons.end(); ++it)
+  for(std::vector<Menu_Button>::iterator it = main_buttons.begin() ; it != main_buttons.end(); ++it)
   {
     sf::Sprite sprite{};
     sprite.setTexture(table.get_texture(it->get_texture_index()));
@@ -75,4 +82,23 @@ void Menu::main_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_Texture_h
     window.draw(sprite);
   }
   window.display();
+  //Kolla om knapp intryckt
+  auto mouse = sf::Mouse::getPosition(window);
+  for(std::vector<Menu_Button>::iterator it = main_buttons.begin() ; it != main_buttons.end(); ++it)
+  {
+    if(!(mouse.x > it->get_limits().right || mouse.x < it->get_limits().left ||
+      mouse.y > it->get_limits().lower || mouse.y < it->get_limits().upper))
+      {
+        while(window.pollEvent(event))
+        {
+        if ( event.type == sf::Event::MouseButtonPressed )
+        {
+          if(event.mouseButton.button == sf::Mouse::Button::Left)
+          {
+            state = it->get_state();
+          }
+        }
+        }
+      }
+  }
 }
