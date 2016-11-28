@@ -38,3 +38,11 @@ int Object::get_texture_index()
 {
   return texture_index;
 }
+
+void Object::uppdate_limit()
+{
+  lim.left = x;
+  lim.right = x + width;
+  lim.upper = y;
+  lim.lower = y + height;
+}
