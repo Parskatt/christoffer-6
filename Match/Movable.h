@@ -11,7 +11,7 @@ class Movable : public Object
 {
   public: //Lägger alla metoder som public tillsvidare, några borde kunna va protected
 
-  ~Movable() = default;
+    ~Movable() = default;
 
     void move();
 
