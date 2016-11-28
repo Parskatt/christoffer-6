@@ -18,4 +18,14 @@ class Play_Button : public Menu_Button
 public:
   Play_Button(int width ,int height,int x,int y,int index);
 };
+class Instructions_Button : public Menu_Button
+{
+public:
+  Instructions_Button(int width ,int height,int x,int y,int index);
+};
+class Quit_Button : public Menu_Button
+{
+public:
+  Quit_Button(int width ,int height,int x,int y,int index);
+};
 #endif

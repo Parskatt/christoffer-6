@@ -1,6 +1,6 @@
 
 CXXFLAGS=-Wall -Wextra -std=c++11 -Wno-unused-parameter
-SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system
+SFML_FLAGS= -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o Player.o Movable.o Character.o
 OBJECTS2 = game_menu.o Menu.o Menu_Button.o Menu_Texture_handler.o Object.o
 #MATCH = Match

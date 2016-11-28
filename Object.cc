@@ -39,10 +39,10 @@ int Object::get_texture_index()
   return texture_index;
 }
 
-void Object::uppdate_limit()
+void Object::update_limits()
 {
-  lim.left = x;
-  lim.right = x + width;
-  lim.upper = y;
-  lim.lower = y + height;
+  lim.left = pos.xpos;
+  lim.right = pos.xpos + size.width;
+  lim.upper = pos.ypos;
+  lim.lower = pos.ypos + size.height;
 }
