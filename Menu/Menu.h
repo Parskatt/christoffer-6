@@ -30,9 +30,9 @@ public:
 
   void menu_loop();
 
-  void main_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool main_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 
-  std::string choose_char1_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  void choose_char1_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 
   void choose_char2_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 

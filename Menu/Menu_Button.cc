@@ -20,3 +20,19 @@ Instructions_Button::Instructions_Button(int width ,int height,int x,int y,int i
 Quit_Button::Quit_Button(int width ,int height,int x,int y,int index)
 :Menu_Button{width,height,x,y,index,"quit"}
 {}
+
+FattigJohan_Button::FattigJohan_Button(int width ,int height,int x,int y,int index)
+:Menu_Button{width,height,x,y,index,"FattigJohan"}
+{}
+
+Kresper_Button::Kresper_Button(int width ,int height,int x,int y,int index)
+:Menu_Button{width,height,x,y,index,"Kresper"}
+{}
+
+Krallex_Button::Krallex_Button(int width ,int height,int x,int y,int index)
+:Menu_Button{width,height,x,y,index,"Krallex"}
+{}
+
+Kraxel_Button::Kraxel_Button(int width ,int height,int x,int y,int index)
+:Menu_Button{width,height,x,y,index,"Kraxel"}
+{}

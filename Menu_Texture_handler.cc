@@ -32,6 +32,24 @@ Menu_Texture_handler::Menu_Texture_handler()
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
+    if (!textures[6].loadFromFile("Bilder/FattigJohan.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+
+    if (!textures[7].loadFromFile("Bilder/Kresper.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[8].loadFromFile("Bilder/Krallex.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[9].loadFromFile("Bilder/Kraxel.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+
 
 }
 

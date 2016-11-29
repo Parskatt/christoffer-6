@@ -12,7 +12,7 @@ public:
 private:
   std::string state{};
 };
-
+//main buttons
 class Play_Button : public Menu_Button
 {
 public:
@@ -27,5 +27,28 @@ class Quit_Button : public Menu_Button
 {
 public:
   Quit_Button(int width ,int height,int x,int y,int index);
+};
+//choose_char1
+class FattigJohan_Button : public Menu_Button
+{
+public:
+  FattigJohan_Button(int width ,int height,int x,int y,int index);
+};
+class Kresper_Button : public Menu_Button
+{
+public:
+  Kresper_Button(int width ,int height,int x,int y,int index);
+};
+
+class Krallex_Button : public Menu_Button
+{
+public:
+  Krallex_Button(int width ,int height,int x,int y,int index);
+};
+
+class Kraxel_Button : public Menu_Button
+{
+public:
+  Kraxel_Button(int width ,int height,int x,int y,int index);
 };
 #endif
