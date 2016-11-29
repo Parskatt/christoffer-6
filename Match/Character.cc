@@ -4,6 +4,7 @@
 
 
 #include "Character.h"
+//#include <iostream>
 
 
 Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)
@@ -16,12 +17,17 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
 
 void Character::set_x_speed(int x_speed)
 {
-    speed_vector.x_speed = x_speed;
+    speed_vector.x_speed = speed*x_speed;
+}
+
+void Character::reset_x_speed()
+{
+  speed_vector.x_speed = 0;
 }
 
 void Character::set_y_speed(int y_speed)
 {
-    speed_vector.y_speed = y_speed;
+    speed_vector.y_speed = 2*y_speed;
 }
 
 int Character::get_x_speed() const
@@ -41,8 +47,11 @@ int Character::get_speed() const
 
 void Character::move()
 {
-    pos.xpos = pos.xpos + speed_vector.x_speed;
-    pos.ypos = pos.ypos + speed_vector.y_speed;
+    pos.xpos += speed_vector.x_speed;
+    pos.ypos += speed_vector.y_speed;
+    speed_vector.x_speed = 0;
+    //std::cout << "hej";
+
 }
 
 /*void Character::jump()

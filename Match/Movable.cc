@@ -21,7 +21,7 @@ int Movable::get_fallable() const
   return fallable;
 }
 
-void Movable::move()
+/*void Movable::move()
 {
   //pos.xpos = pos.xpos + direction * speed.x_speed;
-}
+}*/

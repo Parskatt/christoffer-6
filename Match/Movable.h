@@ -13,7 +13,7 @@ class Movable : public Object
 
     virtual ~Movable() = default;
 
-    void move(); //Borde väl va virtual .... = 0???--------------------------
+    virtual void move() = 0; //Borde väl va virtual .... = 0???--------------------------
 
     int get_speed() const;
 

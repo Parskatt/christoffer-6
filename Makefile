@@ -45,7 +45,7 @@ Movable.o: Match/Movable.h Match/Movable.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Movable.cc
 
 Character.o: Match/Character.h Match/Character.cc
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) Match/Character.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Character.cc
 
 Match.o: Match/Match.h Match/Match.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Match.cc

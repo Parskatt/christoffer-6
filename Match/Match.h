@@ -20,28 +20,29 @@ class Match
 
     ~Match()=default;
 
-    Playing_field make_playingfield(int); //bEHÖVER VI GÖRA SÅ?
+    //Playing_field make_playingfield(int); //bEHÖVER VI GÖRA SÅ?
     //Character make_character(int,std::vector<Movable> &);
 
     void run();
 
     void graphic_update(sf::Clock &,sf::RenderWindow &,Texture_handler &);
 
-    void keyboard_handler(sf::RenderWindow &, sf::Event &);
+    void keyboard_handler(sf::RenderWindow &, sf::Event &, bool &);
 
-    //void position_update(Object object);
+    void position_update(Movable *);//-----------------------------------------------------------
 
     //void collision_update(Object object);
 
-    //void position_update();
+    void position_update();
 
     //bool dead_check();
 
 
   protected:
-    std::vector<Movable> movable_objects{};
+    std::vector<Movable*> movable_objects{}; //Kanske ska vara en vektor med unique_ptrs------------------------------------
     std::vector<Object> nonmovable_objects{};
-    Playing_field playing_field;
+
+    Playing_field playing_field; //Behövs väl egentligen inte
     Player player1{};
     //Player player2{};
 

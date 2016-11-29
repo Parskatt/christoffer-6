@@ -6,12 +6,15 @@
 #include <iostream>
 #include <typeinfo>
 #include <string>
+#include <iostream>
 
 Match::Match(int char1,int char2,int playfield)
   :movable_objects{}, nonmovable_objects{}, playing_field{1280,720,0,0,playfield}, player1{1,movable_objects}
 {
   nonmovable_objects.push_back(playing_field);
   nonmovable_objects.push_back(playing_field.get_platform());//Platform{1280,200,0,500,1});
+  p1_commands.push_back(sf::Keyboard::X);
+  p1_commands.push_back(sf::Keyboard::Y);
   (void)char1;
   (void)char2;
 }
@@ -26,10 +29,12 @@ void Match::run()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     sf::RenderWindow window{sf::VideoMode{1280,720},"SFML Test", sf::Style::Default, settings};
+
     while(running)
     {
-      keyboard_handler(window,event);
-      //position_update();
+      clock.restart();
+      keyboard_handler(window,event,running);
+      position_update();
       graphic_update(clock,window,handler);
       auto frameDelay = clock.getElapsedTime();
       if ( targetFrameDelay > frameDelay )
@@ -37,11 +42,6 @@ void Match::run()
           // only wait if it is actually needed
           auto sleepTime = targetFrameDelay - frameDelay;
           sf::sleep(sleepTime);
-      }
-      while(window.pollEvent(event))
-      {
-        if (event.type == sf::Event::Closed)
-          running = false;
       }
     }
 }
@@ -59,12 +59,13 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       	   sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
       	   window.draw(sprite);
         }
-      for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it)
+      for (std::vector<Movable*>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-----------------------------------------------------------------------
         {
            sf::Sprite sprite{};
-           sprite.setTexture(table.get_texture(it->get_texture_index()));
-           sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
+           sprite.setTexture(table.get_texture((*it)->get_texture_index()));
+           sprite.setPosition(sf::Vector2f((*it)->get_position().xpos,(*it)->get_position().ypos));
            window.draw(sprite);
+           //std::cout << (*it)->get_position().xpos;
         }
 
       // show the newly drawn things
@@ -72,11 +73,24 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
 }
 
 
-void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event)
+void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool & running)
 {
-
-  while(window.pollEvent(event))
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
   {
+    player1.send_key(0);
+  }
+  else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+  {
+    player1.send_key(1);
+  }
+
+  /*while(window.pollEvent(event))
+  {
+    if (event.type == sf::Event::Closed)
+    {
+      running = false;
+    }
+
     int i{0};
     for(std::vector<sf::Keyboard::Key>::iterator it{p1_commands.begin()}; it != p1_commands.end(); ++it)
     {
@@ -87,7 +101,7 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event)
       ++i;
     }
 
-    /*int y{};
+    int y{};
     for(std::vector<sf::Keyboard>::iterator it{p2_commands.begin()}; it != p2_commands.end(); ++it)
     {
       if(event.key.code == *it)
@@ -95,38 +109,61 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event)
         player2.send_key(y)
       }
       ++y;
-    }*/
-  }
-/*
-    if(event.key.code == sf::Keyboard::Left)
-    {
-      player1.send_key(1);
     }
-    else if(event.key.code == sf::Keyboard::Right)
+
+
+
+
+
+    if(event.type == sf::Event::KeyPressed)
     {
-      player1.send_key(2);
-    }
-    else if(event.key.code == sf::Keyboard::Up)
+      if(event.key.code == sf::Keyboard::Left)
+      {
+        player1.send_key(0);
+      }
+      else if(event.key.code == sf::Keyboard::Right)
+      {
+        player1.send_key(1);
+      }
+      else if(event.key.code == sf::Keyboard::Up)
+      {
+        player1.send_key(2);
+      }
+    if(event.type == sf::Event::KeyReleased)
     {
+      std::cout << "släppteknapp" << std::endl;
       player1.send_key(3);
     }
-    else if(event.key.code == sf::Keyboard::Down)
-    {
-      player1.send_key(4);
-    }
-    else if(event.key.code == sf::Keyboard::Space)
-    {
-      player1.send_key(5);
-    }*/
+  }
+}*/
 
 }
+
+
+void Match::position_update(Movable * object) //-----------------------------------------------------------------------------------
+{
+  object->move();
+}
+
+void Match::position_update()
+{
+  //physics_engine.gravity();
+  for (std::vector<Movable*>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------
+    {
+      position_update(*it);
+      //collision_update(*it);
+    }
+
+    /*
+  for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmoveable_objects.end(); ++it)
+      {
+        //collision_update(*it);
+      }*/
+
+}
+
 
 /*
-void position_update(Object object)
-{
-  object.move();
-}
-
 void collision_update(Object object)
 {
   for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
@@ -140,25 +177,10 @@ void collision_update(Object object)
       }
 }
 
+*/
 
-void position_update()
-{
-  physics_engine.gravity();
-  for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
-    {
-      position_update(*it);
-    }
-  for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
-      {
-        //collision_update(*it);
-      }
-  for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmoveable_objects.end(); ++it)
-      {
-        //collision_update(*it);
-      }
 
-}
-
+/*
 bool dead_check()
 {
   return false;
