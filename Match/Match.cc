@@ -75,32 +75,26 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
 
 void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool & running)
 {
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-  {
-    player1.send_key(0);
-  }
-  else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-  {
-    player1.send_key(1);
-  }
-
-  /*while(window.pollEvent(event))
-  {
-    if (event.type == sf::Event::Closed)
+    while(window.pollEvent(event))
     {
-      running = false;
+      if (event.type == sf::Event::Closed)
+      {
+        running = false;
+      }
     }
 
+    //Alternativet till isKeyPressed vore att kolla KeyReleased, men fick det inte att funka vid första försöket,
+    //men kanske vore bättre
     int i{0};
     for(std::vector<sf::Keyboard::Key>::iterator it{p1_commands.begin()}; it != p1_commands.end(); ++it)
     {
-      if (event.key.code == *it)
+      if (sf::Keyboard::isKeyPressed(*it))
       {
         player1.send_key(i);
       }
       ++i;
     }
-
+/*
     int y{};
     for(std::vector<sf::Keyboard>::iterator it{p2_commands.begin()}; it != p2_commands.end(); ++it)
     {

@@ -47,8 +47,7 @@ class Character : public Movable
     int get_speed() const;
 
     void move() override;
-
-    void reset_x_speed();
+    
     //void jump();
 
     int get_texture_index();// override;

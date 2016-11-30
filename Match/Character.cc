@@ -20,11 +20,6 @@ void Character::set_x_speed(int x_speed)
     speed_vector.x_speed = speed*x_speed;
 }
 
-void Character::reset_x_speed()
-{
-  speed_vector.x_speed = 0;
-}
-
 void Character::set_y_speed(int y_speed)
 {
     speed_vector.y_speed = 2*y_speed;
