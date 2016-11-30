@@ -32,9 +32,9 @@ public:
 
   bool main_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 
-  void choose_char1_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool choose_char1_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 
-  void choose_char2_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool choose_char2_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 
   void choose_playingfield_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 
