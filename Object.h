@@ -45,7 +45,7 @@ private:
 
   public:
 
-    ~Object() = default;
+    virtual ~Object() = default;
 
     Limit get_limits() const;
 

@@ -9,12 +9,18 @@
 #include <iostream>
 
 Match::Match(int char1,int char2,int playfield)
-  :movable_objects{}, nonmovable_objects{}, playing_field{1280,720,0,0,playfield}, player1{1,movable_objects}
+  :movable_objects{}, nonmovable_objects{}, playing_field{1280,720,0,0,playfield,nonmovable_objects},
+   player1{1,movable_objects,nonmovable_objects},p1_commands{4},p2_commands{}//---------------------------------------------------
 {
-  nonmovable_objects.push_back(playing_field);
-  nonmovable_objects.push_back(playing_field.get_platform());//Platform{1280,200,0,500,1});
-  p1_commands.push_back(sf::Keyboard::X);
-  p1_commands.push_back(sf::Keyboard::Y);
+  auto it = nonmovable_objects.begin();
+  it = nonmovable_objects.insert(it,playing_field);
+  //nonmovable_objects.push_back(playing_field.get_platform());
+
+  //Initialize commands, order is important
+  p1_commands[0] = sf::Keyboard::Left;
+  p1_commands[1] = sf::Keyboard::Right;
+  p1_commands[2] = sf::Keyboard::Up; //Hoppa
+  p1_commands[3] = sf::Keyboard::Space; //Attack
   (void)char1;
   (void)char2;
 }
@@ -34,6 +40,7 @@ void Match::run()
     {
       clock.restart();
       keyboard_handler(window,event,running);
+
       position_update();
       graphic_update(clock,window,handler);
       auto frameDelay = clock.getElapsedTime();
@@ -54,6 +61,7 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       // Draw things
       for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
         {
+           //dynamic_cast<Health_bar*>(&(*it))
            sf::Sprite sprite{};
       	   sprite.setTexture(table.get_texture(it->get_texture_index()));
       	   sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
@@ -65,7 +73,6 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
            sprite.setTexture(table.get_texture((*it)->get_texture_index()));
            sprite.setPosition(sf::Vector2f((*it)->get_position().xpos,(*it)->get_position().ypos));
            window.draw(sprite);
-           //std::cout << (*it)->get_position().xpos;
         }
 
       // show the newly drawn things

@@ -20,9 +20,6 @@ class Match
 
     ~Match()=default;
 
-    //Playing_field make_playingfield(int); //bEHÖVER VI GÖRA SÅ?
-    //Character make_character(int,std::vector<Movable> &);
-
     void run();
 
     void graphic_update(sf::Clock &,sf::RenderWindow &,Texture_handler &);

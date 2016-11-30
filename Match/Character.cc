@@ -7,9 +7,14 @@
 //#include <iostream>
 
 
-Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)
+Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction,std::vector<Object> & nonmovable_objects)//---------------------------------------
     :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{}
 {
+    //Skapar och lägger till hälsomätaren i match's vector
+    health_bar = Health_bar{200,50,50,50,3}; //Behöver nog skicka in en direction också, så att vi kan spegla den för ena karaktären
+    nonmovable_objects.push_back(health_bar);//---------------------------------------------------------------------------------------
+
+
     speed_vector.x_speed = 0;
     speed_vector.y_speed = 0;
     //curr_attack{} = nullptr;

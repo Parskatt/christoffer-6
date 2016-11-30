@@ -14,7 +14,7 @@ class Player
 
     Player() = default;
 
-    Player(int, std::vector<Movable*> &);
+    Player(int, std::vector<Movable*> &,std::vector<Object> &);//-----------------------------------------------------------
 
     void send_key(int);
 

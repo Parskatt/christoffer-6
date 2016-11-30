@@ -4,16 +4,16 @@
 
 #include "Player.h"
 
-Player::Player(int character,std::vector<Movable*> & movable_objects)//, Match & match) fel ändrar till listan ist. /johan-------------------------------------------------
+Player::Player(int character,std::vector<Movable*> & movable_objects, std::vector<Object> & nonmovable_objects)//-----------------------------------------------------
 {
   switch(character)
   {
     case 1:
-      curr_character = Character{100,100,600,350,2,5,100,1};
+      curr_character = Character{100,100,600,350,2,5,100,1,nonmovable_objects};
       movable_objects.push_back(&curr_character);//-----------------------------------------------------------------
       break;
     default:
-      curr_character = Character{100,100,600,350,2,10,100,1};
+      curr_character = Character{100,100,600,350,2,10,100,1,nonmovable_objects};
       //movable_objects.push_back(curr_character);
   }
 }
@@ -43,7 +43,7 @@ void Player::send_key(int key) //Borde va enum
     //Ducka??????
     case 3:
     {
-      curr_character.reset_x_speed();
+      //curr_character.attack();
       break;
     }
     //Slagattack
