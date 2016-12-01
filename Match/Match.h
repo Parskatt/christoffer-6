@@ -18,7 +18,7 @@ class Match
   public:
     Match(int character1, int character2, int playing_field);
 
-    ~Match()=default;
+    ~Match();
 
     void run();
 
@@ -37,7 +37,7 @@ class Match
 
   protected:
     std::vector<Movable*> movable_objects{}; //Kanske ska vara en vektor med unique_ptrs------------------------------------
-    std::vector<Object> nonmovable_objects{};
+    std::vector<Object*> nonmovable_objects{};
 
     Playing_field playing_field; //Behövs väl egentligen inte
     Player player1{};

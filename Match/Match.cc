@@ -13,7 +13,7 @@ Match::Match(int char1,int char2,int playfield)
    player1{1,movable_objects,nonmovable_objects},p1_commands{4},p2_commands{}//---------------------------------------------------
 {
   auto it = nonmovable_objects.begin();
-  it = nonmovable_objects.insert(it,playing_field);
+  it = nonmovable_objects.insert(it,&playing_field);
   //nonmovable_objects.push_back(playing_field.get_platform());
 
   //Initialize commands, order is important
@@ -23,6 +23,18 @@ Match::Match(int char1,int char2,int playfield)
   p1_commands[3] = sf::Keyboard::Space; //Attack
   (void)char1;
   (void)char2;
+}
+
+Match::~Match()
+{
+  for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)
+  {
+    delete (*it);
+  }
+  for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)
+  {
+    delete (*it);
+  }
 }
 
 void Match::run()
@@ -35,6 +47,7 @@ void Match::run()
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
     sf::RenderWindow window{sf::VideoMode{1280,720},"SFML Test", sf::Style::Default, settings};
+    window.setVerticalSyncEnabled(true);
 
     while(running)
     {
@@ -56,23 +69,34 @@ void Match::run()
 void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_handler & table)
 {
       clock.restart();
-      window.clear();
+      //window.clear();
 
       // Draw things
-      for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
+      for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
         {
-           //dynamic_cast<Health_bar*>(&(*it))
-           sf::Sprite sprite{};
-      	   sprite.setTexture(table.get_texture(it->get_texture_index()));
-      	   sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
-      	   window.draw(sprite);
+
+          (*it)->render(window,table);
+          //std::cout << "1" << std::endl;
+
+
+
+
+
+           //sf::Sprite sprite{};
+      	   //sprite.setTexture(table.get_texture(it->get_texture_index()));
+      	   //sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
+      	   //window.draw(sprite);
         }
       for (std::vector<Movable*>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-----------------------------------------------------------------------
         {
-           sf::Sprite sprite{};
+          (*it)->render(window,table);
+
+
+
+           /*sf::Sprite sprite{};
            sprite.setTexture(table.get_texture((*it)->get_texture_index()));
            sprite.setPosition(sf::Vector2f((*it)->get_position().xpos,(*it)->get_position().ypos));
-           window.draw(sprite);
+           window.draw(sprite);*/
         }
 
       // show the newly drawn things

@@ -24,7 +24,7 @@ class Character : public Movable
 
     int health{};
 
-    Health_bar health_bar;
+    Health_bar * health_bar;
 
     // unique_ptr<Attack> curr_attack{new Attack()}; //Kanske måsvingar vid Attack
 
@@ -34,7 +34,7 @@ class Character : public Movable
 
     Character() = default;
 
-    Character(int,int,int,int,int,int,int,int,std::vector<Object> &);//---------------------------------------------------------
+    Character(int,int,int,int,int,int,int,int,std::vector<Object*> &);//---------------------------------------------------------
 
     void set_x_speed(int);
 

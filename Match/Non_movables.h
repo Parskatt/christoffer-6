@@ -32,7 +32,7 @@ class Playing_field : public Object
 
     Playing_field() = default;
 
-     Playing_field(int,int,int,int,int,std::vector<Object> &);//--------------------------------------------------------------------------
+     Playing_field(int,int,int,int,int,std::vector<Object*> &);//--------------------------------------------------------------------------
 
      Platform get_platform() const;
 
@@ -53,6 +53,8 @@ class Health_bar : public Object
     Health_bar(int,int,int,int,int);
 
     ~Health_bar() = default;
+
+    void render(sf::RenderWindow &, Texture_handler &)  override;
 
     void change_size(int health);
 };

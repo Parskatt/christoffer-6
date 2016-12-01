@@ -14,7 +14,7 @@ class Player
 
     Player() = default;
 
-    Player(int, std::vector<Movable*> &,std::vector<Object> &);//-----------------------------------------------------------
+    Player(int, std::vector<Movable*> &,std::vector<Object*> &);//-----------------------------------------------------------
 
     void send_key(int);
 
@@ -22,7 +22,7 @@ class Player
 
   private:
 
-    Character curr_character;
+    Character * curr_character;
 };
 
 #endif

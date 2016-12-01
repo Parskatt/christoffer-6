@@ -5,6 +5,7 @@
 
 
 #include <SFML/Graphics.hpp>
+#include "Texture_handler.h"
 
 
 class Object
@@ -39,9 +40,9 @@ private:
 
     Size size{};
 
-    Position pos{};
+    Position position{};
 
-    Limit lim{};
+    Limit limit{};
 
   public:
 
@@ -50,6 +51,8 @@ private:
     Limit get_limits() const;
 
     Position get_position() const;
+
+    virtual void render(sf::RenderWindow &, Texture_handler &);
 
     //Antingen spara en texture och skapa en sprite vid utritning, eller som nu
     //spara ett index till en texture som ligger någon annanstans
