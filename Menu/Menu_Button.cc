@@ -36,3 +36,7 @@ Krallex_Button::Krallex_Button(int width ,int height,int x,int y,int index)
 Kraxel_Button::Kraxel_Button(int width ,int height,int x,int y,int index)
 :Menu_Button{width,height,x,y,index,"Kraxel"}
 {}
+
+Instructionsloop_Button::Instructionsloop_Button(int width ,int height,int x,int y,int index)
+:Menu_Button{width,height,x,y,index,"main"}
+{}

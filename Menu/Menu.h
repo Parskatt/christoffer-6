@@ -38,7 +38,9 @@ public:
 
   void choose_playingfield_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
 
-  void show_instructions_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool show_instructions_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+
+  void draw_sprite(std::vector<Menu_Button>::iterator &,sf::RenderWindow &, Menu_Texture_handler &,int);
 
 };
 

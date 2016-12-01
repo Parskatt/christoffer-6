@@ -53,6 +53,15 @@ Menu_Texture_handler::Menu_Texture_handler()
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
+    /*if (!textures[11].loadFromFile("Bilder/Instructionsloop.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[12].loadFromFile("Bilder/Instructionstext.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }*/
+    //John Cena nedan
     if (!textures[11].loadFromFile("Bilder/1.png"))
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
@@ -141,7 +150,7 @@ Menu_Texture_handler::Menu_Texture_handler()
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
-
+    //Slut på Cena
 
 }
 
