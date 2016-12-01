@@ -19,8 +19,8 @@ Projectile move()
 
 #include Punch_projectile.h
 
-Punch_projectile::Punch_projectile(int width,int height,int x,int y,int index,int speed,int direction,int damage,int range)
-    :Projectile{width,height,x,y,index,speed,direction,damage}, range{range}
+Punch_projectile::Punch_projectile(int width,int height,int x,int y,int index,int direction,int damage)
+    :Projectile{width,height,x,y,index,direction,damage}
 {
 
 }

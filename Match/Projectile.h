@@ -29,7 +29,7 @@ class Punch_projectile : Projectile
 {
   public:
 
-    Punch_projectile();
+    Punch_projectile(int,int,int,int,int);
 
     ~Punch_projectile();
 

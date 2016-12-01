@@ -12,9 +12,11 @@ class Attack : public Object
 
 
   public:
-    Attack{int width,int height,int x,int y,int index};
+    Attack{int,int,int,int,int,int};
 
     ~Attack() = default;
+
+    void wait();
 
 };
 
@@ -24,7 +26,5 @@ class Punch : public Attack
   private:
 
   public:
-    Punch{int width ,int height,int x,int y,int index};
-
-    int get_texture_index() override;
+    Punch{int,int,int,int,int,int};
 };
