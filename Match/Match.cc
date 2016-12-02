@@ -69,7 +69,7 @@ void Match::run()
 void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_handler & table)
 {
       clock.restart();
-      //window.clear();
+      window.clear();
 
       // Draw things
       for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
