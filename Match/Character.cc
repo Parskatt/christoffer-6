@@ -12,7 +12,7 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{200,50,50,50,3}
+    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{200,50,50,50,3,health}
 {
     //Skapar och lägger till hälsomätaren i match's vector
 
@@ -104,4 +104,5 @@ void Character::attack(int attack_type,Match & match)
 void Character::lose_health(int damage)
 {
   health -= damage;
+  health_bar.size_(damage);
 }

@@ -55,13 +55,16 @@ class Health_bar : public Object
   public:
     Health_bar() = default;
 
-    Health_bar(int,int,int,int,int);
+    Health_bar(int,int,int,int,int,int);
 
     ~Health_bar() = default;
 
     void render(sf::RenderWindow &, Texture_handler &)  override;
 
-    void change_size(int health);
+    void size_(int health);
+
+  private:
+    int size{};
 };
 
 #endif

@@ -51,23 +51,22 @@ void Playing_field::render(sf::RenderWindow & window, Texture_handler & table)
 //
 //Health_bar
 //
-Health_bar::Health_bar(int w,int h,int x,int y,int index)
-  :Object{w,h,x,y,index}
+Health_bar::Health_bar(int w,int h,int x,int y,int index,int health)
+  :Object{w,h,x,y,index},size{health}
 {}
 
 void Health_bar::render(sf::RenderWindow & window, Texture_handler & table)
 {
   sf::RectangleShape bar;
-  bar.setSize(sf::Vector2f(200, 40));
+  bar.setSize(sf::Vector2f(size,40));
   bar.setFillColor(sf::Color::Red);
-  bar.setPosition(sf::Vector2f(50,50));
+  bar.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(bar);
 }
 
-void Health_bar::change_size(int health)
+void Health_bar::size_(int health)
 {
-
-
+  size -= health;
   //sf::RectangleShape black;
   //bar.setSize(100 - health, 20);
   //bar.setFillColor(sf::Color::Black);

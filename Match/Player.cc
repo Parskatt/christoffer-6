@@ -60,6 +60,7 @@ void Player::send_key(int key) //Borde va enum
     //Ducka??????
     case 3:
     {
+      curr_character.lose_health(5);
       //curr_character.attack();
       break;
     }
