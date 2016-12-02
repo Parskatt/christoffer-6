@@ -6,6 +6,7 @@
 #define NON_MOVABLES_H
 #include <SFML/Graphics.hpp>
 #include "../Object.h"
+#include <memory>
 
 //
 //Platform
@@ -32,7 +33,7 @@ class Playing_field : public Object
 
     Playing_field() = default;
 
-     Playing_field(int,int,int,int,int,std::vector<Object*> &);//--------------------------------------------------------------------------
+     Playing_field(int,int,int,int,int,std::vector<std::unique_ptr<Object>> &);//--------------------------------------------------------------------------
 
      Platform get_platform() const;
 

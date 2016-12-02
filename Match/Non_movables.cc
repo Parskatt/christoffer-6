@@ -14,11 +14,14 @@ Platform::Platform(int w,int h,int x,int y,int index)
 //
 //Playing_field
 //
-Playing_field::Playing_field(int w,int h, int x, int y,int index, std::vector<Object*> & nonmovable_objects) //sätt enum senare---------------------------------------------------------------------
-  :Object{w,h,x,y,index}
+Playing_field::Playing_field(int w,int h, int x, int y,int index, std::vector<std::unique_ptr<Object>> & nonmovable_objects) //sätt enum senare---------------------------------------------------------------------
+  :Object{w,h,x,y,index}, platform{1280,200,0,500,1}
 {
-      platform = Platform{1280,200,0,500,1};
-      nonmovable_objects.push_back(&platform);//------------------------------------------------------------------------------------------------
+    nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
+    //platform = *dynamic_cast<Platform*>(nonmovable_objects.back().get());
+
+      //platform = Platform{1280,200,0,500,1};
+      //nonmovable_objects.push_back(&platform);//------------------------------------------------------------------------------------------------
 }
 
 Platform Playing_field::get_platform() const

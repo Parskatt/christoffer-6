@@ -11,13 +11,14 @@
   delete health_bar;
 }*/
 
-Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction,std::vector<Object*> & nonmovable_objects)//---------------------------------------
-    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{}
+Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction,std::vector<std::unique_ptr<Object>> & nonmovable_objects)//---------------------------------------
+    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{200,50,50,50,3}
 {
     //Skapar och lägger till hälsomätaren i match's vector
-    health_bar = (new Health_bar{200,50,50,50,3});
+
+    nonmovable_objects.push_back(std::make_unique<Health_bar>(health_bar));//(200,50,50,50,3));
     std::cout << "hej" << std::endl; //Behöver nog skicka in en direction också, så att vi kan spegla den för ena karaktären
-    nonmovable_objects.push_back(health_bar);
+    //health_bar = *nonmovable_objects.back();
     std::cout << "då" << std::endl;//---------------------------------------------------------------------------------------
 
 
@@ -53,6 +54,7 @@ int Character::get_speed() const
 
 void Character::move()
 {
+    //std::cout << "försöker mova" << std::endl;
     position.xpos += speed_vector.x_speed;
     position.ypos += speed_vector.y_speed;
     speed_vector.x_speed = 0;

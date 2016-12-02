@@ -7,6 +7,7 @@
 
 //#include "Match.h"
 #include "Character.h"
+#include <memory>
 
 class Player
 {
@@ -14,15 +15,16 @@ class Player
 
     Player() = default;
 
-    Player(int, std::vector<Movable*> &,std::vector<Object*> &);//-----------------------------------------------------------
+    Player(int, std::vector<std::unique_ptr<Movable>> &,std::vector<std::unique_ptr<Object>> &);//-----------------------------------------------------------
 
     void send_key(int);
 
-    //Character get_curr_character();
+    //Character & get_curr_character();
 
   private:
 
-    Character * curr_character;
+    Character curr_character;
+    //int curr_character;
 };
 
 #endif

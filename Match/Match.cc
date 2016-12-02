@@ -12,10 +12,10 @@ Match::Match(int char1,int char2,int playfield)
   :movable_objects{}, nonmovable_objects{}, playing_field{1280,720,0,0,playfield,nonmovable_objects},
    player1{1,movable_objects,nonmovable_objects},p1_commands{4},p2_commands{}//---------------------------------------------------
 {
-  auto it = nonmovable_objects.begin();
-  it = nonmovable_objects.insert(it,&playing_field);
+  //auto it = nonmovable_objects.begin();
+  //it = nonmovable_objects.insert(it,&playing_field);
   //nonmovable_objects.push_back(playing_field.get_platform());
-
+  //movable_objects.push_back(std::make_unique<Character>(player1.get_curr_character()));
   //Initialize commands, order is important
   p1_commands[0] = sf::Keyboard::Left;
   p1_commands[1] = sf::Keyboard::Right;
@@ -25,7 +25,7 @@ Match::Match(int char1,int char2,int playfield)
   (void)char2;
 }
 
-Match::~Match()
+/*Match::~Match()
 {
   for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)
   {
@@ -35,7 +35,7 @@ Match::~Match()
   {
     delete (*it);
   }
-}
+}*/
 
 void Match::run()
 {
@@ -53,7 +53,6 @@ void Match::run()
     {
       clock.restart();
       keyboard_handler(window,event,running);
-
       position_update();
       graphic_update(clock,window,handler);
       auto frameDelay = clock.getElapsedTime();
@@ -72,27 +71,19 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       window.clear();
 
       // Draw things
-      for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
+      for (std::vector<std::unique_ptr<Object>>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
         {
 
           (*it)->render(window,table);
           //std::cout << "1" << std::endl;
-
-
-
-
-
            //sf::Sprite sprite{};
       	   //sprite.setTexture(table.get_texture(it->get_texture_index()));
       	   //sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
       	   //window.draw(sprite);
         }
-      for (std::vector<Movable*>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-----------------------------------------------------------------------
+      for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-----------------------------------------------------------------------
         {
           (*it)->render(window,table);
-
-
-
            /*sf::Sprite sprite{};
            sprite.setTexture(table.get_texture((*it)->get_texture_index()));
            sprite.setPosition(sf::Vector2f((*it)->get_position().xpos,(*it)->get_position().ypos));
@@ -113,7 +104,6 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
         running = false;
       }
     }
-
     //Alternativet till isKeyPressed vore att kolla KeyReleased, men fick det inte att funka vid första försöket,
     //men kanske vore bättre
     int i{0};
@@ -135,10 +125,6 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
       }
       ++y;
     }
-
-
-
-
 
     if(event.type == sf::Event::KeyPressed)
     {
@@ -165,7 +151,7 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
 }
 
 
-void Match::position_update(Movable * object) //-----------------------------------------------------------------------------------
+void Match::position_update(std::unique_ptr<Movable> & object) //-----------------------------------------------------------------------------------
 {
   object->move();
 }
@@ -173,7 +159,7 @@ void Match::position_update(Movable * object) //--------------------------------
 void Match::position_update()
 {
   //physics_engine.gravity();
-  for (std::vector<Movable*>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------
+  for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------
     {
       position_update(*it);
       //collision_update(*it);
