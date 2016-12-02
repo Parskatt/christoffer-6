@@ -9,15 +9,23 @@
 Platform::Platform(int w,int h,int x,int y,int index)
   :Object{w,h,x,y,index}
 {}
+
+void Platform::render(sf::RenderWindow & window, Texture_handler & table)
+{
+  sf::Sprite sprite{};
+  sprite.setTexture(table.get_texture(texture_index));
+  sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+  window.draw(sprite);
+}
 //------------------------------------------------------------
 
 //
 //Playing_field
 //
-Playing_field::Playing_field(int w,int h, int x, int y,int index, std::vector<std::unique_ptr<Object>> & nonmovable_objects) //sätt enum senare---------------------------------------------------------------------
+Playing_field::Playing_field(int w,int h, int x, int y,int index) //sätt enum senare---------------------------------------------------------------------
   :Object{w,h,x,y,index}, platform{1280,200,0,500,1}
 {
-    nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
+    //nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
     //platform = *dynamic_cast<Platform*>(nonmovable_objects.back().get());
 
       //platform = Platform{1280,200,0,500,1};
@@ -27,6 +35,16 @@ Playing_field::Playing_field(int w,int h, int x, int y,int index, std::vector<st
 Platform Playing_field::get_platform() const
 {
   return platform;
+}
+
+void Playing_field::render(sf::RenderWindow & window, Texture_handler & table)
+{
+  sf::Sprite sprite{};
+  sprite.setTexture(table.get_texture(texture_index));
+  sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+  window.draw(sprite);
+
+  platform.render(window,table);
 }
 //-----------------------------------------------------------
 

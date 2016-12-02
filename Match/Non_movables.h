@@ -19,6 +19,8 @@ class Platform : public Object
     Platform() = default;
 
     Platform(int,int,int,int,int);
+
+    void render(sf::RenderWindow &, Texture_handler &) override;
 };
 
 //-----------------------------------------------
@@ -33,9 +35,11 @@ class Playing_field : public Object
 
     Playing_field() = default;
 
-     Playing_field(int,int,int,int,int,std::vector<std::unique_ptr<Object>> &);//--------------------------------------------------------------------------
+     Playing_field(int,int,int,int,int);//--------------------------------------------------------------------------
 
      Platform get_platform() const;
+
+     void render(sf::RenderWindow &, Texture_handler &) override;
 
   protected:
     Platform platform;

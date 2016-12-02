@@ -8,6 +8,7 @@
 //#include "Match.h"
 #include "Character.h"
 #include <memory>
+#include <SFML/Graphics.hpp>
 
 class Player
 {
@@ -15,9 +16,13 @@ class Player
 
     Player() = default;
 
-    Player(int, std::vector<std::unique_ptr<Movable>> &,std::vector<std::unique_ptr<Object>> &);//-----------------------------------------------------------
+    Player(int);//-----------------------------------------------------------
 
     void send_key(int);
+
+    void render(sf::RenderWindow &, Texture_handler &);
+
+    void position_update();
 
     //Character & get_curr_character();
 

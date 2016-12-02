@@ -52,7 +52,7 @@ private:
 
     Position get_position() const;
 
-    virtual void render(sf::RenderWindow &, Texture_handler &);
+    virtual void render(sf::RenderWindow &, Texture_handler &) = 0;
 
     //Antingen spara en texture och skapa en sprite vid utritning, eller som nu
     //spara ett index till en texture som ligger någon annanstans

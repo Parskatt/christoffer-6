@@ -9,8 +9,8 @@
 #include <iostream>
 
 Match::Match(int char1,int char2,int playfield)
-  :movable_objects{}, nonmovable_objects{}, playing_field{1280,720,0,0,playfield,nonmovable_objects},
-   player1{1,movable_objects,nonmovable_objects},p1_commands{4},p2_commands{}//---------------------------------------------------
+  :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playfield},
+   player1{char1},p1_commands{4},p2_commands{}//---------------------------------------------------
 {
   //auto it = nonmovable_objects.begin();
   //it = nonmovable_objects.insert(it,&playing_field);
@@ -21,7 +21,6 @@ Match::Match(int char1,int char2,int playfield)
   p1_commands[1] = sf::Keyboard::Right;
   p1_commands[2] = sf::Keyboard::Up; //Hoppa
   p1_commands[3] = sf::Keyboard::Space; //Attack
-  (void)char1;
   (void)char2;
 }
 
@@ -70,7 +69,10 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       clock.restart();
       window.clear();
 
-      // Draw things
+      playing_field.render(window,table);
+      player1.render(window,table);
+
+      /*// Draw things
       for (std::vector<std::unique_ptr<Object>>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
         {
 
@@ -84,11 +86,11 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
       for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-----------------------------------------------------------------------
         {
           (*it)->render(window,table);
-           /*sf::Sprite sprite{};
-           sprite.setTexture(table.get_texture((*it)->get_texture_index()));
-           sprite.setPosition(sf::Vector2f((*it)->get_position().xpos,(*it)->get_position().ypos));
-           window.draw(sprite);*/
-        }
+           //sf::Sprite sprite{};
+           //sprite.setTexture(table.get_texture((*it)->get_texture_index()));
+           //sprite.setPosition(sf::Vector2f((*it)->get_position().xpos,(*it)->get_position().ypos));
+           //window.draw(sprite);
+        }*/
 
       // show the newly drawn things
       window.display();
@@ -151,19 +153,21 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
 }
 
 
-void Match::position_update(std::unique_ptr<Movable> & object) //-----------------------------------------------------------------------------------
+/*void Match::position_update(std::unique_ptr<Movable> & object) //-----------------------------------------------------------------------------------
 {
   object->move();
-}
+}*/
 
 void Match::position_update()
 {
+  player1.position_update();
+
   //physics_engine.gravity();
-  for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------
-    {
-      position_update(*it);
-      //collision_update(*it);
-    }
+  //for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------
+  //  {
+  //    position_update(*it);
+  //    //collision_update(*it);
+  //  }
 
     /*
   for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmoveable_objects.end(); ++it)

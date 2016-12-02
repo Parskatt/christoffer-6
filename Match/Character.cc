@@ -11,15 +11,15 @@
   delete health_bar;
 }*/
 
-Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction,std::vector<std::unique_ptr<Object>> & nonmovable_objects)//---------------------------------------
+Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)//---------------------------------------
     :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{200,50,50,50,3}
 {
     //Skapar och lägger till hälsomätaren i match's vector
 
-    nonmovable_objects.push_back(std::make_unique<Health_bar>(health_bar));//(200,50,50,50,3));
-    std::cout << "hej" << std::endl; //Behöver nog skicka in en direction också, så att vi kan spegla den för ena karaktären
+    //nonmovable_objects.push_back(std::make_unique<Health_bar>(health_bar));//(200,50,50,50,3));
+    //std::cout << "hej" << std::endl; //Behöver nog skicka in en direction också, så att vi kan spegla den för ena karaktären
     //health_bar = *nonmovable_objects.back();
-    std::cout << "då" << std::endl;//---------------------------------------------------------------------------------------
+    //std::cout << "då" << std::endl;//---------------------------------------------------------------------------------------
 
 
     speed_vector.x_speed = 0;
@@ -59,7 +59,16 @@ void Character::move()
     position.ypos += speed_vector.y_speed;
     speed_vector.x_speed = 0;
     //std::cout << "hej";
+}
 
+void Character::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
+{
+  sf::Sprite sprite{};
+  sprite.setTexture(table.get_texture(texture_index));
+  sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+  window.draw(sprite);
+
+  health_bar.render(window,table);
 }
 
 /*void Character::jump()

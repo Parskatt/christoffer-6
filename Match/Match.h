@@ -27,7 +27,7 @@ class Match
 
     void keyboard_handler(sf::RenderWindow &, sf::Event &, bool &);
 
-    void position_update(std::unique_ptr<Movable> &);//-----------------------------------------------------------
+    //void position_update(std::unique_ptr<Movable> &);//-----------------------------------------------------------
 
     //void collision_update(Object object);
 
@@ -37,8 +37,8 @@ class Match
 
 
   protected:
-    std::vector<std::unique_ptr<Movable>> movable_objects{}; //Kanske ska vara en vektor med unique_ptrs------------------------------------
-    std::vector<std::unique_ptr<Object>> nonmovable_objects{};
+    //std::vector<std::unique_ptr<Movable>> movable_objects{}; //Kanske ska vara en vektor med unique_ptrs------------------------------------
+    //std::vector<std::unique_ptr<Object>> nonmovable_objects{};
 
     Playing_field playing_field; //Behövs väl egentligen inte
     Player player1{};

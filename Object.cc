@@ -40,10 +40,10 @@ int Object::get_texture_index()
   return texture_index;
 }
 
-void Object::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
+/*void Object::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
 {
   sf::Sprite sprite{};
   sprite.setTexture(table.get_texture(texture_index));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
-}
+}*/

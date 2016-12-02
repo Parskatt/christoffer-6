@@ -4,14 +4,14 @@
 
 #include "Player.h"
 
-Player::Player(int character,std::vector<std::unique_ptr<Movable>> & movable_objects, std::vector<std::unique_ptr<Object>> & nonmovable_objects)//-----------------------------------------------------
-  :curr_character{}
+Player::Player(int character)//-----------------------------------------------------
+  :curr_character{100,100,600,350,2,5,100,1}
 {
   switch(character)
   {
     case 1:
     {
-      movable_objects.push_back(std::make_unique<Character>(curr_character));//(100,100,600,350,2,5,100,1,nonmovable_objects));
+      //movable_objects.push_back(std::make_unique<Character>(curr_character));//(100,100,600,350,2,5,100,1,nonmovable_objects));
 
       //curr_character = *dynamic_cast<Character*>(movable_objects.back());
 
@@ -23,6 +23,16 @@ Player::Player(int character,std::vector<std::unique_ptr<Movable>> & movable_obj
       //curr_character = (new Character{100,100,600,350,2,10,100,1,nonmovable_objects});
       //movable_objects.push_back(curr_character);
   }
+}
+
+void Player::render(sf::RenderWindow & window, Texture_handler & table)
+{
+  curr_character.render(window,table);
+}
+
+void Player::position_update()
+{
+  curr_character.move();
 }
 
 void Player::send_key(int key) //Borde va enum
