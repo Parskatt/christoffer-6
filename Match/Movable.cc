@@ -7,9 +7,7 @@
 
 Movable::Movable(int width ,int height ,int x, int y,int index,int speed,int direction,int fallable)
     :Object{width,height,x,y,index}, speed{speed}, direction{direction}, fallable{fallable}
-{
-
-}
+{}
 
 int Movable::get_speed() const
 {

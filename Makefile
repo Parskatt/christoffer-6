@@ -1,16 +1,16 @@
 
-CXXFLAGS=-Wall -Wextra -std=c++11 -Wno-unused-parameter
+CXXFLAGS=-Wall -Wextra -std=c++17 -Wno-unused-parameter
 SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o Player.o Movable.o Character.o
 OBJECTS2 = game_menu.o Menu.o Play_Button.o Menu_Texture_handler.o Object.o
-#MATCH = Match
+#NEWSFML = -I${SFML_ROOT}/include -L${SFML_ROOT}/lib
 #RIP = ../
 CCC = g++
 #CPPFLAGS += -I$(MATCH)
 #CPPFLAGS2 += -I$(RIP)
 
 game: $(OBJECTS) Makefile
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o game $(OBJECTS) $(SFML_FLAGS)
+	$(CCC) -I${SFML_ROOT}/include -L${SFML_ROOT}/lib $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o game $(OBJECTS) $(SFML_FLAGS)
 
 menu: $(OBJECTS2) Makefile
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -o menu $(OBJECTS2) $(SFML_FLAGS)

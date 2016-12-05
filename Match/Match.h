@@ -12,16 +12,14 @@
 //#include "Physics_engine.h"
 #include "Player.h"
 #include <vector>
+#include <memory>
 
 class Match
 {
   public:
     Match(int character1, int character2, int playing_field);
 
-    ~Match()=default;
-
-    //Playing_field make_playingfield(int); //bEHÖVER VI GÖRA SÅ?
-    //Character make_character(int,std::vector<Movable> &);
+    ~Match() = default;
 
     void run();
 
@@ -29,7 +27,7 @@ class Match
 
     void keyboard_handler(sf::RenderWindow &, sf::Event &, bool &);
 
-    void position_update(Movable *);//-----------------------------------------------------------
+    //void position_update(std::unique_ptr<Movable> &);//-----------------------------------------------------------
 
     //void collision_update(Object object);
 
@@ -39,8 +37,8 @@ class Match
 
 
   protected:
-    std::vector<Movable*> movable_objects{}; //Kanske ska vara en vektor med unique_ptrs------------------------------------
-    std::vector<Object> nonmovable_objects{};
+    //std::vector<std::unique_ptr<Movable>> movable_objects{}; //Kanske ska vara en vektor med unique_ptrs------------------------------------
+    //std::vector<std::unique_ptr<Object>> nonmovable_objects{};
 
     Playing_field playing_field; //Behövs väl egentligen inte
     Player player1{};

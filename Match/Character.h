@@ -34,7 +34,7 @@ class Character : public Movable
 
     Character() = default;
 
-    Character(int,int,int,int,int,int,int,int);
+    Character(int,int,int,int,int,int,int,int);//---------------------------------------------------------
 
     void set_x_speed(int);
 
@@ -47,7 +47,9 @@ class Character : public Movable
     int get_speed() const;
 
     void move() override;
-    
+
+    void render(sf::RenderWindow &, Texture_handler &) override;
+
     //void jump();
 
     int get_texture_index();// override;
