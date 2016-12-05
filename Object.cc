@@ -40,6 +40,11 @@ int Object::get_texture_index()
   return texture_index;
 }
 
+Object::Size Object::get_size() const
+{
+  return size;
+}
+
 /*void Object::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
 {
   sf::Sprite sprite{};

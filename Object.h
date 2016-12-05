@@ -52,6 +52,8 @@ private:
 
     Position get_position() const;
 
+    Size get_size() const;
+
     virtual void render(sf::RenderWindow &, Texture_handler &) = 0;
 
     void update_limits();
