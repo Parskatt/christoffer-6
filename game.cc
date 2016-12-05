@@ -8,7 +8,7 @@
 int main()
 {
 
-  Match match{1,1,0};
+  Match match{1,2,1};
   match.run();
 
   return 0;

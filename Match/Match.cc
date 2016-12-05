@@ -10,7 +10,7 @@
 
 Match::Match(int char1,int char2,int playfield)
   :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playfield},
-   player1{char1},p1_commands{4},p2_commands{}//---------------------------------------------------
+   player1{char1,1},player2{char2,2},p1_commands{4},p2_commands{4}//---------------------------------------------------
 {
   //auto it = nonmovable_objects.begin();
   //it = nonmovable_objects.insert(it,&playing_field);
@@ -20,8 +20,12 @@ Match::Match(int char1,int char2,int playfield)
   p1_commands[0] = sf::Keyboard::Left;
   p1_commands[1] = sf::Keyboard::Right;
   p1_commands[2] = sf::Keyboard::Up; //Hoppa
-  p1_commands[3] = sf::Keyboard::Space; //Attack
-  (void)char2;
+  p1_commands[3] = sf::Keyboard::M; //Attack
+
+  p2_commands[0] = sf::Keyboard::A;
+  p2_commands[1] = sf::Keyboard::D;
+  p2_commands[2] = sf::Keyboard::W; //Hoppa
+  p2_commands[3] = sf::Keyboard::Space; //Attack
 }
 
 /*Match::~Match()
@@ -71,6 +75,7 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_h
 
       playing_field.render(window,table);
       player1.render(window,table);
+      player2.render(window,table);
 
       /*// Draw things
       for (std::vector<std::unique_ptr<Object>>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
@@ -117,17 +122,17 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
       }
       ++i;
     }
-/*
+
     int y{};
-    for(std::vector<sf::Keyboard>::iterator it{p2_commands.begin()}; it != p2_commands.end(); ++it)
+    for(std::vector<sf::Keyboard::Key>::iterator it{p2_commands.begin()}; it != p2_commands.end(); ++it)
     {
-      if(event.key.code == *it)
+      if(sf::Keyboard::isKeyPressed(*it))
       {
-        player2.send_key(y)
+        player2.send_key(y);
       }
       ++y;
     }
-
+/*
     if(event.type == sf::Event::KeyPressed)
     {
       if(event.key.code == sf::Keyboard::Left)
@@ -161,6 +166,7 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
 void Match::position_update()
 {
   player1.position_update();
+  player2.position_update();
 
   //physics_engine.gravity();
   //for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------

@@ -42,7 +42,7 @@ class Match
 
     Playing_field playing_field; //Behövs väl egentligen inte
     Player player1{};
-    //Player player2{};
+    Player player2{};
 
     std::vector<sf::Keyboard::Key> p1_commands{};
     std::vector<sf::Keyboard::Key> p2_commands{};

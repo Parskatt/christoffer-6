@@ -23,7 +23,7 @@ void Platform::render(sf::RenderWindow & window, Texture_handler & table)
 //Playing_field
 //
 Playing_field::Playing_field(int w,int h, int x, int y,int index) //sätt enum senare---------------------------------------------------------------------
-  :Object{w,h,x,y,index}, platform{1280,200,0,500,1}
+  :Object{w,h,x,y,index}, platform{1280,200,0,500,0}
 {
     //nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
     //platform = *dynamic_cast<Platform*>(nonmovable_objects.back().get());
@@ -51,14 +51,14 @@ void Playing_field::render(sf::RenderWindow & window, Texture_handler & table)
 //
 //Health_bar
 //
-Health_bar::Health_bar(int w,int h,int x,int y,int index,int health)
-  :Object{w,h,x,y,index},size{health}
+Health_bar::Health_bar(int w,int h,int x,int y,int index,int health,int direction)
+  :Object{w,h,x,y,index},size{health},direction{direction}
 {}
 
 void Health_bar::render(sf::RenderWindow & window, Texture_handler & table)
 {
   sf::RectangleShape bar;
-  bar.setSize(sf::Vector2f(size,40));
+  bar.setSize(sf::Vector2f(direction*size,40));
   bar.setFillColor(sf::Color::Red);
   bar.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(bar);
@@ -66,7 +66,7 @@ void Health_bar::render(sf::RenderWindow & window, Texture_handler & table)
 
 void Health_bar::size_(int health)
 {
-  size -= health;
+  size = health;
   //sf::RectangleShape black;
   //bar.setSize(100 - health, 20);
   //bar.setFillColor(sf::Color::Black);

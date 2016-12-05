@@ -55,7 +55,7 @@ class Health_bar : public Object
   public:
     Health_bar() = default;
 
-    Health_bar(int,int,int,int,int,int);
+    Health_bar(int,int,int,int,int,int,int);
 
     ~Health_bar() = default;
 
@@ -65,6 +65,8 @@ class Health_bar : public Object
 
   private:
     int size{};
+
+    int direction{};
 };
 
 #endif

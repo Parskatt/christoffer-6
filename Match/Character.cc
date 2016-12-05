@@ -12,8 +12,21 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, health_bar{200,50,50,50,3,health}
+    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{} //health_bar{health,direction}
 {
+    switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
+    {
+      case 1:
+      {
+        health_bar = Health_bar{200,50,50,50,0,health,direction};
+        break;
+      }
+      case -1:
+      {
+        health_bar = Health_bar{200,50,1230,50,0,health,direction};
+        break;
+      }
+    }
     //Skapar och lägger till hälsomätaren i match's vector
 
     //nonmovable_objects.push_back(std::make_unique<Health_bar>(health_bar));//(200,50,50,50,3));
@@ -104,5 +117,5 @@ void Character::attack(int attack_type,Match & match)
 void Character::lose_health(int damage)
 {
   health -= damage;
-  health_bar.size_(damage);
+  health_bar.size_(health);
 }

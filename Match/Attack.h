@@ -28,3 +28,5 @@ class Punch : public Attack
   public:
     Punch{int,int,int,int,int,int};
 };
+
+#endif
