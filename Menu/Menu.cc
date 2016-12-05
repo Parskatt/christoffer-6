@@ -49,7 +49,7 @@ void Menu::menu_loop()
   choose_char2_buttons.push_back(Krallex);
   choose_char2_buttons.push_back(Kraxel);
   //Instructionsknappar
-  Instructionsloop_Button Back{280,720,0,0,11};
+  Instructionsloop_Button Back{280,720,0,0,37};
   show_instructions_buttons.push_back(Back);
   //Playingfieldknappar
   Playingfield_Button Playingfield{500,500,390,110,32};
@@ -91,7 +91,7 @@ void Menu::menu_loop()
       running = choose_char2_loop(clock,window,handler,event);
       if(state == "playingfield")
       {
-        if(char1 == "Krallex")
+        if(char2 == "Krallex")
         {
           krallex_pick(window,handler);
         }
@@ -133,8 +133,7 @@ bool Menu::main_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_Texture_h
   {
     for(std::vector<Menu_Button>::iterator it = main_buttons.begin() ; it != main_buttons.end(); ++it)
     {
-      if(!(mouse.x > it->get_limits().right || mouse.x < it->get_limits().left ||
-        mouse.y > it->get_limits().lower || mouse.y < it->get_limits().upper))
+      if(it->inside_button(mouse.x,mouse.y))
         {
           //std::cout << "attans?";
           sf::Sprite sprite{};
@@ -161,10 +160,6 @@ bool Menu::main_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_Texture_h
       }
     }
   }
-  /*sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(34);
-  sprite.setPosition(sf::Vector2f(480,200);
-  window.draw(sprite);*/
   window.display();
   return true;
   //Kolla om knapp intryckt
@@ -174,14 +169,13 @@ bool Menu::choose_char1_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_T
 {
   auto mouse = sf::Mouse::getPosition(window);
   //Grafik
+  while(window.pollEvent(event))
+  {
   for(std::vector<Menu_Button>::iterator it = choose_char1_buttons.begin() ; it != choose_char1_buttons.end(); ++it)
   {
-    if(!(mouse.x > it->get_limits().right || mouse.x < it->get_limits().left ||
-      mouse.y > it->get_limits().lower || mouse.y < it->get_limits().upper))
+    if(it->inside_button(mouse.x,mouse.y))
       {
         draw_sprite(it,window,table,0);;
-        while(window.pollEvent(event))
-        {
           if ( event.type == sf::Event::MouseButtonPressed )
           {
             if(event.mouseButton.button == sf::Mouse::Button::Left)
@@ -192,7 +186,6 @@ bool Menu::choose_char1_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_T
             }
           }
         }
-      }
     else
     {
       if (event.type == sf::Event::Closed)
@@ -202,32 +195,51 @@ bool Menu::choose_char1_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_T
       draw_sprite(it,window,table,0);
     }
   }
+}
+  sf::Sprite FattigJohanText{};
+  FattigJohanText.setTexture(table.get_texture(33));
+  FattigJohanText.setPosition(sf::Vector2f(280,175));
+  window.draw(FattigJohanText);
+
+  sf::Sprite Krespertext{};
+  Krespertext.setTexture(table.get_texture(34));
+  Krespertext.setPosition(sf::Vector2f(480,175));
+  window.draw(Krespertext);
+
+  sf::Sprite Krallextext{};
+  Krallextext.setTexture(table.get_texture(35));
+  Krallextext.setPosition(sf::Vector2f(680,175));
+  window.draw(Krallextext);
+
+  sf::Sprite Kraxeltext{};
+  Kraxeltext.setTexture(table.get_texture(36));
+  Kraxeltext.setPosition(sf::Vector2f(880,175));
+  window.draw(Kraxeltext);
+
   window.display();
   return true;
 }
+
 bool Menu::choose_char2_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_Texture_handler & table,sf::Event & event)
 {
   auto mouse = sf::Mouse::getPosition(window);
   //Grafik
+  while(window.pollEvent(event))
+  {
   for(std::vector<Menu_Button>::iterator it = choose_char1_buttons.begin() ; it != choose_char1_buttons.end(); ++it)
   {
-    if(!(mouse.x > it->get_limits().right || mouse.x < it->get_limits().left ||
-      mouse.y > it->get_limits().lower || mouse.y < it->get_limits().upper))
+    if(it->inside_button(mouse.x,mouse.y))
       {
         draw_sprite(it,window,table,0);
-        while(window.pollEvent(event))
-        {
           if ( event.type == sf::Event::MouseButtonPressed )
           {
             if(event.mouseButton.button == sf::Mouse::Button::Left)
             {
               char2 = it->get_state();
               state = "playingfield";
-              //return it->get_state();
             }
           }
         }
-      }
     else
     {
       if (event.type == sf::Event::Closed)
@@ -237,6 +249,26 @@ bool Menu::choose_char2_loop(sf::Clock & clock,sf::RenderWindow & window, Menu_T
       draw_sprite(it,window,table,0);
     }
   }
+}
+sf::Sprite FattigJohanText{};
+FattigJohanText.setTexture(table.get_texture(33));
+FattigJohanText.setPosition(sf::Vector2f(280,175));
+window.draw(FattigJohanText);
+
+sf::Sprite Krespertext{};
+Krespertext.setTexture(table.get_texture(34));
+Krespertext.setPosition(sf::Vector2f(480,175));
+window.draw(Krespertext);
+
+sf::Sprite Krallextext{};
+Krallextext.setTexture(table.get_texture(35));
+Krallextext.setPosition(sf::Vector2f(680,175));
+window.draw(Krallextext);
+
+sf::Sprite Kraxeltext{};
+Kraxeltext.setTexture(table.get_texture(36));
+Kraxeltext.setPosition(sf::Vector2f(880,175));
+window.draw(Kraxeltext);
   window.display();
   return true;
 }
@@ -245,14 +277,13 @@ bool Menu::show_instructions_loop(sf::Clock & clock, sf::RenderWindow & window,M
 {
   auto mouse = sf::Mouse::getPosition(window);
   //Grafik
+  while(window.pollEvent(event))
+  {
   for(std::vector<Menu_Button>::iterator it = show_instructions_buttons.begin() ; it != show_instructions_buttons.end(); ++it)
   {
-    if(!(mouse.x > it->get_limits().right || mouse.x < it->get_limits().left ||
-      mouse.y > it->get_limits().lower || mouse.y < it->get_limits().upper))
+    if(it->inside_button(mouse.x,mouse.y))
       {
         draw_sprite(it,window,table,0);
-        while(window.pollEvent(event))
-        {
           if ( event.type == sf::Event::MouseButtonPressed )
           {
             if(event.mouseButton.button == sf::Mouse::Button::Left)
@@ -261,7 +292,6 @@ bool Menu::show_instructions_loop(sf::Clock & clock, sf::RenderWindow & window,M
             }
           }
         }
-      }
     else
     {
       if (event.type == sf::Event::Closed)
@@ -271,8 +301,9 @@ bool Menu::show_instructions_loop(sf::Clock & clock, sf::RenderWindow & window,M
       draw_sprite(it,window,table,0);
     }
   }
+}
   sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(12));
+  sprite.setTexture(table.get_texture(38));
   sprite.setPosition(sf::Vector2f(280,0));
   window.draw(sprite);
   window.display();
@@ -283,14 +314,13 @@ bool Menu::choose_playingfield_loop(sf::Clock & clock,sf::RenderWindow & window,
 {
   auto mouse = sf::Mouse::getPosition(window);
   //Grafik
+  while(window.pollEvent(event))
+  {
   for(std::vector<Menu_Button>::iterator it = choose_playingfield_buttons.begin() ; it != choose_playingfield_buttons.end(); ++it)
   {
-    if(!(mouse.x > it->get_limits().right || mouse.x < it->get_limits().left ||
-      mouse.y > it->get_limits().lower || mouse.y < it->get_limits().upper))
+    if(it->inside_button(mouse.x,mouse.y))
       {
         draw_sprite(it,window,table,0);
-        while(window.pollEvent(event))
-        {
           if ( event.type == sf::Event::MouseButtonPressed )
           {
             if(event.mouseButton.button == sf::Mouse::Button::Left)
@@ -300,7 +330,6 @@ bool Menu::choose_playingfield_loop(sf::Clock & clock,sf::RenderWindow & window,
             }
           }
         }
-      }
     else
     {
       if (event.type == sf::Event::Closed)
@@ -310,6 +339,7 @@ bool Menu::choose_playingfield_loop(sf::Clock & clock,sf::RenderWindow & window,
       draw_sprite(it,window,table,0);
     }
   }
+}
   window.display();
   return true;
 }
@@ -345,19 +375,17 @@ void Menu::krallex_pick(sf::RenderWindow & window, Menu_Texture_handler & handle
   sf::Sound sound;
   sound.setBuffer(buffer);
   sound.play();
-  while ( true )
-  {
-
-    for(int it{11}; it < 33; ++it)
+    for (int i {0}; i < 8; ++i)
     {
-      //std::cout << "hallå";
-      sf::Sprite sprite{};
-      sprite.setTexture(handler.get_texture(it));
-      sprite.setPosition(sf::Vector2f(0,0));
-      window.draw(sprite);
-      window.display();
-      sf::sleep(sf::milliseconds(50));
-
+      for(int it{11}; it < 33; ++it)
+      {
+        //std::cout << "hallå";
+        sf::Sprite sprite{};
+        sprite.setTexture(handler.get_texture(it));
+        sprite.setPosition(sf::Vector2f(450,250));
+        window.draw(sprite);
+        window.display();
+        sf::sleep(sf::milliseconds(50));
+      }
     }
-  }
 }
