@@ -9,6 +9,7 @@ class Menu_Button : public Object
 public:
   Menu_Button(int width ,int height,int x,int y,int index,std::string state);
   std::string get_state();
+  void render(sf::RenderWindow &, Texture_handler &);
 private:
   std::string state{};
 };

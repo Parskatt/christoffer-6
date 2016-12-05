@@ -8,6 +8,8 @@ std::string Menu_Button::get_state()
 {
   return state;
 }
+void Menu_Button::render(sf::RenderWindow &, Texture_handler &)
+{}
 
 Play_Button::Play_Button(int width ,int height,int x,int y,int index)
 :Menu_Button{width,height,x,y,index,"char1"}
