@@ -11,13 +11,11 @@ Projectile::Projectile(int width,int height,int x,int y,int index,int speed,int 
 }
 
 
-Projectile move()
+void Projectile::move()
 {
   pos.xpos += direction * speed;
 }
 
-
-#include Punch_projectile.h
 
 Punch_projectile::Punch_projectile(int width,int height,int x,int y,int index,int direction,int damage)
     :Projectile{width,height,x,y,index,direction,damage}

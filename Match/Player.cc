@@ -73,7 +73,7 @@ void Player::send_key(int key) //Borde va enum
     //Slagattack
     case 4:
     {
-      //curr_character.attack(1);
+      curr_character.attack(1);
       break;
     }
   }

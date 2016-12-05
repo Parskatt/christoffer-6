@@ -5,6 +5,7 @@
 
 #include "Character.h"
 #include <iostream>
+#include <utility>
 
 /*Character::~Character()
 {
@@ -38,6 +39,19 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
     speed_vector.x_speed = 0;
     speed_vector.y_speed = 0;
     //curr_attack{} = nullptr;
+}
+
+Character & Character::operator=(const Character & other)
+{
+  size.width = other.size.width;
+  size.height = other.size.height;
+  position.xpos = other.position.xpos;
+  position.ypos = other.position.ypos;
+  texture_index = other.texture_index;
+  speed = other.speed;
+  direction = other.direction;
+  fallable = other.fallable;
+  curr_attack = std::move(other.curr_attack);
 }
 
 void Character::set_x_speed(int x_speed)
@@ -76,10 +90,17 @@ void Character::move()
 
 void Character::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
 {
-  sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(texture_index));
-  sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
-  window.draw(sprite);
+  if(curr_attack == nullptr)
+  {
+    sf::Sprite sprite{};
+    sprite.setTexture(table.get_texture(texture_index));
+    sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+    window.draw(sprite);
+  }
+  else if
+  {
+    curr_attack->render(window,table);
+  }
 
   health_bar.render(window,table);
 }
@@ -101,19 +122,20 @@ int Character::get_texture_index() override
     }
 }
 */
-/*
+
 void Character::attack(int attack_type)
 {
     if(curr_attack == nullptr)
     {
     	if(attack_type == 1)
     	{
-    	    curr_attack = new Punch{Size.width,Size.height,Position.xpos,Position.ypos
-    				    ,direction,match};
+    	  curr_attack = new Punch{size.width,size.height,position.xpos,position.ypos,5,direction};
+        curr_attack->wait();
+        delete curr_attack;
     	}
     }
 }
-*/
+
 void Character::lose_health(int damage)
 {
   health -= damage;

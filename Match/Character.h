@@ -8,6 +8,8 @@
 //#include "Match.h"
 #include "Movable.h"
 #include "Non_movables.h"
+#include <memory>
+#include "Attack.h"
 
 
 class Character : public Movable
@@ -26,7 +28,7 @@ class Character : public Movable
 
     Health_bar health_bar;
 
-    //Attack curr_attack; //Kanske måsvingar vid Attack
+    std::unique_ptr<Attack> curr_attack{}; //Kanske måsvingar vid Attack
 
   public:
 
@@ -35,6 +37,8 @@ class Character : public Movable
     Character() = default;
 
     Character(int,int,int,int,int,int,int,int);//---------------------------------------------------------
+
+    Character & operator=(const Character &);
 
     void set_x_speed(int);
 
@@ -54,7 +58,7 @@ class Character : public Movable
 
     int get_texture_index();// override;
 
-    //void attack(int, Match & match);
+    void attack(int);
 
     void lose_health(int);
 

@@ -5,6 +5,7 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
+#include "Movable.h"
 
 class Projectile : public Movable
 {
@@ -12,7 +13,7 @@ class Projectile : public Movable
 
     Projectile(int,int,int,int,int,int,int,int);
 
-    ~Projectile = default;
+    ~Projectile() = default;
 
     void move() override;
 
@@ -23,13 +24,13 @@ class Projectile : public Movable
 };
 
 
-class Punch_projectile : Projectile
+class Punch_projectile : public Projectile
 {
   public:
 
     Punch_projectile(int,int,int,int,int);
 
-    ~Punch_projectile();
+    ~Punch_projectile() = default;
 
     int get_range();
 
