@@ -57,4 +57,11 @@ class Instructionsloop_Button : public Menu_Button
 public:
   Instructionsloop_Button(int width ,int height,int x,int y,int index);
 };
+
+class Playingfield_Button : public Menu_Button
+{
+public:
+  Playingfield_Button(int width ,int height,int x,int y,int index);
+};
+
 #endif

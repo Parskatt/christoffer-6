@@ -82,14 +82,6 @@ Menu_Texture_handler::Menu_Texture_handler()
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
-    if (!textures[16].loadFromFile("Bilder/6.png"))
-    {
-      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
-    }
-    if (!textures[17].loadFromFile("Bilder/7.png"))
-    {
-      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
-    }
     if (!textures[18].loadFromFile("Bilder/8.png"))
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
@@ -151,6 +143,7 @@ Menu_Texture_handler::Menu_Texture_handler()
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
     //Slut på Cena
+
 
 }
 

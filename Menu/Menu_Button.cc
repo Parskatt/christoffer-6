@@ -40,3 +40,7 @@ Kraxel_Button::Kraxel_Button(int width ,int height,int x,int y,int index)
 Instructionsloop_Button::Instructionsloop_Button(int width ,int height,int x,int y,int index)
 :Menu_Button{width,height,x,y,index,"main"}
 {}
+
+Playingfield_Button::Playingfield_Button(int width ,int height,int x,int y,int index)
+:Menu_Button{width,height,x,y,index,"match"}
+{}
