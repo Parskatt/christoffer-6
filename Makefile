@@ -4,7 +4,7 @@ SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system
 OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o Player.o Movable.o Character.o
 OBJECTS2 = game_menu.o Menu.o Play_Button.o Menu_Texture_handler.o Object.o
 #NEWSFML = -I${SFML_ROOT}/include -L${SFML_ROOT}/lib
-#RIP = ../
+
 CCC = g++
 #CPPFLAGS += -I$(MATCH)
 #CPPFLAGS2 += -I$(RIP)
@@ -18,8 +18,8 @@ menu: $(OBJECTS2) Makefile
 Menu.o: Menu/Menu.h Menu/Menu.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Menu.cc
 
-Play_Button.o: Menu/Play_Button.h Menu/Play_Button.cc
-	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Play_Button.cc
+Menu_Button.o: Menu/Menu_Button.h Menu/Menu_Button.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Menu_Button.cc
 
 Menu_Texture_handler.o: Menu_Texture_handler.h Menu_Texture_handler.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu_Texture_handler.cc

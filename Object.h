@@ -59,6 +59,7 @@ private:
     //Kan den va const och sen overrideas till inte const längre ner?
     int get_texture_index();
 
+    void update_limits();
     //sf::Texture const & get_texture() const;
 };
 
