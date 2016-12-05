@@ -6,7 +6,7 @@
 #include <iostream>
 
 Menu_Texture_handler::Menu_Texture_handler()
-  :textures{33} //number of textures
+  :textures{39} //number of textures
 {
     if (!textures[0].loadFromFile("Bilder/Play.png"))
     {
@@ -143,7 +143,30 @@ Menu_Texture_handler::Menu_Texture_handler()
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
     //Slut på Cena
-
+    if (!textures[33].loadFromFile("Bilder/FattigJohantext.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[34].loadFromFile("Bilder/Krespertext.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[35].loadFromFile("Bilder/Krallextext.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[36].loadFromFile("Bilder/Kraxeltext.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[37].loadFromFile("Bilder/Instructionsloop.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
+    if (!textures[38].loadFromFile("Bilder/Instructionstext.png"))
+    {
+      throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+    }
 
 }
 

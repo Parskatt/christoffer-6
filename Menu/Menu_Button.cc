@@ -8,6 +8,11 @@ std::string Menu_Button::get_state()
 {
   return state;
 }
+
+bool Menu_Button::inside_button(int x, int y)
+{
+  return !(x > limit.right || x < limit.left || y > limit.lower || y < limit.upper);
+}
 void Menu_Button::render(sf::RenderWindow &, Texture_handler &)
 {}
 
@@ -44,5 +49,5 @@ Instructionsloop_Button::Instructionsloop_Button(int width ,int height,int x,int
 {}
 
 Playingfield_Button::Playingfield_Button(int width ,int height,int x,int y,int index)
-:Menu_Button{width,height,x,y,index,"match"}
+:Menu_Button{width,height,x,y,index,"kappa"}
 {}
