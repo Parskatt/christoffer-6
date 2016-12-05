@@ -8,7 +8,7 @@ class Attack : public Object
 {
   protected:
 
-    unique_ptr<Projectile> curr_projectile;
+    Projectile curr_projectile;
 
 
   public:

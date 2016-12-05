@@ -102,7 +102,7 @@ int Character::get_texture_index() override
 }
 */
 /*
-void Character::attack(int attack_type,Match & match)
+void Character::attack(int attack_type)
 {
     if(curr_attack == nullptr)
     {

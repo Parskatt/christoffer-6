@@ -20,8 +20,6 @@ class Projectile : public Movable
 
     int damage;
 
-    Character source;
-
 };
 
 

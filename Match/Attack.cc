@@ -25,6 +25,6 @@ void Attack::wait()
 Punch::Punch(int width,int height,int x,int y,int index,int direction)
     :Attack(width,height,x,y,index)
 {
- curr_projectile = new Punch_projectile{20,20,?,?,nåt index,direction,damage};
+ curr_projectile = Punch_projectile{20,20,?,?,nåt index,direction,damage};
 
 }
