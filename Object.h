@@ -54,12 +54,13 @@ private:
 
     virtual void render(sf::RenderWindow &, Texture_handler &) = 0;
 
+    void update_limits();
+
     //Antingen spara en texture och skapa en sprite vid utritning, eller som nu
     //spara ett index till en texture som ligger någon annanstans
     //Kan den va const och sen overrideas till inte const längre ner?
     int get_texture_index();
 
-    void update_limits();
     //sf::Texture const & get_texture() const;
 };
 

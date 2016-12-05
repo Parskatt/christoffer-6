@@ -47,6 +47,7 @@ int Object::get_texture_index()
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
 }*/
+
 void Object::update_limits()
 {
   limit.left = position.xpos;
