@@ -13,7 +13,7 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{} //health_bar{health,direction}
+    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, has_attack{false} //health_bar{health,direction}
 {
     switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
     {
@@ -41,7 +41,7 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
     //curr_attack{} = nullptr;
 }
 
-Character & Character::operator=(const Character & other)
+/*Character & Character::operator=(const Character & other)
 {
   size.width = other.size.width;
   size.height = other.size.height;
@@ -52,7 +52,7 @@ Character & Character::operator=(const Character & other)
   direction = other.direction;
   fallable = other.fallable;
   curr_attack = std::move(other.curr_attack);
-}
+}*/
 
 void Character::set_x_speed(int x_speed)
 {
@@ -90,16 +90,16 @@ void Character::move()
 
 void Character::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
 {
-  if(curr_attack == nullptr)
+  if(!has_attack)
   {
     sf::Sprite sprite{};
     sprite.setTexture(table.get_texture(texture_index));
     sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
     window.draw(sprite);
   }
-  else if
+  else
   {
-    curr_attack->render(window,table);
+    //curr_attack.render(window,table);
   }
 
   health_bar.render(window,table);
@@ -123,18 +123,18 @@ int Character::get_texture_index() override
 }
 */
 
-void Character::attack(int attack_type)
+/*void Character::attack(int attack_type)
 {
-    if(curr_attack == nullptr)
+    if(!has_attack)
     {
     	if(attack_type == 1)
     	{
-    	  curr_attack = new Punch{size.width,size.height,position.xpos,position.ypos,5,direction};
-        curr_attack->wait();
-        delete curr_attack;
+    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,5,direction};
+        curr_attack.wait();
+        //delete curr_attack;
     	}
     }
-}
+}*/
 
 void Character::lose_health(int damage)
 {

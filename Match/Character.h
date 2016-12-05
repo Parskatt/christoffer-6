@@ -28,7 +28,9 @@ class Character : public Movable
 
     Health_bar health_bar;
 
-    std::unique_ptr<Attack> curr_attack{}; //Kanske måsvingar vid Attack
+    Attack curr_attack; //Kanske måsvingar vid Attack
+
+
 
   public:
 
@@ -38,7 +40,7 @@ class Character : public Movable
 
     Character(int,int,int,int,int,int,int,int);//---------------------------------------------------------
 
-    Character & operator=(const Character &);
+    //Character & operator=(const Character &);
 
     void set_x_speed(int);
 
@@ -61,6 +63,8 @@ class Character : public Movable
     void attack(int);
 
     void lose_health(int);
+
+    bool has_attack;
 
 };
 

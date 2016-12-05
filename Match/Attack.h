@@ -13,9 +13,14 @@ class Attack : public Object
 
 
   public:
-    Attack(int,int,int,int,int,int);
 
     ~Attack() = default;
+
+    Attack() = default;
+    
+    Attack(int,int,int,int,int,int);
+
+
 
     //void wait();
 
@@ -29,6 +34,10 @@ class Punch : public Attack
   private:
 
   public:
+    ~Punch() = default;
+
+    Punch() = default;
+
     Punch(int,int,int,int,int,int);
 };
 
