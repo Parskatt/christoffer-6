@@ -26,10 +26,14 @@ class Character : public Movable
 
     int health{};
 
+
+    Attack curr_attack{}; //Kanske måsvingar vid Attack
+
+    bool has_attack;
+
+    std::vector<Projectile> projectiles{};
+
     Health_bar health_bar;
-
-    Attack curr_attack; //Kanske måsvingar vid Attack
-
 
 
   public:
@@ -63,8 +67,6 @@ class Character : public Movable
     void attack(int);
 
     void lose_health(int);
-
-    bool has_attack;
 
 };
 

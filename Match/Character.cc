@@ -13,7 +13,7 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, has_attack{false} //health_bar{health,direction}
+    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{} //health_bar{health,direction}
 {
     switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
     {
@@ -34,7 +34,7 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
     //std::cout << "hej" << std::endl; //Behöver nog skicka in en direction också, så att vi kan spegla den för ena karaktären
     //health_bar = *nonmovable_objects.back();
     //std::cout << "då" << std::endl;//---------------------------------------------------------------------------------------
-
+    //Jag förstår inte :( - Kresper
 
     speed_vector.x_speed = 0;
     speed_vector.y_speed = 0;
@@ -61,7 +61,7 @@ void Character::set_x_speed(int x_speed)
 
 void Character::set_y_speed(int y_speed)
 {
-    speed_vector.y_speed = 2*y_speed;
+    speed_vector.y_speed = speed*y_speed;
 }
 
 int Character::get_x_speed() const
@@ -123,18 +123,18 @@ int Character::get_texture_index() override
 }
 */
 
-/*void Character::attack(int attack_type)
+void Character::attack(int attack_type)
 {
     if(!has_attack)
     {
     	if(attack_type == 1)
     	{
-    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,5,direction};
-        curr_attack.wait();
+    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,3,direction,projectiles};
+        //curr_attack.wait();
         //delete curr_attack;
     	}
     }
-}*/
+}
 
 void Character::lose_health(int damage)
 {

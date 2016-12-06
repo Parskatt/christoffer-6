@@ -29,6 +29,7 @@ Player::Player(int character,int player)//--------------------------------------
       //curr_character = (new Character{100,100,600,350,2,10,100,1,nonmovable_objects});
       //movable_objects.push_back(curr_character);
   }
+  std::cout << "hallå" << std::endl;
 }
 
 void Player::render(sf::RenderWindow & window, Texture_handler & table)
@@ -66,8 +67,8 @@ void Player::send_key(int key) //Borde va enum
     //Ducka??????
     case 3:
     {
-      curr_character.lose_health(5);
-      //curr_character.attack();
+      //curr_character.lose_health(5);
+      curr_character.attack(1);
       break;
     }
     //Slagattack

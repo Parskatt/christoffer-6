@@ -9,6 +9,7 @@
 #include "Character.h"
 #include <memory>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Player
 {

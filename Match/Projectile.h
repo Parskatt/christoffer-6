@@ -17,6 +17,8 @@ class Projectile : public Movable
 
     void move() override;
 
+    void render(sf::RenderWindow &, Texture_handler &);
+
   private:
 
     int damage;
@@ -28,7 +30,7 @@ class Punch_projectile : public Projectile
 {
   public:
 
-    Punch_projectile(int,int,int,int,int);
+    Punch_projectile(int,int,int,int,int,int,int,int);
 
     ~Punch_projectile() = default;
 

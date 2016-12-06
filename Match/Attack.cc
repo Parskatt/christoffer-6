@@ -6,7 +6,7 @@
 //#include time
 
 Attack::Attack(int width,int height,int x,int y,int index,int direction)
-    :Object{width,height,x,y,index}
+    :Object{width,height,x,y,index},direction{direction}
 {
 
 }
@@ -27,9 +27,8 @@ void Attack::render(sf::RenderWindow & window, Texture_handler & table)
 
 
 
-Punch::Punch(int width,int height,int x,int y,int index,int direction)
+Punch::Punch(int width,int height,int x,int y,int index,int direction,std::vector<Projectile> & projectiles)
     :Attack{width,height,x,y,index,direction}
 {
- //curr_projectile = Punch_projectile{20,20,?,?,nåt index,direction,damage};
-
+  projectiles.push_back(Punch_projectile{20,20,x,y,index,10,direction,50});
 }

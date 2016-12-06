@@ -10,7 +10,7 @@ class Attack : public Object
   protected:
 
   //  Projectile curr_projectile;
-
+  int direction;
 
   public:
 
@@ -38,7 +38,7 @@ class Punch : public Attack
 
     //Punch() = default;
 
-    Punch(int,int,int,int,int,int);
+    Punch(int,int,int,int,int,int,std::vector<Projectile> &);
 };
 
 #endif
