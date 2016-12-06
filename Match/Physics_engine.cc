@@ -76,8 +76,8 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     //int p2_check{0};
     c1 = player1.get_curr_character();
     c2 = player2.get_curr_character();
-    c1.move(0);
-    c2.move(0);
+    c1.move(1);
+    c2.move(1);
     if (square_above_collision(c1,c2) && square_x_collision(c1,c2))
     {
 	      c1.set_ypos(c2.get_limits().upper - c1.get_size().height);

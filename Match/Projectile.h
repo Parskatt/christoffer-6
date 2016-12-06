@@ -6,6 +6,7 @@
 #define PROJECTILE_H
 
 #include "Movable.h"
+#include <iostream>
 
 class Projectile : public Movable
 {

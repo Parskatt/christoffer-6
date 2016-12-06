@@ -57,6 +57,9 @@ Attack.o: Match/Attack.h Match/Attack.cc
 Projectile.o: Match/Projectile.h Match/Projectile.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Projectile.cc
 
+Physics_engine.o: Match/Physics_engine.h Match/Physics_engine.cc
+		$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Physics_engine.cc
+
 clean:
 	@ \rm -rf *.o *.gch core
 #.PHONY clean:

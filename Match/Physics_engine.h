@@ -6,12 +6,24 @@
 class Physics_engine
 {
  private:
-  bool square_collision(o1 & const,o2 & const) const;
-  bool cordinate_between(x, i1, i2);
+  bool square_collision(o1 & const,o2 & const);
+  bool square_collision(Object const & ,Object const & );
+  bool square_below_collision(Object const & ,Object const & );
+  bool square_above_collision(Object const & ,Object const & );
+  bool square_y_collision(Object const & ,Object const & );
+  bool square_x_collision(Object const & ,Object const & );
+  bool square_y_collide(Object const & ,Object const & );
+  bool cordinate_between(int ,int ,int );
+  bool object_outside_x(Object const & );
+  bool object_above (Object const & );
+  bool object_below (Object const & );
+  bool object_outside (Object const & );
+  bool cordinate_between(int,int,int);
  protected:
  public:
-  vector collision(movable_objects &, nonmovable_objects &) const;
-
+  Physics_engine() = default;
+  void collision(Playing_field const & , Player & , Player & ); //const;
+  void collision(Playing_field const & , Player & , Player & );
 };
 
 #endif

@@ -12,7 +12,8 @@ class Attack : public Object
 
   //  Projectile curr_projectile;
   int direction;
-
+  int done_counter{};
+  int render_counter{};
   public:
 
     ~Attack() = default;
@@ -26,6 +27,9 @@ class Attack : public Object
     //void wait();
 
     void render(sf::RenderWindow &, Texture_handler &) override;
+    bool done();
+    void set_xpos(int);
+    void set_ypos(int);
 
 };
 

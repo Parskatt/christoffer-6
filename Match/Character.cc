@@ -34,7 +34,7 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
     //std::cout << "hej" << std::endl; //Behöver nog skicka in en direction också, så att vi kan spegla den för ena karaktären
     //health_bar = *nonmovable_objects.back();
     //std::cout << "då" << std::endl;//---------------------------------------------------------------------------------------
-    //Jag förstår inte :( - Kresper
+    //Jag förstår inte :'( - Kresper
 
     speed_vector.x_speed = 0;
     speed_vector.y_speed = 0;
@@ -57,6 +57,7 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
 void Character::set_x_speed(int x_speed)
 {
     speed_vector.x_speed = speed*x_speed;
+    direction = x_speed;
 }
 
 void Character::set_y_speed(int y_speed)
@@ -92,18 +93,47 @@ void Character::move()
     //std::cout << "hej";
 }
 
+void Character::move(int step_direction)
+{
+  position.xpos += step_direction*speed_vector.x_speed;
+  position.ypos += step_direction*speed_vector.y_speed;
+}
+
 void Character::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
 {
   if(!has_attack)
   {
-    sf::Sprite sprite{};
-    sprite.setTexture(table.get_texture(texture_index));
-    sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
-    window.draw(sprite);
+    if(direction == 1)
+    {
+      sf::Sprite sprite{};
+      sprite.setTexture(table.get_texture(texture_index + 2));
+      sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+      window.draw(sprite);
+    }
+    else
+    {
+      sf::Sprite sprite{};
+      sprite.setTexture(table.get_texture(texture_index));
+      sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+      window.draw(sprite);
+    }
   }
   else
   {
-    //curr_attack.render(window,table);
+   if(curr_attack.done())
+    {
+      has_attack = false;
+      sf::Sprite sprite{};
+      sprite.setTexture(table.get_texture(texture_index));
+      sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+      window.draw(sprite);
+    }
+    else
+    {
+      curr_attack.set_xpos(position.xpos);
+      curr_attack.set_ypos(position.ypos);
+      curr_attack.render(window,table);
+    }
   }
   for (std::vector<Projectile>::iterator it = projectiles.begin() ; it != projectiles.end(); ++it)
   {
@@ -137,9 +167,15 @@ void Character::attack(int attack_type)
     	if(attack_type == 1)
     	{
     	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,3,direction,projectiles};
-        //curr_attack.wait();
-        //delete curr_attack;
+        has_attack = true;
     	}
+    }
+    else
+    {
+      if(curr_attack.done())
+      {
+        curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,3,direction,projectiles};
+      }
     }
 }
 

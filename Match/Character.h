@@ -58,6 +58,8 @@ class Character : public Movable
 
     void move() override;
 
+    void move(int);
+
     void render(sf::RenderWindow &, Texture_handler &) override;
 
     //void jump();

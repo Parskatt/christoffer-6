@@ -11,7 +11,7 @@ Player::Player(int character,int player)//--------------------------------------
   {
     case 1:
     {
-      curr_character = Character{100,100,600,350,2,5,100,1};
+      curr_character = Character{100,100,600,350,2,5,100,-1};
       //movable_objects.push_back(std::make_unique<Character>(curr_character));//(100,100,600,350,2,5,100,1,nonmovable_objects));
 
       //curr_character = *dynamic_cast<Character*>(movable_objects.back());
@@ -22,14 +22,13 @@ Player::Player(int character,int player)//--------------------------------------
     }
     case 2:
     {
-      curr_character = Character{100,100,100,350,4,5,100,-1};
+      curr_character = Character{100,100,100,350,2,5,100,1};
       break;
     }
     //default:
       //curr_character = (new Character{100,100,600,350,2,10,100,1,nonmovable_objects});
       //movable_objects.push_back(curr_character);
   }
-  std::cout << "hallå" << std::endl;
 }
 
 void Player::render(sf::RenderWindow & window, Texture_handler & table)
