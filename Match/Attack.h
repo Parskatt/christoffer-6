@@ -17,14 +17,14 @@ class Attack : public Object
     ~Attack() = default;
 
     Attack() = default;
-    
+
     Attack(int,int,int,int,int,int);
 
 
 
     //void wait();
 
-    void render(sf::RenderWindow & window, Texture_handler & table) override;
+    void render(sf::RenderWindow &, Texture_handler &) override;
 
 };
 
@@ -34,9 +34,9 @@ class Punch : public Attack
   private:
 
   public:
-    ~Punch() = default;
+    //~Punch() = default;
 
-    Punch() = default;
+    //Punch() = default;
 
     Punch(int,int,int,int,int,int);
 };

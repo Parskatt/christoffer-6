@@ -23,6 +23,7 @@ Menu_Button.o: Menu/Menu_Button.h Menu/Menu_Button.cc
 
 Menu_Texture_handler.o: Menu_Texture_handler.h Menu_Texture_handler.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu_Texture_handler.cc
+
 game_menu.o: game_menu.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c game_menu.cc
 
@@ -51,7 +52,7 @@ Match.o: Match/Match.h Match/Match.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Match.cc
 
 Attack.o: Match/Attack.h Match/Attack.cc
-		$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Attack.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Match/Attack.cc
 
 clean:
 	@ \rm -rf *.o *.gch core

@@ -3,6 +3,7 @@
 #include Physics_engine.h
 #include <vector>
 Physics_engine::Physics_engine()
+{}
 
 bool Physics_engine::square_collision(Object const & o1,Object const & o2)
 {
@@ -35,9 +36,9 @@ bool Physics_engine::square_y_collide(Object const & o1,Object const & o2)
 {
     if !(square_y_collision(o1,o2))
     {
-	o1.move();
-	o2.move();
-	return square_y_collision(o1,o2);
+    	o1.move();
+    	o2.move();
+    	return square_y_collision(o1,o2);
     }
     return false;
 }
@@ -50,17 +51,17 @@ bool Physics_engine::cordinate_between(int x,int left,int right)
 
 bool Physics_engine::object_outside_x(Object const & obj)
 {
-    return ((obj.get_position().x > 800) || (obj.get_position().x < 0));
+    return ((obj.get_position().x > 1280) || (obj.get_position().x < 0));
 }
 
 bool Physics_engine::object_above (Object const & obj)
 {
-    return (obj.get_position().y < 800);
+    return (obj.get_position().y < 0);
 }
 
 bool Physics_engine::object_below (Object const & obj)
 {
-    return (obj.get_position().y > 0);
+    return (obj.get_position().y > 720);
 }
 
 bool Physics_engine::object_outside (Object const & obj)
@@ -79,7 +80,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     c2.move(0);
     if (square_above_collision(c1,c2) && square_x_collision(c1,c2))
     {
-	c1.set_ypos(c2.get_limits().upper - c1.get_size().height);
+	      c1.set_ypos(c2.get_limits().upper - c1.get_size().height);
         c1.set_y_speed(0);
         c2.set_y_speed(0);
     }
@@ -95,28 +96,28 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     	{
     	    if (Square_collision(c1,c2))
     	    {
-		c1.move(-1);
-		c2.move(-1);
+        		c1.move(-1);
+        		c2.move(-1);
     	    }
     	}
     }
 
     if (object_below(c1))
     {
-	c1.lose_health(9999);
+	     c1.lose_health(9999);
     }
     if (object_below(c2))
     {
-	c2.lose_health(9999);
+	     c2.lose_health(9999);
     }
 
     if (object_outside (c1))
     {
-	c1.move(-1);
+	     c1.move(-1);
     }
     if (object_outside(c2))
     {
-	c2.move(-1);
+	     c2.move(-1);
     }
 
 
@@ -130,162 +131,89 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     	p2.move();
     	if (object_outside(p2))
     	{
-    	    c2.projectiles.erase(it);
-    	    //c2.projectiles.erase(c2.projectiles.begin + p2.counter);
-
-    	    if (square_collision(c1,p2))
-    	    {
-    		c1.lose_health(p2.damage());
-        c2.projectiles.erase(it);
-    		//p2.make_doomed();
-    		//c2.projectiles.erase(c2.projectiles.begin + p2.counter);
-    		//p2_counter--;
-    	    }
-    	    //int p1_counter{0};
-    	    for(std::vector<Projectile>::iterator it2 = c1.projectiles.begin() ; it != c1.projectile.end(); it++)
-    	    {
-    		p1 = *it2;
-    		if (first_p1_iteration)
-    		{
-    		    p1.move();
-    		    if (object_outside(p1))
-    		    {
-    			c1.projectiles.erase(it);
-    			//c1.projectiles.erase(c1.projectiles.begin + p1.counter);
-    		    }
-    		    if (square_collision(c2,p1))
-    		    {
-    			c2.lose_health(p1.damage());
-          c1.projectile.erase(it2);
-    			//p1.make_doomed();
-    			//c1.projectiles.erase(c1.projectiles.begin + p1.counter);
-    		    }
-    		}
-    		if (square_collision(p1,p2))
-    		{
-    		    //c1.projectiles.erase(c1.projectiles.begin() + p1_counter);
-    		    //c2.projectiles.erase(c2.projectiles.begin() + p2_counter);
-            c1.projectiles.erase(it2);
-            c2.projectiles.erase(it);
-    		    //p1.make_doomed();
-    		    //p2.make_doomed();
-    		}
-
-    		//p1_counter++;
-    	    }
-    	    first_p1_iteration = false;
-    	    //p2_counter++;
-	       }
-	for std::vector<Platform>::iterator it = Playing_field.platforms.begin(); it != playingf_field.patforms.end(); it++)
-    {
-	plat = *it;
-	if (square_collision(c1,plat))
-	{
-	    c1.move(-1);
-	    c1.set_y_speed(0);
-	}
-	if (square_collision(c2,plat))
-	{
-	    c2.move(-1);
-	    c2.set_y_speed(0);
-	}
-    }
-
-    int counter{0};
-    for(std::vector<Projectile>::iterator it2 = c1.projectiles.begin() ; it != c1.projectiles.end(); it++)
-    {
-    	p1 = *it2;
-    	if (first_p1_iteration)
-    	{
-    	    p1.move();
-    	    if (object_outside(p1))
-    	    {
-    		p1.make_doomed();
-    		//c1.projectiles.erase(c1.projectiles.begin + p1.counter);
-    	    }
-    	    if (square_collision(c2,p1))
-    	    {
-    		c2.lose_health(p1.damage());
-    		p1.make_doomed();
-    		//c1.projectiles.erase(c1.projectiles.begin + p1.counter);
-    	    }
-    	}
-    	if (square_collision(p1,p2))
-    	{
-    	    c1.projectiles.erase(it);
-    	    c2.projectiles.erase(it);
-    	    //p1.make_doomed();
-    	    //p2.make_doomed();
+    	  c2.projectiles.erase(it);
+        it--;
       }
-
-    	//p1_counter++;
-    	first_pi_iteration = 0;
-    }
-    //p2_counter++;
-    for(std::vector<Platform>::iterator it = Playing_field.platforms.begin(); it != playing_field.patforms.end(); it++)
-    {
-	plat = *it;
-	if (square_above_collision(c1,plat))
-	{
-	    c1.set_ypos(plat.lim.upper - c1.size.height);
-	    c1.set_y_speed(0);
-	}
-	else
-	{
-	    if (square_collision(c1,plat))
-	    {
-		c1.move(-1);
-		//c1.set_y_speed(0);
-	    }
-	}
-	if (square_above_collision(c2,plat))
-	{
-	    c2.set_ypos(plat.lim.upper - c2.size.height);
-	    c2.set_y_speed(0);
-	}
-
-	else
-	{
-	    if (square_collision(c2,plat))
-	    {
-		c2.move(-1);
-		//c2.set_y_speed(0);
-	    }
-	}
-/*
-	int counter{0};
-
-	for(std::vector<Projectile>::iterator it = c1.projectiles.begin() ; it != c1.projectile.end(); it++)
-	{
-	    if (*it.is_doomed())
-	    {
-		c1.projectiles.erase(it);//c1.projectiles.begin() + counter);
-		//counter--;
-	    }
       else
       {
-	    counter++;
-      }
-	}
-	counter = 0;
+    	if (square_collision(c1,p2))
+    	 {
+        c1.lose_health(p2.damage());
+        c2.projectiles.erase(it);
+        it--;
+    	 }
+     }
+       for(std::vector<Projectile>::iterator it2 = c1.projectiles.begin() ; it2 != c1.projectile.end(); it2++)
+    	  {
+        	p1 = *it2;
+        	if (first_p1_iteration)
+        		{
+        		    p1.move();
+        		    if (object_outside(p1))
+        		    {
+        			c1.projectiles.erase(it2);
+              it2--;
+        		    }
+                else
+                {
+        		    if (square_collision(c2,p1))
+        		    {
+        			c2.lose_health(p1.damage());
+              c1.projectile.erase(it2);
+              it2--;
+        		    }
+              }
+                first_p1_iteration = false;
+        		}
+        		if (square_collision(p1,p2))
+        		{
+                c1.projectiles.erase(it2);
+                c2.projectiles.erase(it);
+                it--;
+                it2--;
+        		}
+          }
+        }
 
-	for(std::vector<Projectile>::iterator it = c1.projectiles.begin() ; it != c1.projectile.end(); it++)
-	{
-	    c2 = *it;
-	    if (c2.is_doomed())
-	    {
-		c2.projectiles.erase(c2.projectiles.begin() + counter);
-		counter--;
-	    }
-	    counter++;
-	}
-  */
-    } 
+      	  }
 
-    void Physics_engine::gravity(Playing_field & const playing_field_obj, Player & player1, Player & player2)
-	nonmovable_objects &) const;
+  	  }
+
+    for(std::vector<Platform>::iterator it = Playing_field.platforms.begin(); it != playing_field.patforms.end(); it++)
+    {
+    	plat = *it;
+    	if (square_above_collision(c1,plat))
+    	{
+    	    c1.set_ypos(plat.lim.upper - c1.size.height);
+    	    c1.set_y_speed(0);
+    	}
+    	else
+    	{
+    	    if (square_collision(c1,plat))
+    	    {
+    		c1.move(-1);
+    	    }
+    	}
+    	if (square_above_collision(c2,plat))
+    	{
+    	    c2.set_ypos(plat.lim.upper - c2.size.height);
+    	    c2.set_y_speed(0);
+    	}
+
+    	else
+    	{
+    	    if (square_collision(c2,plat))
+    	    {
+    		c2.move(-1);
+    		//c2.set_y_speed(0);
+    	    }
+    	}
+    }
+  }
+
+void Physics_engine::gravity(Playing_field & const playing_field_obj, Player & player1, Player & player2) //const;
 	{
-	    int gravity{10};
+	    int gravity{1};
 	    c1 = player1.get_curr_character();
 	    c2 = player2.get_curr_character();
 	    int c1_ground{0};
