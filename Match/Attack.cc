@@ -8,7 +8,6 @@
 Attack::Attack(int width,int height,int x,int y,int index,int direction)
     :Object{width,height,x,y,index},direction{direction}
 {
-
 }
 
 /*void Attack::wait()

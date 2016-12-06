@@ -85,6 +85,10 @@ void Character::move()
     position.xpos += speed_vector.x_speed;
     position.ypos += speed_vector.y_speed;
     speed_vector.x_speed = 0;
+    for (std::vector<Projectile>::iterator it = projectiles.begin() ; it != projectiles.end(); ++it)
+    {
+      it->move();
+    }
     //std::cout << "hej";
 }
 
@@ -101,7 +105,10 @@ void Character::render(sf::RenderWindow & window, Texture_handler & table) //Bor
   {
     //curr_attack.render(window,table);
   }
-
+  for (std::vector<Projectile>::iterator it = projectiles.begin() ; it != projectiles.end(); ++it)
+  {
+    it->render(window,table);
+  }
   health_bar.render(window,table);
 }
 

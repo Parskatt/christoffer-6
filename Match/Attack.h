@@ -4,6 +4,7 @@
 #include "Movable.h"
 #include "Projectile.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Attack : public Object
 {
