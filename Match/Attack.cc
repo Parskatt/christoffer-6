@@ -3,6 +3,7 @@
 //
 
 #include "Attack.h"
+
 //#include time
 
 
@@ -10,7 +11,7 @@
 //Attack
 //
 Attack::Attack(int width,int height,int x,int y,int index,int direction)
-    :Object{width,height,x,y,index},direction{direction},done_counter{0},render_counter{0}
+    :Object{width,height,x,y,index},direction{direction},done_counter{0},render_counter{10}
 {
 }
 
@@ -23,18 +24,19 @@ Attack::Attack(int width,int height,int x,int y,int index,int direction)
 void Attack::render(sf::RenderWindow & window, Texture_handler & table)
 {
   sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(texture_index + render_counter));
+  sprite.setTexture(table.get_texture(texture_index + floor(render_counter/5)));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
   render_counter += 1;
-  if (render_counter > 3)
+  if (render_counter > 25)
   {
-    render_counter = 0;
+    render_counter = 10;
   }
 }
+
 bool Attack::done()
 {
-  if(done_counter > 100)
+  if(done_counter > 15)
   {
     done_counter = 0;
     return true;

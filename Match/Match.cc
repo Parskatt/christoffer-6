@@ -12,7 +12,7 @@ Match::Match(int char1,int char2,int playfield)
   :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playfield},
    player1{char1,1},player2{char2,2},p1_commands{4},p2_commands{4}//---------------------------------------------------
 {
-  
+
   //auto it = nonmovable_objects.begin();
   //it = nonmovable_objects.insert(it,&playing_field);
   //nonmovable_objects.push_back(playing_field.get_platform());
@@ -72,7 +72,7 @@ void Match::run()
 void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_handler & table)
 {
       clock.restart();
-      window.clear();
+      //window.clear();
 
       playing_field.render(window,table);
       player1.render(window,table);

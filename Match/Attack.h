@@ -5,6 +5,7 @@
 #include "Projectile.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <math.h>
 
 class Attack : public Object
 {

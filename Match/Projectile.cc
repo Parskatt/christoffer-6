@@ -12,7 +12,6 @@ Projectile::Projectile(int width,int height,int x,int y,int index,int speed,int 
 
 void Projectile::move()
 {
-  std::cout << direction << std::endl;
   position.xpos += direction * speed;
 }
 
