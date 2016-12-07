@@ -51,7 +51,7 @@ void Match::run()
     sf::Time targetFrameDelay {sf::milliseconds(10)};
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    sf::RenderWindow window{sf::VideoMode{1280,720},"SFML Test", sf::Style::Default, settings};
+    sf::RenderWindow window{sf::VideoMode{1280,720},"Gatukämpe 6 - Return of the Streetfighter?", sf::Style::Default, settings};
     window.setVerticalSyncEnabled(true);
     Physics_engine engine{};
 

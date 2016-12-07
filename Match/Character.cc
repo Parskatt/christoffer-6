@@ -83,7 +83,15 @@ void Character::move()
     speed_vector.x_speed = 0;
     for (std::vector<Projectile>::iterator it = projectiles.begin() ; it != projectiles.end(); ++it)
     {
+      if(it->done())
+      {
+        projectiles.erase(it);
+        --it;
+      }
+      else
+      {
       it->move();
+    }
     }
 }
 
@@ -93,14 +101,14 @@ void Character::move(int step_direction)
   position.ypos += step_direction*speed_vector.y_speed;
 }
 
-void Character::render(sf::RenderWindow & window) //Borde hantera textures på nåt annat sätt om vi ska ha render här
+void Character::render(sf::RenderWindow & window)
 {
   if(!has_attack)
   {
     if(direction == 1)
     {
       sf::Sprite sprite{};
-      sprite.setTexture(texture_handler.get_texture(0 + 2));
+      sprite.setTexture(texture_handler.get_texture(1));
       sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
       window.draw(sprite);
     }
@@ -136,24 +144,6 @@ void Character::render(sf::RenderWindow & window) //Borde hantera textures på n
   health_bar.render(window);
 }
 
-/*void Character::jump()
-{
-
-}*/
-/*
-int Character::get_texture_index() override
-{
-    if(curr_attack != nullptr)
-    {
-	     return curr_attack->get_texture_index();
-    }
-    else
-    {
-	     return texture_index;
-    }
-}
-*/
-
 void Character::attack(int attack_type,int character_id)
 {
     if(!has_attack)
@@ -161,6 +151,7 @@ void Character::attack(int attack_type,int character_id)
     	if(attack_type == 1)
     	{
     	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
+        std::cout << "skapar attack" << std::endl;
         has_attack = true;
     	}
     }
