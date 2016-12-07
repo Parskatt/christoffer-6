@@ -4,17 +4,28 @@
 
 #include "Texture_handler.h"
 
-Texture_handler::Texture_handler()
-  :textures{8} //number of textures
+Texture_handler::Texture_handler(std::initializer_list<std::string> il)
+  :textures{il.size()} //number of textures
 {
+
+    int i{};
+    for(std::string path : il)
+    {
+      if (!textures[i].loadFromFile(path))
+      {
+        throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
+      }
+      ++i;
+    }
+    /*
     if (!textures[1].loadFromFile("Bilder/background1.png"))
     {
       throw 1; //Gör en exceptionklass för texture_handler som ärver från std::logic_error
     }
-    /*else if (!textures[1].loadFromFile("Bilder/platform.png"))
-    {
-      throw 1;
-    }*/
+    //else if (!textures[1].loadFromFile("Bilder/platform.png"))
+    //{
+    //  throw 1;
+    //}
     else if (!textures[2].loadFromFile("Bilder/cammy.png"))
     {
       throw 1;
@@ -38,7 +49,7 @@ Texture_handler::Texture_handler()
     else if(!textures[7].loadFromFile("Bilder/cammy8.png"))
     {
       throw 1;
-    }
+    }*/
 
 }
 

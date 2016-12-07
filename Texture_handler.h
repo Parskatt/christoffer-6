@@ -7,11 +7,13 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <initializer_list>
+#include <string>
 
 class Texture_handler
 {
   public:
-    Texture_handler();
+    Texture_handler(std::initializer_list<std::string>);
 
     ~Texture_handler() = default;
 
