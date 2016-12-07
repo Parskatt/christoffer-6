@@ -4,7 +4,7 @@
 #define PHYSICS_ENGINE_H
 
 #include "Player.h"
-#include "Playing_field.h"
+#include "Non_movables.h"
 #include "../Object.h"
 
 

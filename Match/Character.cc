@@ -38,6 +38,18 @@ Character::Character(int width, int height,int x, int y,std::initializer_list<st
     //curr_attack{} = nullptr;
 }
 
+void Character::set_x_pos(int xposition)
+{
+  position.xpos = xposition;
+}
+
+void Character::set_y_pos(int yposition)
+{
+  position.ypos = yposition;
+}
+
+
+
 void Character::set_x_speed(int x_speed)
 {
     speed_vector.x_speed = speed*x_speed;
@@ -165,4 +177,9 @@ void Character::lose_health(int damage)
 {
   health -= damage;
   health_bar.set_size(health);
+}
+
+std::vector<Projectile> & get_projectiles()
+{
+  return projectiles;
 }

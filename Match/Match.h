@@ -13,6 +13,7 @@
 #include "Player.h"
 #include <vector>
 #include <memory>
+#include "Physics_engine.h"
 
 class Match
 {
@@ -31,7 +32,7 @@ class Match
 
     //void collision_update(Object object);
 
-    void position_update();
+    void position_update(Physics_engine &);
 
     //bool dead_check();
 

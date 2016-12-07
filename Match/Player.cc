@@ -85,9 +85,8 @@ void Player::send_key(int key) //Borde va enum
   }
 
 }
-/*
+
 Character & Player::get_curr_character()
 {
   return curr_character;
 }
-*/

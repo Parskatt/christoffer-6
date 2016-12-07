@@ -20,6 +20,8 @@ class Projectile : public Movable
 
     void render(sf::RenderWindow &);
 
+    int get_damage() const;
+
   private:
 
     int damage;

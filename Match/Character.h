@@ -46,6 +46,10 @@ class Character : public Movable
 
     //Character & operator=(const Character &);
 
+    void set_x_pos(int);
+
+    void set_y_pos(int);
+
     void set_x_speed(int);
 
     void set_y_speed(int);
@@ -69,6 +73,8 @@ class Character : public Movable
     void attack(int,int);
 
     void lose_health(int);
+
+    std::vector<Projectile> & get_projectiles();
 
 };
 

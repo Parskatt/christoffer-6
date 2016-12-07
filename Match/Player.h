@@ -25,7 +25,7 @@ class Player
 
     void position_update();
 
-    //Character & get_curr_character();
+    Character & get_curr_character();
 
   private:
 

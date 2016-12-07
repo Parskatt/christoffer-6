@@ -15,6 +15,11 @@ void Projectile::move()
   position.xpos += direction * speed;
 }
 
+int Projectile::get_damage() const
+{
+  return damage;
+}
+
 //-----------------------------------------------------------------------------
 
 Punch_projectile::Punch_projectile(int width,int height,int x,int y,std::initializer_list<std::string> il,int speed,int direction,int damage)

@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 
+
 Match::Match(int char1,int char2,std::initializer_list<std::string> playfield)
   :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playfield},
    player1{char1,1},player2{char2,2},p1_commands{4},p2_commands{4}//---------------------------------------------------
@@ -52,12 +53,13 @@ void Match::run()
     settings.antialiasingLevel = 8;
     sf::RenderWindow window{sf::VideoMode{1280,720},"SFML Test", sf::Style::Default, settings};
     window.setVerticalSyncEnabled(true);
+    Physics_engine engine{};
 
     while(running)
     {
       clock.restart();
       keyboard_handler(window,event,running);
-      position_update();
+      position_update(engine);
       graphic_update(clock,window);
       auto frameDelay = clock.getElapsedTime();
       if ( targetFrameDelay > frameDelay )
@@ -164,10 +166,15 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
   object->move();
 }*/
 
-void Match::position_update()
+void Match::position_update(Physics_engine & engine)
 {
+
   player1.position_update();
   player2.position_update();
+  engine.gravity(playing_field, player1, player2);
+  player1.
+  //engine.collision(playing_field, player1, player2);
+
 
   //physics_engine.gravity();
   //for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------
