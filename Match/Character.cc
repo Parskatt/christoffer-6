@@ -80,7 +80,7 @@ void Character::move()
 {
     position.xpos += speed_vector.x_speed;
     position.ypos += speed_vector.y_speed;
-    speed_vector.x_speed = 0;
+    //speed_vector.x_speed = 0;
     for (std::vector<Projectile>::iterator it = projectiles.begin() ; it != projectiles.end(); ++it)
     {
       if(it->done())
@@ -98,6 +98,12 @@ void Character::move()
 
 void Character::move(int step_direction)
 {
+  std::cout << "move-1" << std::endl;
+  if (speed_vector.x_speed != 0)
+  {
+    std::cout << "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK" << std::endl;
+  }
+
   position.xpos += step_direction*speed_vector.x_speed;
   position.ypos += step_direction*speed_vector.y_speed;
   update_limits();

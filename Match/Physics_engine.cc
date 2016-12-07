@@ -18,8 +18,10 @@ bool Physics_engine::square_below_collision(Object const & o1,Object const & o2)
 
 bool Physics_engine::square_above_collision(Object const & o1,Object const & o2)
 {
-    std::cout << "square above" << std::endl;
-    return cordinate_between(o1.get_limits().lower,o2.get_limits().lower,o2.get_limits().upper);
+    std::cout << "square above runs" << std::endl;
+    std::cout << o1.get_limits().lower << " " << o2.get_limits().lower << " " << o2.get_limits().upper << std::endl;
+    //std::cout << cordinate_between(o1.get_limits().lower,o2.get_limits().lower,o2.get_limits().upper); << std::endl;
+    return (cordinate_between(o1.get_limits().lower,o2.get_limits().lower,o2.get_limits().upper) && square_x_collision(o1,o2));
 }
 
 bool Physics_engine::square_y_collision(Object const & o1,Object const & o2)
@@ -29,8 +31,8 @@ bool Physics_engine::square_y_collision(Object const & o1,Object const & o2)
 
 bool Physics_engine::square_x_collision(Object const & o1,Object const & o2)
 {
-    return (cordinate_between(o1.get_limits().left,o2.get_limits().left,o2.get_limits().right) ||
-	    cordinate_between(o1.get_limits().right,o2.get_limits().left,o2.get_limits().right));
+    return (cordinate_between(o1.get_limits().left,o2.get_limits().right,o2.get_limits().left) ||
+	    cordinate_between(o1.get_limits().right,o2.get_limits().right,o2.get_limits().left));
 }
 /*
 bool Physics_engine::square_y_collide(Object const & o1,Object const & o2)
@@ -45,14 +47,14 @@ bool Physics_engine::square_y_collide(Object const & o1,Object const & o2)
 }
 */
 
-bool Physics_engine::cordinate_between(int x,int left,int right)
+bool Physics_engine::cordinate_between(int x,int lowerorright,int upperorleft)
 {
-    return ((x <= left) && (x >= right));
+    return ((x <= lowerorright) && (x >= upperorleft));
 }
 
 bool Physics_engine::object_outside_x(Object const & obj)
 {
-    return ((obj.get_position().xpos > 1280) || (obj.get_position().xpos < 0));
+    return ((obj.get_position().xpos > 1120) || (obj.get_position().xpos < 0));
 }
 
 bool Physics_engine::object_above (Object const & obj)
@@ -81,6 +83,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     //player2.get_curr_character().move(1);
     if (square_above_collision(player1.get_curr_character(),player2.get_curr_character()) && square_x_collision(player1.get_curr_character(),player2.get_curr_character()))
     {
+        std::cout << "p1p2coll" << std::endl;
 	      player1.get_curr_character().set_y_pos(player2.get_curr_character().get_limits().upper - player1.get_curr_character().get_size().height);
         player1.get_curr_character().set_y_speed(0);
         player2.get_curr_character().set_y_speed(0);
@@ -89,19 +92,22 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     {
     	if (square_above_collision(player2.get_curr_character(),player1.get_curr_character()) && square_x_collision(player2.get_curr_character(),player1.get_curr_character()))
     	{
+          std::cout << "p2p1coll" << std::endl;
     	    player2.get_curr_character().set_y_pos(player1.get_curr_character().get_limits().upper - player2.get_curr_character().get_size().height);
     	    player1.get_curr_character().set_y_speed(0);
     	    player2.get_curr_character().set_y_speed(0);
     	}
-    	else
-    	{
-    	    if (square_collision(player1.get_curr_character(),player2.get_curr_character()))
-    	    {
-        		player1.get_curr_character().move(-1);
-        		player2.get_curr_character().move(-1);
-    	    }
-    	}
     }
+
+
+    if (square_collision(player1.get_curr_character(),player2.get_curr_character()))
+	    {
+        std::cout << "p1p2-1-1" << std::endl;
+        player1.get_curr_character().move(-1);
+        player2.get_curr_character().move(-1);
+    	}
+
+
 
     if (object_below(player1.get_curr_character()))
     {
@@ -114,6 +120,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
 
     if (object_outside (player1.get_curr_character()))
     {
+        std::cout << "p1outside" << std::endl;
 	     player1.get_curr_character().move(-1);
     }
     if (object_outside(player2.get_curr_character()))
@@ -186,6 +193,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     //	plat = *it;
     	if (square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
     	{
+          std::cout << "p1platt" << std::endl;
     	    player1.get_curr_character().set_y_pos(playing_field_obj.get_platform().get_limits().upper - player1.get_curr_character().get_size().height);
     	    player1.get_curr_character().set_y_speed(0);
     	}
@@ -193,6 +201,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
     	{
     	    if (square_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
     	    {
+              std::cout << "p1xplatt" << std::endl;
     		      player1.get_curr_character().move(-1);
     	    }
     	}
@@ -216,6 +225,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
 void Physics_engine::gravity(Playing_field const & playing_field_obj, Player & player1, Player & player2) //const;
 {
     int gravity{1};
+
     //c1 = player1.get_curr_character();
     //player2.get_curr_character() = player2.get_curr_character();
     bool c1_ground{false};
@@ -224,26 +234,46 @@ void Physics_engine::gravity(Playing_field const & playing_field_obj, Player & p
     //for(std::vector<Platform>::iterator it = playing_field_obj.platform.begin(); it != playing_field_obj.platform.end(); it++)
     //{
     //plat = *it;
+    std::cout << "p1" << std::endl;
     if (square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
     {
       std::cout << "collision" << std::endl;
+      std::cout << "collision" << std::endl;
+      std::cout << "collision" << std::endl;
+      std::cout << "collision" << std::endl;
+      std::cout << "collision" << std::endl;
+      std::cout << "collision" << std::endl;
+      std::cout << "collision" << std::endl;
+      std::cout << "collision" << std::endl;
     }
+    std::cout << c1_ground << std::endl;
+    std::cout << "p1" << std::endl;
     c1_ground = (c1_ground || square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()));
+    std::cout << "p2" << std::endl;
     c2_ground = (c2_ground || square_above_collision(player2.get_curr_character(),playing_field_obj.get_platform()));
     //}
+    std::cout << c1_ground << std::endl;
+    std::cout << "p1 p2" << std::endl;
     c1_ground = (c1_ground || square_above_collision(player1.get_curr_character(),player2.get_curr_character()));
+    std::cout << "p2 p1" << std::endl;
     c2_ground = (c2_ground || square_above_collision(player2.get_curr_character(),player1.get_curr_character()));
-
+    std::cout << "p1 p2" << std::endl;
+    if (square_above_collision(player1.get_curr_character(),player2.get_curr_character()))
+    {
+    std::cout << "hej" << std::endl;
+    }
+    std::cout << c1_ground << std::endl;
     if(!c1_ground)
     {
-      std::cout << "c1_ground" << std::endl;
+      std::cout << "c1_not_ground" << std::endl;
       player1.get_curr_character().set_y_speed(gravity);
     	//player1.get_curr_character().set_y_speed(player1.get_curr_character().get_y_speed() + gravity);
     }
-
+    std::cout << "p1speed" << player1.get_curr_character().get_y_speed() << std:: endl;
     if(!c2_ground)
     {
-      std::cout << "c2_ground" << std::endl;
-    	player2.get_curr_character().set_y_speed(player2.get_curr_character().get_y_speed() + gravity);
+      std::cout << "c2_not_ground" << std::endl;
+    	//player2.get_curr_character().set_y_speed(player2.get_curr_character().get_y_speed() + gravity);
+      player2.get_curr_character().set_y_speed(gravity);
     }
 }

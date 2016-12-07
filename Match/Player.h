@@ -25,6 +25,8 @@ class Player
 
     void position_update();
 
+    void stopwalking();
+    
     Character & get_curr_character();
 
   private:
