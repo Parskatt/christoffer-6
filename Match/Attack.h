@@ -14,7 +14,6 @@ class Attack : public Object
   //  Projectile curr_projectile;
   int direction;
   int done_counter{};
-  int render_counter{};
   public:
 
     ~Attack() = default;

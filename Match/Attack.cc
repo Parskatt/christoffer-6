@@ -11,7 +11,7 @@
 //Attack
 //
 Attack::Attack(int width,int height,int x,int y,std::initializer_list<std::string> il,int direction)
-    :Object{width,height,x,y,il},direction{direction},done_counter{0},render_counter{10}
+    :Object{width,height,x,y,il},direction{direction},done_counter{0}
 {
 }
 
@@ -24,24 +24,21 @@ Attack::Attack(int width,int height,int x,int y,std::initializer_list<std::strin
 void Attack::render(sf::RenderWindow & window)
 {
   sf::Sprite sprite{};
-  sprite.setTexture(texture_handler.get_texture(0 + floor(render_counter/5)));
+  sprite.setTexture(texture_handler.get_texture(0 + floor(done_counter/5)));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
-  render_counter += 1;
-  if (render_counter > 15)
+  if (done_counter < 15)
   {
-    render_counter = 0;
+  done_counter += 1;
   }
 }
 
 bool Attack::done()
 {
-  if(done_counter > 15)
+  if(done_counter > 14)
   {
-    done_counter = 0;
     return true;
   }
-  done_counter += 1;
   return false;
 }
 void Attack::set_xpos(int xpos)
