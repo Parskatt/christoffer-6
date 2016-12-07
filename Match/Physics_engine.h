@@ -3,10 +3,16 @@
 #ifndef PHYSICS_ENGINE_H
 #define PHYSICS_ENGINE_H
 
+#include "Player.h"
+#include "Playing_field.h"
+#include "../Object.h"
+
+
 class Physics_engine
 {
  private:
-  bool square_collision(o1 & const,o2 & const);
+
+  //bool square_collision(o1 & const,o2 & const);
   bool square_collision(Object const & ,Object const & );
   bool square_below_collision(Object const & ,Object const & );
   bool square_above_collision(Object const & ,Object const & );
@@ -18,12 +24,16 @@ class Physics_engine
   bool object_above (Object const & );
   bool object_below (Object const & );
   bool object_outside (Object const & );
-  bool cordinate_between(int,int,int);
+
  protected:
+
  public:
+
+  ~Physics_engine() = default;
   Physics_engine() = default;
+
   void collision(Playing_field const & , Player & , Player & ); //const;
-  void collision(Playing_field const & , Player & , Player & );
+  void gravity(Playing_field const & , Player & , Player & );
 };
 
 #endif
