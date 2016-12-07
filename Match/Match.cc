@@ -172,7 +172,7 @@ void Match::position_update(Physics_engine & engine)
   player1.position_update();
   player2.position_update();
   engine.gravity(playing_field, player1, player2);
-  player1.
+
   //engine.collision(playing_field, player1, player2);
 
 

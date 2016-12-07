@@ -18,6 +18,7 @@ bool Physics_engine::square_below_collision(Object const & o1,Object const & o2)
 
 bool Physics_engine::square_above_collision(Object const & o1,Object const & o2)
 {
+    std::cout << "square above" << std::endl;
     return cordinate_between(o1.get_limits().lower,o2.get_limits().lower,o2.get_limits().upper);
 }
 
@@ -46,7 +47,7 @@ bool Physics_engine::square_y_collide(Object const & o1,Object const & o2)
 
 bool Physics_engine::cordinate_between(int x,int left,int right)
 {
-    return ((x >= left) && (x <= right));
+    return ((x <= left) && (x >= right));
 }
 
 bool Physics_engine::object_outside_x(Object const & obj)
@@ -223,19 +224,26 @@ void Physics_engine::gravity(Playing_field const & playing_field_obj, Player & p
     //for(std::vector<Platform>::iterator it = playing_field_obj.platform.begin(); it != playing_field_obj.platform.end(); it++)
     //{
     //plat = *it;
-    	c1_ground = (c1_ground || square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()));
-    	c2_ground = (c2_ground || square_above_collision(player2.get_curr_character(),playing_field_obj.get_platform()));
+    if (square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
+    {
+      std::cout << "collision" << std::endl;
+    }
+    c1_ground = (c1_ground || square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()));
+    c2_ground = (c2_ground || square_above_collision(player2.get_curr_character(),playing_field_obj.get_platform()));
     //}
     c1_ground = (c1_ground || square_above_collision(player1.get_curr_character(),player2.get_curr_character()));
     c2_ground = (c2_ground || square_above_collision(player2.get_curr_character(),player1.get_curr_character()));
 
     if(!c1_ground)
     {
-    	player1.get_curr_character().set_y_speed(player1.get_curr_character().get_y_speed() - gravity);
+      std::cout << "c1_ground" << std::endl;
+      player1.get_curr_character().set_y_speed(gravity);
+    	//player1.get_curr_character().set_y_speed(player1.get_curr_character().get_y_speed() + gravity);
     }
 
     if(!c2_ground)
     {
-    	player2.get_curr_character().set_y_speed(player2.get_curr_character().get_y_speed() - gravity);
+      std::cout << "c2_ground" << std::endl;
+    	player2.get_curr_character().set_y_speed(player2.get_curr_character().get_y_speed() + gravity);
     }
 }

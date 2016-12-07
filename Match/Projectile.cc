@@ -13,7 +13,10 @@ Projectile::Projectile(int width,int height,int x,int y,std::initializer_list<st
 void Projectile::move()
 {
   position.xpos += direction * speed;
+  update_limits();
 }
+
+
 
 int Projectile::get_damage() const
 {

@@ -93,12 +93,14 @@ void Character::move()
       it->move();
     }
     }
+    update_limits();
 }
 
 void Character::move(int step_direction)
 {
   position.xpos += step_direction*speed_vector.x_speed;
   position.ypos += step_direction*speed_vector.y_speed;
+  update_limits();
 }
 
 void Character::render(sf::RenderWindow & window)
@@ -170,7 +172,7 @@ void Character::lose_health(int damage)
   health_bar.set_size(health);
 }
 
-std::vector<Projectile> & get_projectiles()
+std::vector<Projectile> & Character::get_projectiles()
 {
   return projectiles;
 }
