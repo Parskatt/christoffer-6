@@ -21,7 +21,7 @@ class Player
 
     void send_key(int);
 
-    void render(sf::RenderWindow &, Texture_handler &);
+    void render(sf::RenderWindow &);
 
     void position_update();
 

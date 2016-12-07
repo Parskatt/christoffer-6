@@ -58,7 +58,7 @@ void Match::run()
       clock.restart();
       keyboard_handler(window,event,running);
       position_update();
-      graphic_update(clock,window,handler);
+      graphic_update(clock,window);
       auto frameDelay = clock.getElapsedTime();
       if ( targetFrameDelay > frameDelay )
       {

@@ -7,8 +7,8 @@
 //  :
 //{}
 
-Object::Object(int width,int height,int x,int y,std::initializer_list<std::string> il )//,int index)
-  :Object(),texture_handler{il}
+Object::Object(int width,int height,int x,int y,std::initializer_list<std::string> il)
+  :texture_handler{il},size{width,height},position{x,y},limit{x,x+width,y,y+height} //Object()
 {
   size.width = width;
   size.height = height;
@@ -35,10 +35,10 @@ Object::Position Object::get_position() const
   return position;
 }
 
-int Object::get_texture_index()
+/*int Object::get_texture_index()
 {
   return texture_index;
-}
+}*/
 
 Object::Size Object::get_size() const
 {

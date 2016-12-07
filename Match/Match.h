@@ -17,13 +17,13 @@
 class Match
 {
   public:
-    Match(int character1, int character2, int playing_field);
+    Match(int character1, int character2, std::initializer_list<std::string>);
 
     ~Match() = default;
 
     void run();
 
-    void graphic_update(sf::Clock &,sf::RenderWindow &,Texture_handler &);
+    void graphic_update(sf::Clock &,sf::RenderWindow &);
 
     void keyboard_handler(sf::RenderWindow &, sf::Event &, bool &);
 

@@ -23,7 +23,7 @@ void Platform::render(sf::RenderWindow & window)
 //Playing_field
 //
 Playing_field::Playing_field(int w,int h, int x, int y,std::initializer_list<std::string> il) //sätt enum senare---------------------------------------------------------------------
-  :Object{w,h,x,y,il}, platform{1280,200,0,500,il} //Skickar in il till platform även fast den är osynlig för enkelhetens skull
+  :Object{w,h,x,y,il}, platform{1280,200,0,500,{"Bilder/tom.png"}} //Skickar in il till platform även fast den är osynlig för enkelhetens skull
 {
     //nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
     //platform = *dynamic_cast<Platform*>(nonmovable_objects.back().get());

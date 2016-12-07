@@ -33,7 +33,7 @@ private:
 
   protected:
     Object() = default;
-    Object(int width ,int height,int x,int y);//,int index);
+    Object(int width ,int height,int x,int y,std::initializer_list<std::string>);//,int index);
 
     //int texture_index{};
     //sf::Texture texture{};
@@ -63,7 +63,7 @@ private:
     //Antingen spara en texture och skapa en sprite vid utritning, eller som nu
     //spara ett index till en texture som ligger någon annanstans
     //Kan den va const och sen overrideas till inte const längre ner?
-    int get_texture_index();
+    //int get_texture_index();
 
     //sf::Texture const & get_texture() const;
 };

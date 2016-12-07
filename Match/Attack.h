@@ -21,13 +21,13 @@ class Attack : public Object
 
     Attack() = default;
 
-    Attack(int,int,int,int,int,int);
+    Attack(int,int,int,int,std::initializer_list<std::string>,int);
 
 
 
     //void wait();
 
-    void render(sf::RenderWindow &, Texture_handler &) override;
+    void render(sf::RenderWindow &) override;
     bool done();
     void set_xpos(int);
     void set_ypos(int);
@@ -44,7 +44,7 @@ class Punch : public Attack
 
     //Punch() = default;
 
-    Punch(int,int,int,int,int,int,std::vector<Projectile> &);
+    Punch(int,int,int,int,std::initializer_list<std::string>,int,std::vector<Projectile> &);
 };
 
 #endif

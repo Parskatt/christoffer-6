@@ -30,10 +30,7 @@ Character::Character(int width, int height,int x, int y,std::initializer_list<st
     }
     //Skapar och lägger till hälsomätaren i match's vector
 
-    //nonmovable_objects.push_back(std::make_unique<Health_bar>(health_bar));//(200,50,50,50,3));
-    //std::cout << "hej" << std::endl; //Behöver nog skicka in en direction också, så att vi kan spegla den för ena karaktären
-    //health_bar = *nonmovable_objects.back();
-    //std::cout << "då" << std::endl;//---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
     //Jag förstår inte :'( - Kresper
 
     speed_vector.x_speed = 0;
@@ -151,7 +148,7 @@ void Character::attack(int attack_type,int character_id)
     {
     	if(attack_type == 1)
     	{
-    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/Punch.png"},direction,projectiles};
+    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
         has_attack = true;
     	}
     }
@@ -159,7 +156,7 @@ void Character::attack(int attack_type,int character_id)
     {
       if(curr_attack.done())
       {
-        curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/Punch.png"},direction,projectiles};
+        curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
       }
     }
 }

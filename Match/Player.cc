@@ -69,7 +69,7 @@ void Player::send_key(int key) //Borde va enum
     case 3:
     {
       //curr_character.lose_health(5);
-      if (char_id == 1)
+      if (character_id == 1)
       {
       curr_character.attack(1,1);
       }

@@ -60,7 +60,7 @@ class Character : public Movable
 
     void move(int);
 
-    void render(sf::RenderWindow &, Texture_handler &) override;
+    void render(sf::RenderWindow &) override;
 
     //void jump();
 
