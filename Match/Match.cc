@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 
-Match::Match(int char1,int char2,int playfield)
+Match::Match(int char1,int char2,std::initializer_list<std::string> playfield)
   :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playfield},
    player1{char1,1},player2{char2,2},p1_commands{4},p2_commands{4}//---------------------------------------------------
 {
@@ -43,7 +43,7 @@ Match::Match(int char1,int char2,int playfield)
 
 void Match::run()
 {
-    Texture_handler handler{};
+    //Texture_handler handler{};
     bool running{true};
     sf::Event event;
     sf::Clock clock;
@@ -69,14 +69,14 @@ void Match::run()
     }
 }
 
-void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window,Texture_handler & table)
+void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window)
 {
       clock.restart();
       //window.clear();
 
-      playing_field.render(window,table);
-      player1.render(window,table);
-      player2.render(window,table);
+      playing_field.render(window);
+      player1.render(window);
+      player2.render(window);
 
       /*// Draw things
       for (std::vector<std::unique_ptr<Object>>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?

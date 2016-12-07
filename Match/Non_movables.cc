@@ -6,14 +6,14 @@
 //
 //Platform
 //
-Platform::Platform(int w,int h,int x,int y,int index)
-  :Object{w,h,x,y,index}
+Platform::Platform(int w,int h,int x,int y,std::initializer_list<std::string> il)
+  :Object{w,h,x,y,il}
 {}
 
-void Platform::render(sf::RenderWindow & window, Texture_handler & table)
+void Platform::render(sf::RenderWindow & window)
 {
   sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(texture_index));
+  sprite.setTexture(texture_handler.get_texture(0));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
 }
@@ -22,8 +22,8 @@ void Platform::render(sf::RenderWindow & window, Texture_handler & table)
 //
 //Playing_field
 //
-Playing_field::Playing_field(int w,int h, int x, int y,int index) //sätt enum senare---------------------------------------------------------------------
-  :Object{w,h,x,y,index}, platform{1280,200,0,500,0}
+Playing_field::Playing_field(int w,int h, int x, int y,std::initializer_list<std::string> il) //sätt enum senare---------------------------------------------------------------------
+  :Object{w,h,x,y,il}, platform{1280,200,0,500,il} //Skickar in il till platform även fast den är osynlig för enkelhetens skull
 {
     //nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
     //platform = *dynamic_cast<Platform*>(nonmovable_objects.back().get());
@@ -37,25 +37,25 @@ Platform Playing_field::get_platform() const
   return platform;
 }
 
-void Playing_field::render(sf::RenderWindow & window, Texture_handler & table)
+void Playing_field::render(sf::RenderWindow & window)
 {
   sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(texture_index));
+  sprite.setTexture(texture_handler.get_texture(0));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
 
-  platform.render(window,table);
+  platform.render(window);
 }
 //-----------------------------------------------------------
 
 //
 //Health_bar
 //
-Health_bar::Health_bar(int w,int h,int x,int y,int index,int health,int direction)
-  :Object{w,h,x,y,index},size{health},direction{direction}
+Health_bar::Health_bar(int w,int h,int x,int y,std::initializer_list<std::string> il,int health,int direction)
+  :Object{w,h,x,y,il},size{health},direction{direction}
 {}
 
-void Health_bar::render(sf::RenderWindow & window, Texture_handler & table)
+void Health_bar::render(sf::RenderWindow & window)
 {
   sf::RectangleShape bar;
   bar.setSize(sf::Vector2f(direction*size,40));

@@ -10,8 +10,8 @@
 //
 //Attack
 //
-Attack::Attack(int width,int height,int x,int y,int index,int direction)
-    :Object{width,height,x,y,index},direction{direction},done_counter{0},render_counter{10}
+Attack::Attack(int width,int height,int x,int y,std::initializer_list<std::string> il,int direction)
+    :Object{width,height,x,y,il},direction{direction},done_counter{0},render_counter{10}
 {
 }
 
@@ -21,16 +21,16 @@ Attack::Attack(int width,int height,int x,int y,int index,int direction)
   delete curr_projectile;
 }*/
 
-void Attack::render(sf::RenderWindow & window, Texture_handler & table)
+void Attack::render(sf::RenderWindow & window)
 {
   sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(texture_index + floor(render_counter/5)));
+  sprite.setTexture(texture_handler.get_texture(0 + floor(render_counter/5)));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
   render_counter += 1;
-  if (render_counter > 25)
+  if (render_counter > 15)
   {
-    render_counter = 10;
+    render_counter = 0;
   }
 }
 
@@ -58,8 +58,8 @@ void Attack::set_ypos(int ypos)
 //Punch
 //
 
-Punch::Punch(int width,int height,int x,int y,int index,int direction,std::vector<Projectile> & projectiles)
-    :Attack{width,height,x,y,index,direction}
+Punch::Punch(int width,int height,int x,int y,std::initializer_list<std::string> il,int direction,std::vector<Projectile> & projectiles)
+    :Attack{width,height,x,y,il,direction}
 {
-  projectiles.push_back(Punch_projectile{20,20,x,y,index,10,direction,50});
+  projectiles.push_back(Punch_projectile{20,20,x,y,{"Bilder/tom.png"},10,direction,50});
 }

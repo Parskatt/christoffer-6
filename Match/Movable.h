@@ -23,7 +23,7 @@ class Movable : public Object
 
     Movable() = default;
 
-    Movable(int,int,int,int,int,int,int,int);
+    Movable(int,int,int,int,std::initializer_list<std::string>,int,int,int);
 
     int speed{};
 

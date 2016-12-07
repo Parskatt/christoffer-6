@@ -23,7 +23,7 @@ class Physics_engine
  public:
   Physics_engine() = default;
   void collision(Playing_field const & , Player & , Player & ); //const;
-  void collision(Playing_field const & , Player & , Player & );
+  void gravity(Playing_field const & , Player & , Player & );
 };
 
 #endif

@@ -12,13 +12,13 @@ class Projectile : public Movable
 {
   public:
 
-    Projectile(int,int,int,int,int,int,int,int);
+    Projectile(int,int,int,int,std::initializer_list<std::string>,int,int,int);
 
     ~Projectile() = default;
 
     void move() override;
 
-    void render(sf::RenderWindow &, Texture_handler &);
+    void render(sf::RenderWindow &);
 
   private:
 
@@ -31,7 +31,7 @@ class Punch_projectile : public Projectile
 {
   public:
 
-    Punch_projectile(int,int,int,int,int,int,int,int);
+    Punch_projectile(int,int,int,int,std::initializer_list<std::string>,int,int,int);
 
     ~Punch_projectile() = default;
 

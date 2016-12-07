@@ -8,7 +8,7 @@ Texture_handler::Texture_handler(std::initializer_list<std::string> il)
   :textures{il.size()} //number of textures
 {
 
-    int i{};
+    int i{0};
     for(std::string path : il)
     {
       if (!textures[i].loadFromFile(path))

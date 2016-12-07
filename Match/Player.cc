@@ -5,13 +5,14 @@
 #include "Player.h"
 
 Player::Player(int character,int player)//-----------------------------------------------------
-  :curr_character{}
+  :curr_character{}, character_id{character}
 {
   switch(player)
   {
     case 1:
     {
-      curr_character = Character{100,100,600,350,2,5,100,-1};
+      curr_character = Character{100,100,600,350,
+        {"Bilder/cammy.png","Bilder/cammy1.png","Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},5,100,-1};
       //movable_objects.push_back(std::make_unique<Character>(curr_character));//(100,100,600,350,2,5,100,1,nonmovable_objects));
 
       //curr_character = *dynamic_cast<Character*>(movable_objects.back());
@@ -22,7 +23,8 @@ Player::Player(int character,int player)//--------------------------------------
     }
     case 2:
     {
-      curr_character = Character{100,100,100,350,2,5,100,1};
+      curr_character = Character{100,100,100,350,
+        {"Bilder/cammy.png","Bilder/cammy1.png","Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},5,100,1};
       break;
     }
     //default:
@@ -31,9 +33,9 @@ Player::Player(int character,int player)//--------------------------------------
   }
 }
 
-void Player::render(sf::RenderWindow & window, Texture_handler & table)
+void Player::render(sf::RenderWindow & window)
 {
-  curr_character.render(window,table);
+  curr_character.render(window);
 }
 
 void Player::position_update()
@@ -67,7 +69,10 @@ void Player::send_key(int key) //Borde va enum
     case 3:
     {
       //curr_character.lose_health(5);
-      curr_character.attack(1);
+      if (char_id == 1)
+      {
+      curr_character.attack(1,1);
+      }
       break;
     }
     //Slagattack

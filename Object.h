@@ -33,10 +33,12 @@ private:
 
   protected:
     Object() = default;
-    Object(int width ,int height,int x,int y,int index);
+    Object(int width ,int height,int x,int y);//,int index);
 
-    int texture_index{};
+    //int texture_index{};
     //sf::Texture texture{};
+
+    Texture_handler texture_handler{};
 
     Size size{};
 
@@ -54,7 +56,7 @@ private:
 
     Size get_size() const;
 
-    virtual void render(sf::RenderWindow &, Texture_handler &) = 0;
+    virtual void render(sf::RenderWindow &) = 0;
 
     void update_limits();
 

@@ -7,8 +7,8 @@
 //  :
 //{}
 
-Object::Object(int width,int height,int x,int y,int index)
-  :Object()
+Object::Object(int width,int height,int x,int y,std::initializer_list<std::string> il )//,int index)
+  :Object(),texture_handler{il}
 {
   size.width = width;
   size.height = height;
@@ -18,7 +18,7 @@ Object::Object(int width,int height,int x,int y,int index)
   limit.right = x + width;
   limit.upper = y;
   limit.lower = y + height;
-  texture_index = index;
+  //texture_index = index;
 
   //sprite = sf::Sprite(s);
   //sprite.setTexture(s);

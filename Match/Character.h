@@ -42,7 +42,7 @@ class Character : public Movable
 
     Character() = default;
 
-    Character(int,int,int,int,int,int,int,int);//---------------------------------------------------------
+    Character(int,int,int,int,std::initializer_list<std::string>,int,int,int);//---------------------------------------------------------
 
     //Character & operator=(const Character &);
 
@@ -66,7 +66,7 @@ class Character : public Movable
 
     int get_texture_index();// override;
 
-    void attack(int);
+    void attack(int,int);
 
     void lose_health(int);
 

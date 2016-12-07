@@ -12,19 +12,19 @@
   delete health_bar;
 }*/
 
-Character::Character(int width, int height,int x, int y,int index,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,index,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{} //health_bar{health,direction}
+Character::Character(int width, int height,int x, int y,std::initializer_list<std::string> il,int speed,int health,int direction)//---------------------------------------
+    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{} //health_bar{health,direction}
 {
     switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
     {
       case 1:
       {
-        health_bar = Health_bar{200,50,50,50,0,health,direction};
+        health_bar = Health_bar{200,50,50,50,{"Bilder/tom.png"},health,direction};
         break;
       }
       case -1:
       {
-        health_bar = Health_bar{200,50,1230,50,0,health,direction};
+        health_bar = Health_bar{200,50,1230,50,{"Bilder/tom.png"},health,direction};
         break;
       }
     }
@@ -40,19 +40,6 @@ Character::Character(int width, int height,int x, int y,int index,int speed,int 
     speed_vector.y_speed = 0;
     //curr_attack{} = nullptr;
 }
-
-/*Character & Character::operator=(const Character & other)
-{
-  size.width = other.size.width;
-  size.height = other.size.height;
-  position.xpos = other.position.xpos;
-  position.ypos = other.position.ypos;
-  texture_index = other.texture_index;
-  speed = other.speed;
-  direction = other.direction;
-  fallable = other.fallable;
-  curr_attack = std::move(other.curr_attack);
-}*/
 
 void Character::set_x_speed(int x_speed)
 {
@@ -82,7 +69,6 @@ int Character::get_speed() const
 
 void Character::move()
 {
-    //std::cout << "försöker mova" << std::endl;
     position.xpos += speed_vector.x_speed;
     position.ypos += speed_vector.y_speed;
     speed_vector.x_speed = 0;
@@ -90,7 +76,6 @@ void Character::move()
     {
       it->move();
     }
-    //std::cout << "hej";
 }
 
 void Character::move(int step_direction)
@@ -99,21 +84,21 @@ void Character::move(int step_direction)
   position.ypos += step_direction*speed_vector.y_speed;
 }
 
-void Character::render(sf::RenderWindow & window, Texture_handler & table) //Borde hantera textures på nåt annat sätt om vi ska ha render här
+void Character::render(sf::RenderWindow & window) //Borde hantera textures på nåt annat sätt om vi ska ha render här
 {
   if(!has_attack)
   {
     if(direction == 1)
     {
       sf::Sprite sprite{};
-      sprite.setTexture(table.get_texture(texture_index + 2));
+      sprite.setTexture(texture_handler.get_texture(0 + 2));
       sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
       window.draw(sprite);
     }
     else
     {
       sf::Sprite sprite{};
-      sprite.setTexture(table.get_texture(texture_index));
+      sprite.setTexture(texture_handler.get_texture(0));
       sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
       window.draw(sprite);
     }
@@ -124,7 +109,7 @@ void Character::render(sf::RenderWindow & window, Texture_handler & table) //Bor
     {
       has_attack = false;
       sf::Sprite sprite{};
-      sprite.setTexture(table.get_texture(texture_index));
+      sprite.setTexture(texture_handler.get_texture(0));
       sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
       window.draw(sprite);
     }
@@ -132,14 +117,14 @@ void Character::render(sf::RenderWindow & window, Texture_handler & table) //Bor
     {
       curr_attack.set_xpos(position.xpos);
       curr_attack.set_ypos(position.ypos);
-      curr_attack.render(window,table);
+      curr_attack.render(window);
     }
   }
   for (std::vector<Projectile>::iterator it = projectiles.begin() ; it != projectiles.end(); ++it)
   {
-    it->render(window,table);
+    it->render(window);
   }
-  health_bar.render(window,table);
+  health_bar.render(window);
 }
 
 /*void Character::jump()
@@ -160,13 +145,13 @@ int Character::get_texture_index() override
 }
 */
 
-void Character::attack(int attack_type)
+void Character::attack(int attack_type,int character_id)
 {
     if(!has_attack)
     {
     	if(attack_type == 1)
     	{
-    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,3,direction,projectiles};
+    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/Punch.png"},direction,projectiles};
         has_attack = true;
     	}
     }
@@ -174,7 +159,7 @@ void Character::attack(int attack_type)
     {
       if(curr_attack.done())
       {
-        curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,3,direction,projectiles};
+        curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/Punch.png"},direction,projectiles};
       }
     }
 }

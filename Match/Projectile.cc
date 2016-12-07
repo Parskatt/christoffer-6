@@ -3,8 +3,8 @@
 
 #include "Projectile.h"
 
-Projectile::Projectile(int width,int height,int x,int y,int index,int speed,int direction,int damage)
-    :Movable{width,height,x,y,index,speed,direction,0}, damage{damage}
+Projectile::Projectile(int width,int height,int x,int y,std::initializer_list<std::string> il,int speed,int direction,int damage)
+    :Movable{width,height,x,y,il,speed,direction,0}, damage{damage}
 {
 
 }
@@ -17,8 +17,8 @@ void Projectile::move()
 
 //-----------------------------------------------------------------------------
 
-Punch_projectile::Punch_projectile(int width,int height,int x,int y,int index,int speed,int direction,int damage)
-    :Projectile{width,height,x,y,index,speed,direction,damage}
+Punch_projectile::Punch_projectile(int width,int height,int x,int y,std::initializer_list<std::string> il,int speed,int direction,int damage)
+    :Projectile{width,height,x,y,il,speed,direction,damage}
 {
 
 }
@@ -28,10 +28,10 @@ int Punch_projectile::get_range()
   return range;
 }
 
-void Projectile::render(sf::RenderWindow & window, Texture_handler & table)
+void Projectile::render(sf::RenderWindow & window)
 {
   sf::Sprite sprite{};
-  sprite.setTexture(table.get_texture(texture_index));
+  sprite.setTexture(texture_handler.get_texture(0));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
 }

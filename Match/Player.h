@@ -30,7 +30,7 @@ class Player
   private:
 
     Character curr_character;
-    //int curr_character;
+    int character_id;
 };
 
 #endif

@@ -8,7 +8,14 @@
 
 int main()
 {
-  Match match{1,2,1};
+  /*
+  Menu menu();
+  menu.run;
+  char1 = menu.char1;
+  char2 = menu.char2;
+  background = {menu.background};
+  */
+  Match match{1,2,{"Bilder/background1.png"}};
   match.run();
 
   return 0;
