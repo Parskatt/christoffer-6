@@ -5,6 +5,10 @@
 #include "Attack.h"
 //#include time
 
+
+//
+//Attack
+//
 Attack::Attack(int width,int height,int x,int y,int index,int direction)
     :Object{width,height,x,y,index},direction{direction},done_counter{0},render_counter{0}
 {
@@ -46,6 +50,11 @@ void Attack::set_ypos(int ypos)
 {
   position.ypos = ypos;
 }
+
+//---------------------------------------------------------------------
+//
+//Punch
+//
 
 Punch::Punch(int width,int height,int x,int y,int index,int direction,std::vector<Projectile> & projectiles)
     :Attack{width,height,x,y,index,direction}

@@ -182,5 +182,5 @@ void Character::attack(int attack_type)
 void Character::lose_health(int damage)
 {
   health -= damage;
-  health_bar.size_(health);
+  health_bar.set_size(health);
 }

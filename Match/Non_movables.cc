@@ -64,7 +64,7 @@ void Health_bar::render(sf::RenderWindow & window, Texture_handler & table)
   window.draw(bar);
 }
 
-void Health_bar::size_(int health)
+void Health_bar::set_size(int health)
 {
   size = health;
   //sf::RectangleShape black;

@@ -16,6 +16,7 @@ void Projectile::move()
   position.xpos += direction * speed;
 }
 
+//-----------------------------------------------------------------------------
 
 Punch_projectile::Punch_projectile(int width,int height,int x,int y,int index,int speed,int direction,int damage)
     :Projectile{width,height,x,y,index,speed,direction,damage}

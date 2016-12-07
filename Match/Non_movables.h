@@ -61,7 +61,7 @@ class Health_bar : public Object
 
     void render(sf::RenderWindow &, Texture_handler &)  override;
 
-    void size_(int health);
+    void set_size(int health);
 
   private:
     int size{};
