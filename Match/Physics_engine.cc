@@ -4,7 +4,37 @@
 #include <vector>
 
 
+void Physics_engine::gravity(Player & p1, Player & p2)
+{
+  p1.get_curr_character().set_y_speed(p1.get_curr_character().get_y_speed() + 1);
+  p2.get_curr_character().set_y_speed(p2.get_curr_character().get_y_speed() + 1);
+}
 
+
+
+void Physics_engine::collision(Playing_field const & playing_field, Player & p1, Player & p2)
+{
+  if(p1.get_curr_character().get_limits().lower > playing_field.get_platform().get_limits().upper && p1.get_curr_character().get_limits().lower < playing_field.get_platform().get_limits().lower)
+  {
+    p1.get_curr_character().set_y_speed(0);
+    p1.get_curr_character().set_y_pos(playing_field.get_platform().get_limits().upper - p1.get_curr_character().get_size().height);
+  }
+  if(p2.get_curr_character().get_limits().lower > playing_field.get_platform().get_limits().upper && p2.get_curr_character().get_limits().lower < playing_field.get_platform().get_limits().lower)
+  {
+    p2.get_curr_character().set_y_speed(0);
+    p2.get_curr_character().set_y_pos(playing_field.get_platform().get_limits().upper - p2.get_curr_character().get_size().height);
+  }
+  if(p1.get_curr_character().get_limits().left < p2.get_curr_character().get_limits().right && p1.get_curr_character().get_limits().left > p2.get_curr_character().get_limits().left)
+  {
+    p1.get_curr_character().set_x_pos(p2.get_curr_character().get_limits().right);
+  }
+  if(p2.get_curr_character().get_limits().right > p1.get_curr_character().get_limits().left && p2.get_curr_character().get_limits().right < p1.get_curr_character().get_limits().right)
+  {
+    p2.get_curr_character().set_x_pos(p1.get_curr_character().get_limits().left - p2.get_curr_character().get_size().width);
+  }
+}
+
+/*
 bool Physics_engine::square_collision(Object const & o1,Object const & o2)
 {
     return ((square_x_collision(o1,o2) && square_y_collision(o1,o2)) ||
@@ -33,7 +63,8 @@ bool Physics_engine::square_x_collision(Object const & o1,Object const & o2)
 {
     return (cordinate_between(o1.get_limits().left,o2.get_limits().right,o2.get_limits().left) ||
 	    cordinate_between(o1.get_limits().right,o2.get_limits().right,o2.get_limits().left));
-}
+}*/
+
 /*
 bool Physics_engine::square_y_collide(Object const & o1,Object const & o2)
 {
@@ -46,7 +77,7 @@ bool Physics_engine::square_y_collide(Object const & o1,Object const & o2)
     return false;
 }
 */
-
+/*
 bool Physics_engine::cordinate_between(int x,int lowerorright,int upperorleft)
 {
     return ((x <= lowerorright) && (x >= upperorleft));
@@ -74,7 +105,7 @@ bool Physics_engine::object_outside (Object const & obj)
 
 
 void Physics_engine::collision(Playing_field const & playing_field_obj, Player & player1, Player & player2) //const;
-{
+{*
     //int p1_check{0};
     //int p2_check{0};
     //c1 = player1.get_curr_character();
@@ -276,4 +307,4 @@ void Physics_engine::gravity(Playing_field const & playing_field_obj, Player & p
     	//player2.get_curr_character().set_y_speed(player2.get_curr_character().get_y_speed() + gravity);
       player2.get_curr_character().set_y_speed(gravity);
     }
-}
+}*/

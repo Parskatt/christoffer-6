@@ -13,7 +13,7 @@ class Physics_engine
  private:
 
   //bool square_collision(o1 & const,o2 & const);
-  bool square_collision(Object const & ,Object const & );
+/*  bool square_collision(Object const & ,Object const & );
   bool square_below_collision(Object const & ,Object const & );
   bool square_above_collision(Object const & ,Object const & );
   bool square_y_collision(Object const & ,Object const & );
@@ -24,7 +24,7 @@ class Physics_engine
   bool object_above (Object const & );
   bool object_below (Object const & );
   bool object_outside (Object const & );
-
+*/
  protected:
 
  public:
@@ -33,7 +33,8 @@ class Physics_engine
   Physics_engine() = default;
 
   void collision(Playing_field const & , Player & , Player & ); //const;
-  void gravity(Playing_field const & , Player & , Player & );
+  //void gravity(Playing_field const & , Player & , Player & );
+  void gravity(Player & , Player & );
 };
 
 #endif

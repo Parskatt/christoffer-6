@@ -53,13 +53,13 @@ void Player::send_key(int key) //Borde va enum
     //Gå ät vänster
     case 0:
     {
-      curr_character.set_x_speed(-1);
+      curr_character.set_x_speed(-7); //var -1 innan
       break;
     }
     //Gå åt höger
     case 1:
     {
-      curr_character.set_x_speed(1);
+      curr_character.set_x_speed(7);   //var 1 innan
       break;
     }
     //Hoppa

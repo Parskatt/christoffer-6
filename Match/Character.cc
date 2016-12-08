@@ -52,13 +52,13 @@ void Character::set_y_pos(int yposition)
 
 void Character::set_x_speed(int x_speed)
 {
-    speed_vector.x_speed = speed*x_speed;
-    direction = x_speed;
+    speed_vector.x_speed = /*speed**/x_speed;
+    direction = x_speed/abs(x_speed);    //inget abs innan
 }
 
 void Character::set_y_speed(int y_speed)
 {
-    speed_vector.y_speed = speed*y_speed;
+    speed_vector.y_speed = /*speed**/y_speed;
 }
 
 int Character::get_x_speed() const
