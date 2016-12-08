@@ -266,7 +266,7 @@ void Physics_engine::gravity(Playing_field const & playing_field_obj, Player & p
     if(!c1_ground)
     {
       std::cout << "c1_not_ground" << std::endl;
-      player1.get_curr_character().set_y_speed(gravity);
+      player1.get_curr_character().set_y_speed(player1.get_curr_character().get_y_speed() + gravity);
     	//player1.get_curr_character().set_y_speed(player1.get_curr_character().get_y_speed() + gravity);
     }
     std::cout << "p1speed" << player1.get_curr_character().get_y_speed() << std:: endl;

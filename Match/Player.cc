@@ -65,7 +65,7 @@ void Player::send_key(int key) //Borde va enum
     //Hoppa
     case 2:
     {
-      curr_character.set_y_speed(-1);
+      curr_character.set_y_speed(-30);
       break;
     }
     //Ducka??????

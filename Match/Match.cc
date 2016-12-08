@@ -174,8 +174,9 @@ void Match::position_update(Physics_engine & engine)
 
 
   engine.collision(playing_field, player1, player2);
-  player1.stopwalking();
-  player2.stopwalking();
+  //stopwalking() fuckar med direction för character, sätter bara x_speed till 0 i move() istället
+  //player1.stopwalking();
+  //player2.stopwalking();
 
 
   //physics_engine.gravity();

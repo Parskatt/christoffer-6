@@ -80,7 +80,7 @@ void Character::move()
 {
     position.xpos += speed_vector.x_speed;
     position.ypos += speed_vector.y_speed;
-    //speed_vector.x_speed = 0;
+    speed_vector.x_speed = 0;
     for (std::vector<Projectile>::iterator it = projectiles.begin() ; it != projectiles.end(); ++it)
     {
       if(it->done())
