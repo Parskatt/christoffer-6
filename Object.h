@@ -17,11 +17,7 @@ private:
     int height{};
   };
 
-  struct Position
-  {
-    int xpos{};
-    int ypos{};
-  };
+
 
   struct Limit
   {
@@ -34,6 +30,12 @@ private:
   protected:
     Object() = default;
     Object(int width ,int height,int x,int y,std::initializer_list<std::string>);//,int index);
+
+    struct Position
+    {
+      int xpos{};
+      int ypos{};
+    };
 
     //int texture_index{};
     //sf::Texture texture{};

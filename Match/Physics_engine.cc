@@ -6,32 +6,73 @@
 
 void Physics_engine::gravity(Player & p1, Player & p2)
 {
+  /*if((p1.get_curr_character().get_limits().left > p2.get_curr_character().get_limits().right ||
+        p1.get_curr_character().get_limits().right < p2.get_curr_character().get_limits().left) ||
+        (p1.get_curr_character().get_limits().upper > p2.get_curr_character().get_limits().lower ||
+        p1.get_curr_character().get_limits().lower < p2.get_curr_character().get_limits().upper))
+  {*/
   p1.get_curr_character().set_y_speed(p1.get_curr_character().get_y_speed() + 1);
   p2.get_curr_character().set_y_speed(p2.get_curr_character().get_y_speed() + 1);
+  //}
+
+
+
 }
 
 
 
 void Physics_engine::collision(Playing_field const & playing_field, Player & p1, Player & p2)
 {
-  if(p1.get_curr_character().get_limits().lower > playing_field.get_platform().get_limits().upper && p1.get_curr_character().get_limits().lower < playing_field.get_platform().get_limits().lower)
+
+  if(p1.get_curr_character().get_limits().lower > playing_field.get_platform().get_limits().upper &&
+  p1.get_curr_character().get_limits().lower < playing_field.get_platform().get_limits().lower)
   {
     p1.get_curr_character().set_y_speed(0);
     p1.get_curr_character().set_y_pos(playing_field.get_platform().get_limits().upper - p1.get_curr_character().get_size().height);
   }
-  if(p2.get_curr_character().get_limits().lower > playing_field.get_platform().get_limits().upper && p2.get_curr_character().get_limits().lower < playing_field.get_platform().get_limits().lower)
+
+  if(p2.get_curr_character().get_limits().lower > playing_field.get_platform().get_limits().upper &&
+  p2.get_curr_character().get_limits().lower < playing_field.get_platform().get_limits().lower)
   {
     p2.get_curr_character().set_y_speed(0);
     p2.get_curr_character().set_y_pos(playing_field.get_platform().get_limits().upper - p2.get_curr_character().get_size().height);
   }
-  if(p1.get_curr_character().get_limits().left < p2.get_curr_character().get_limits().right && p1.get_curr_character().get_limits().left > p2.get_curr_character().get_limits().left)
+  for(std::vector<Projectile>::iterator it = p1.get_curr_character().get_projectiles().begin() ; it != p1.get_curr_character().get_projectiles().end(); ++it)
   {
-    p1.get_curr_character().set_x_pos(p2.get_curr_character().get_limits().right);
+    if(!((it->get_limits().left > p2.get_curr_character().get_limits().right ||
+          it->get_limits().right < p2.get_curr_character().get_limits().left) ||
+          (it->get_limits().upper > p2.get_curr_character().get_limits().lower ||
+          it->get_limits().lower < p2.get_curr_character().get_limits().upper)))
+          {
+            std::cout << "skadad" << std::endl;
+            p2.get_curr_character().lose_health(5);
+            p1.get_curr_character().get_projectiles().erase(it);
+            --it;
+          }
   }
-  if(p2.get_curr_character().get_limits().right > p1.get_curr_character().get_limits().left && p2.get_curr_character().get_limits().right < p1.get_curr_character().get_limits().right)
+  //for()
+
+  /*if(!((p1.get_curr_character().get_limits().left > p2.get_curr_character().get_limits().right ||
+        p1.get_curr_character().get_limits().right < p2.get_curr_character().get_limits().left) ||
+        (p1.get_curr_character().get_limits().upper > p2.get_curr_character().get_limits().lower ||
+        p1.get_curr_character().get_limits().lower < p2.get_curr_character().get_limits().upper)))
+    //(p1.get_curr_character().get_limits().left < p2.get_curr_character().get_limits().right &&
+  //p1.get_curr_character().get_limits().left > p2.get_curr_character().get_limits().left))
+  {
+    p1.get_curr_character().set_x_pos(p1.get_curr_character().get_old_position().xpos);
+    p1.get_curr_character().set_y_pos(p1.get_curr_character().get_old_position().ypos);
+    p1.get_curr_character().set_y_speed(0);
+    p2.get_curr_character().set_x_pos(p2.get_curr_character().get_old_position().xpos);
+    p2.get_curr_character().set_y_pos(p2.get_curr_character().get_old_position().ypos);
+    p2.get_curr_character().set_y_speed(0);
+
+    //p1.get_curr_character().set_x_pos(p2.get_curr_character().get_limits().right);
+  }
+  */
+  /*if(p2.get_curr_character().get_limits().right > p1.get_curr_character().get_limits().left && p2.get_curr_character().get_limits().right < p1.get_curr_character().get_limits().right)
   {
     p2.get_curr_character().set_x_pos(p1.get_curr_character().get_limits().left - p2.get_curr_character().get_size().width);
-  }
+  }*/
 }
 
 /*

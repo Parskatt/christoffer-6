@@ -35,6 +35,8 @@ class Character : public Movable
 
     Health_bar health_bar;
 
+    Position old_position{};
+
 
   public:
 
@@ -59,6 +61,8 @@ class Character : public Movable
     int get_y_speed() const;
 
     int get_speed() const;
+
+    Object::Position & get_old_position();
 
     void move() override;
 

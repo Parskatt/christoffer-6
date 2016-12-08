@@ -13,7 +13,7 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,std::initializer_list<std::string> il,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{} //health_bar{health,direction}
+    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{},old_position{0,0} //health_bar{health,direction}
 {
     switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
     {
@@ -48,6 +48,10 @@ void Character::set_y_pos(int yposition)
   position.ypos = yposition;
 }
 
+Object::Position & Character::get_old_position()
+{
+  return old_position;
+}
 
 
 void Character::set_x_speed(int x_speed)
@@ -78,6 +82,9 @@ int Character::get_speed() const
 
 void Character::move()
 {
+    old_position.xpos = position.xpos;
+    old_position.ypos = position.ypos;
+
     position.xpos += speed_vector.x_speed;
     position.ypos += speed_vector.y_speed;
     speed_vector.x_speed = 0;
