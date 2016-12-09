@@ -11,7 +11,7 @@ Player::Player(int character,int player)//--------------------------------------
   {
     case 1:
     {
-      curr_character = Character{10,297,600,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,-1};
+      curr_character = Character{173,297,600,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,-1};
       //movable_objects.push_back(std::make_unique<Character>(curr_character));//(100,100,600,350,2,5,100,1,nonmovable_objects));
 
       //curr_character = *dynamic_cast<Character*>(movable_objects.back());
@@ -22,7 +22,7 @@ Player::Player(int character,int player)//--------------------------------------
     }
     case 2:
     {
-      curr_character = Character{10,297,100,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,1};
+      curr_character = Character{173,297,100,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,1};
       break;
     }
     //default:
@@ -65,7 +65,10 @@ void Player::send_key(int key) //Borde va enum
     //Hoppa
     case 2:
     {
-      curr_character.set_y_speed(-20);
+      if (curr_character.get_in_air() == false)
+      {
+        curr_character.set_y_speed(-27);
+      }
       break;
     }
     //Ducka??????

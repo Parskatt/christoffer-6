@@ -1,7 +1,7 @@
 /*
 *Non_movable classes (.cc)
 */
-
+#include <iostream>
 #include "Non_movables.h"
 //
 //Platform
@@ -67,6 +67,7 @@ void Health_bar::render(sf::RenderWindow & window)
 void Health_bar::set_size(int health)
 {
   size = health;
+  //std::cout << "health " << health << std::endl;
   //sf::RectangleShape black;
   //bar.setSize(100 - health, 20);
   //bar.setFillColor(sf::Color::Black);

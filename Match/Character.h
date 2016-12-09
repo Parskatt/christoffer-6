@@ -20,12 +20,14 @@ class Character : public Movable
     {
 	    int x_speed{};
 	    int y_speed{};
+
     };
 
     Speed_vector speed_vector{};
 
     int health{};
-
+    
+    bool in_air{};
 
     Attack curr_attack{}; //Kanske måsvingar vid Attack
 
@@ -52,9 +54,13 @@ class Character : public Movable
 
     void set_y_pos(int);
 
+    void set_in_air(bool);
+
     void set_x_speed(int);
 
     void set_y_speed(int);
+
+    bool get_in_air() const;
 
     int get_x_speed() const;
 

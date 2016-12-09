@@ -13,7 +13,7 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,std::initializer_list<std::string> il,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{},old_position{0,0} //health_bar{health,direction}
+    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{},old_position{0,0},health{health} //health_bar{health,direction}
 {
     switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
     {
@@ -48,6 +48,11 @@ void Character::set_y_pos(int yposition)
   position.ypos = yposition;
 }
 
+void Character::set_in_air(bool value)
+{
+  in_air = value;
+}
+
 Object::Position & Character::get_old_position()
 {
   return old_position;
@@ -63,6 +68,11 @@ void Character::set_x_speed(int x_speed)
 void Character::set_y_speed(int y_speed)
 {
     speed_vector.y_speed = /*speed**/y_speed;
+}
+
+bool Character::get_in_air() const
+{
+  return in_air;
 }
 
 int Character::get_x_speed() const
@@ -181,8 +191,17 @@ void Character::attack(int attack_type,int character_id)
 
 void Character::lose_health(int damage)
 {
-  health -= damage;
-  health_bar.set_size(health);
+  std::cout << health << std::endl;
+  health = health - damage;
+  std::cout << health << std::endl;
+  if (health > 0)
+  {
+    health_bar.set_size(health);
+  }
+  else
+  {
+   health_bar.set_size(0);
+  }
 }
 
 std::vector<Projectile> & Character::get_projectiles()
