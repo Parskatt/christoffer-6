@@ -13,7 +13,8 @@
 class Texture_handler
 {
   public:
-    Texture_handler(std::initializer_list<std::string>);
+
+    Texture_handler(std::initializer_list<std::string> = {"Bilder/tom.png"});
 
     ~Texture_handler() = default;
 

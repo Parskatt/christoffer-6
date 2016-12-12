@@ -18,7 +18,7 @@ class Platform : public Object
 
     Platform() = default;
 
-    Platform(int,int,int,int,std::initializer_list<std::string>);
+    Platform(int,int,int,int);
 
     void render(sf::RenderWindow &) override;
 };
@@ -35,7 +35,7 @@ class Playing_field : public Object
 
     Playing_field() = default;
 
-     Playing_field(int,int,int,int,std::initializer_list<std::string>);//--------------------------------------------------------------------------
+     Playing_field(int,int,int,int,int);//--------------------------------------------------------------------------
 
      Platform get_platform() const;
 
@@ -55,7 +55,7 @@ class Health_bar : public Object
   public:
     Health_bar() = default;
 
-    Health_bar(int,int,int,int,std::initializer_list<std::string>,int,int);
+    Health_bar(int,int);
 
     ~Health_bar() = default;
 
@@ -64,7 +64,7 @@ class Health_bar : public Object
     void set_size(int health);
 
   private:
-    int size{};
+    int bar_size{};
 
     int direction{};
 };

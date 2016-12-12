@@ -29,7 +29,7 @@ private:
 
   protected:
     Object() = default;
-    Object(int width ,int height,int x,int y,std::initializer_list<std::string>);//,int index);
+    Object(int width ,int height,int x,int y,std::initializer_list<std::string> = {"Bilder/tom.png"});//,int index);
 
     struct Position
     {

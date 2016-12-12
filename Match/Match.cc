@@ -9,8 +9,8 @@
 #include <iostream>
 
 
-Match::Match(int char1,int char2,std::initializer_list<std::string> playfield)
-  :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playfield},
+Match::Match(int char1,int char2,int playing_field)
+  :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playing_field},
    player1{char1,1},player2{char2,2},p1_commands{4},p2_commands{4}//---------------------------------------------------
 {
 
@@ -184,8 +184,6 @@ void Match::is_dead(bool & running, sf::RenderWindow & window)
 
     running = false;
   }
-
-
 }
 
 /*

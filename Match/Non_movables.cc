@@ -6,8 +6,8 @@
 //
 //Platform
 //
-Platform::Platform(int w,int h,int x,int y,std::initializer_list<std::string> il)
-  :Object{w,h,x,y,il}
+Platform::Platform(int w,int h,int x,int y)
+  :Object{w,h,x,y}
 {}
 
 void Platform::render(sf::RenderWindow & window)
@@ -22,9 +22,28 @@ void Platform::render(sf::RenderWindow & window)
 //
 //Playing_field
 //
-Playing_field::Playing_field(int w,int h, int x, int y,std::initializer_list<std::string> il) //sätt enum senare---------------------------------------------------------------------
-  :Object{w,h,x,y,il}, platform{1280,200,0,700,{"Bilder/tom.png"}} //Skickar in il till platform även fast den är osynlig för enkelhetens skull
+Playing_field::Playing_field(int w,int h, int x, int y,int playing_field) //sätt enum senare---------------------------------------------------------------------
+  :/*Object{w,h,x,y,il}*/ platform{1280,200,0,700} //Skickar in il till platform även fast den är osynlig för enkelhetens skull
 {
+  size.width = w;
+  size.height = h;
+  position.xpos = x;
+  position.ypos = y;
+
+  switch(playing_field)
+  {
+    case 1:
+    {
+      texture_handler = Texture_handler{{"Bilder/background1.png"}};
+      break;
+    }
+    case 2:
+    {
+      texture_handler = Texture_handler{{"Bilder/background.png"}};
+      break;
+    }
+  }
+
     //nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
     //platform = *dynamic_cast<Platform*>(nonmovable_objects.back().get());
 
@@ -51,14 +70,37 @@ void Playing_field::render(sf::RenderWindow & window)
 //
 //Health_bar
 //
-Health_bar::Health_bar(int w,int h,int x,int y,std::initializer_list<std::string> il,int health,int direction)
-  :Object{w,h,x,y,il},size{health},direction{direction}
-{}
+Health_bar::Health_bar(int health,int direction)
+  :bar_size{health},direction{direction}
+{
+  switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
+  {
+    case 1:
+    {
+      size.width = 200;
+      size.height = 50;
+      position.xpos = 50;
+      position.ypos = 50;
+      break;
+    }
+    case -1:
+    {
+      size.width = 200;
+      size.height = 50;
+      position.xpos = 1230;
+      position.ypos = 50;
+      break;
+    }
+  }
+}
 
 void Health_bar::render(sf::RenderWindow & window)
 {
+  //Kanske göra en separat rectangle som är bakgrunden till den som finns nu
   sf::RectangleShape bar;
-  bar.setSize(sf::Vector2f(direction*size,40));
+  bar.setSize(sf::Vector2f(3*direction*bar_size,40));
+  bar.setOutlineColor(sf::Color::Black);
+  bar.setOutlineThickness(5);
   bar.setFillColor(sf::Color::Red);
   bar.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(bar);
@@ -66,7 +108,7 @@ void Health_bar::render(sf::RenderWindow & window)
 
 void Health_bar::set_size(int health)
 {
-  size = health;
+  bar_size = health;
   //std::cout << "health " << health << std::endl;
   //sf::RectangleShape black;
   //bar.setSize(100 - health, 20);

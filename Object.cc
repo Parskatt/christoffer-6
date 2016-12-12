@@ -10,10 +10,10 @@
 Object::Object(int width,int height,int x,int y,std::initializer_list<std::string> il)
   :texture_handler{il},size{width,height},position{x,y},limit{x,x+width,y,y+height} //Object()
 {
-  size.width = width;
-  size.height = height;
-  position.xpos = x;
-  position.ypos = y;
+  //size.width = width;
+  //size.height = height;
+  //position.xpos = x;
+  //position.ypos = y;
   limit.left = x;
   limit.right = x + width;
   limit.upper = y;

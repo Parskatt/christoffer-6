@@ -18,7 +18,7 @@
 class Match
 {
   public:
-    Match(int character1, int character2, std::initializer_list<std::string>);
+    Match(int character1, int character2, int playing_field);
 
     ~Match() = default;
 

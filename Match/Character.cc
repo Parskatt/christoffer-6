@@ -13,18 +13,39 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,std::initializer_list<std::string> il,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{},health{health}, curr_attack{}, has_attack{false},projectiles{},old_position{0,0} //health_bar{health,direction}
+    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{},health{health},
+     curr_attack{}, has_attack{false},projectiles{},health_bar{health,direction},old_position{0,0} //health_bar{health,direction}
 {
-    switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
+    if(player == 1)
     {
+      direction = -1;
+    }
+    else
+    {
+      direction = 1;
+    }
+
+    switch(character)
+    {Character{173,297,1000,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,-1};
       case 1:
       {
-        health_bar = Health_bar{200,50,50,50,{"Bilder/tom.png"},health,direction};
+
+
         break;
       }
-      case -1:
+      case 2:
       {
-        health_bar = Health_bar{200,50,1230,50,{"Bilder/tom.png"},health,direction};
+
+        break;
+      }
+      case 3:
+      {
+
+        break;
+      }
+      case 4:
+      {
+
         break;
       }
     }
