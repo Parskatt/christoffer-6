@@ -51,7 +51,7 @@ void Match::run()
     sf::Time targetFrameDelay {sf::milliseconds(10)};
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    sf::RenderWindow window{sf::VideoMode{1280,720},"Gatukämpe 6 - Return of the Streetfighter?", sf::Style::Default, settings};
+    sf::RenderWindow window{sf::VideoMode{1280,720},"Gatukämpe 6 - Return of the Streetfighter?!", sf::Style::Default, settings};
     window.setVerticalSyncEnabled(true);
     Physics_engine engine{};
 
@@ -59,6 +59,7 @@ void Match::run()
     {
       clock.restart();
       keyboard_handler(window,event,running);
+      is_dead(running,window);
       position_update(engine,running);
       graphic_update(clock,window);
       auto frameDelay = clock.getElapsedTime();
@@ -80,27 +81,6 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window)
       player1.render(window);
       player2.render(window);
 
-      /*// Draw things
-      for (std::vector<std::unique_ptr<Object>>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)//Innehåller inte object alla movables också?
-        {
-
-          (*it)->render(window,table);
-          //std::cout << "1" << std::endl;
-           //sf::Sprite sprite{};
-      	   //sprite.setTexture(table.get_texture(it->get_texture_index()));
-      	   //sprite.setPosition(sf::Vector2f(it->get_position().xpos,it->get_position().ypos));
-      	   //window.draw(sprite);
-        }
-      for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-----------------------------------------------------------------------
-        {
-          (*it)->render(window,table);
-           //sf::Sprite sprite{};
-           //sprite.setTexture(table.get_texture((*it)->get_texture_index()));
-           //sprite.setPosition(sf::Vector2f((*it)->get_position().xpos,(*it)->get_position().ypos));
-           //window.draw(sprite);
-        }*/
-
-      // show the newly drawn things
       window.display();
 }
 
@@ -153,19 +133,6 @@ void Match::position_update(Physics_engine & engine, bool & running)
 
 
   engine.collision(playing_field, player1, player2);
-  if (player1.get_curr_character().get_health() <= 0)
-  {
-    std::cout << "p1 död :(" << std::endl;
-    running = false;
-  }
-  if (player2.get_curr_character().get_health() <= 0)
-  {
-    std::cout << "p2 död :(" << std::endl;
-    running = false;
-  }
-  //stopwalking() fuckar med direction för character, sätter bara x_speed till 0 i move() istället
-  //player1.stopwalking();
-  //player2.stopwalking();
 
 
   //physics_engine.gravity();
@@ -183,6 +150,43 @@ void Match::position_update(Physics_engine & engine, bool & running)
 
 }
 
+void Match::is_dead(bool & running, sf::RenderWindow & window)
+{
+  if (player1.get_curr_character().get_health() <= 0)
+  {
+    sf::Font font;
+    font.loadFromFile("Bilder/DaStreets.ttf");
+    sf::Text text("Player 1 got demolished :/",font);
+    text.setCharacterSize(70);
+    text.setColor(sf::Color(0,0,0));
+    text.setPosition(sf::Vector2f(250,200));
+
+    window.draw(text);
+    window.display();
+
+    sf::sleep(sf::seconds(7));
+
+    running = false;
+  }
+  else if (player2.get_curr_character().get_health() <= 0)
+  {
+    sf::Font font;
+    font.loadFromFile("Bilder/DaStreets.ttf");
+    sf::Text text("Player 2 got demolished :/",font);
+    text.setCharacterSize(70);
+    text.setColor(sf::Color(0,0,0));
+    text.setPosition(sf::Vector2f(250,200));
+
+    window.draw(text);
+    window.display();
+
+    sf::sleep(sf::seconds(7));
+
+    running = false;
+  }
+
+
+}
 
 /*
 void collision_update(Object object)
@@ -198,12 +202,4 @@ void collision_update(Object object)
       }
 }
 
-*/
-
-
-/*
-bool dead_check()
-{
-  return false;
-}
 */

@@ -34,6 +34,8 @@ class Match
 
     void position_update(Physics_engine &, bool &);
 
+    void is_dead(bool &, sf::RenderWindow &);
+
     //bool dead_check();
 
 
