@@ -13,7 +13,7 @@
 }*/
 
 Character::Character(int width, int height,int x, int y,std::initializer_list<std::string> il,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{}, curr_attack{}, has_attack{false},projectiles{},old_position{0,0},health{health} //health_bar{health,direction}
+    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{},health{health}, curr_attack{}, has_attack{false},projectiles{},old_position{0,0} //health_bar{health,direction}
 {
     switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
     {
@@ -175,7 +175,27 @@ void Character::attack(int attack_type,int character_id)
     {
     	if(attack_type == 1)
     	{
-    	  curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
+        if(direction == 1)
+        {
+    	     curr_attack = Punch{size.width,size.height,position.xpos + size.width,position.ypos,
+             {"Bilder/Krallex/attans00.png","Bilder/Krallex/attans01.png","Bilder/Krallex/attans02.png",
+             "Bilder/Krallex/attans03.png","Bilder/Krallex/attans04.png","Bilder/Krallex/attans05.png",
+             "Bilder/Krallex/attans06.png","Bilder/Krallex/attans07.png","Bilder/Krallex/attans08.png",
+             "Bilder/Krallex/attans09.png","Bilder/Krallex/attans10.png","Bilder/Krallex/attans11.png",
+             "Bilder/Krallex/attans12.png","Bilder/Krallex/attans13.png","Bilder/Krallex/attans14.png",
+             "Bilder/Krallex/attans15.png"}/*,"Bilder/Krallex/attans16.png","Bilder/Krallex/attans17.png",
+             "Bilder/Krallex/attans18.png","Bilder/Krallex/attans19.png","Bilder/Krallex/attans20.png",
+             "Bilder/Krallex/attans21.png","Bilder/Krallex/attans22.png","Bilder/Krallex/attans23.png",
+             "Bilder/Krallex/attans24.png","Bilder/Krallex/attans25.png","Bilder/Krallex/attans26.png",
+             "Bilder/Krallex/attans27.png","Bilder/Krallex/attans28.png","Bilder/Krallex/attans29.png",
+             "Bilder/Krallex/attans30.png","Bilder/Krallex/attans31.png","Bilder/Krallex/attans32.png",*/
+             //{"Bilder/Krallex/attans00.png","Bilder/Krallex/attans01.png","Bilder/Krallex/attans02.png"}
+             ,direction,projectiles};//{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
+        }
+        else
+        {
+          curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
+        }
         std::cout << "skapar attack" << std::endl;
         has_attack = true;
     	}
@@ -203,7 +223,10 @@ void Character::lose_health(int damage)
    health_bar.set_size(0);
   }
 }
-
+int Character::get_health()
+{
+  return health;
+}
 std::vector<Projectile> & Character::get_projectiles()
 {
   return projectiles;

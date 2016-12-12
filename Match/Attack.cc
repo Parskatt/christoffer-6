@@ -24,10 +24,10 @@ Attack::Attack(int width,int height,int x,int y,std::initializer_list<std::strin
 void Attack::render(sf::RenderWindow & window)
 {
   sf::Sprite sprite{};
-  sprite.setTexture(texture_handler.get_texture(0 + floor(done_counter/5)));
+  sprite.setTexture(texture_handler.get_texture(floor(done_counter/5)));
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
-  if (done_counter < 15)
+  if (done_counter < 15*5)
   {
   done_counter += 1;
   }
@@ -35,7 +35,7 @@ void Attack::render(sf::RenderWindow & window)
 
 bool Attack::done()
 {
-  if(done_counter > 14)
+  if(done_counter > 14*5)
   {
     return true;
   }

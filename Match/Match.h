@@ -32,7 +32,7 @@ class Match
 
     //void collision_update(Object object);
 
-    void position_update(Physics_engine &);
+    void position_update(Physics_engine &, bool &);
 
     //bool dead_check();
 

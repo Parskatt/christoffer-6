@@ -59,7 +59,7 @@ void Match::run()
     {
       clock.restart();
       keyboard_handler(window,event,running);
-      position_update(engine);
+      position_update(engine,running);
       graphic_update(clock,window);
       auto frameDelay = clock.getElapsedTime();
       if ( targetFrameDelay > frameDelay )
@@ -135,28 +135,6 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
       }
       ++y;
     }
-/*
-    if(event.type == sf::Event::KeyPressed)
-    {
-      if(event.key.code == sf::Keyboard::Left)
-      {
-        player1.send_key(0);
-      }
-      else if(event.key.code == sf::Keyboard::Right)
-      {
-        player1.send_key(1);
-      }
-      else if(event.key.code == sf::Keyboard::Up)
-      {
-        player1.send_key(2);
-      }
-    if(event.type == sf::Event::KeyReleased)
-    {
-      std::cout << "släppteknapp" << std::endl;
-      player1.send_key(3);
-    }
-  }
-}*/
 
 }
 
@@ -166,7 +144,7 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
   object->move();
 }*/
 
-void Match::position_update(Physics_engine & engine)
+void Match::position_update(Physics_engine & engine, bool & running)
 {
   //engine.gravity(playing_field, player1, player2);
   engine.gravity(player1, player2);
@@ -175,6 +153,16 @@ void Match::position_update(Physics_engine & engine)
 
 
   engine.collision(playing_field, player1, player2);
+  if (player1.get_curr_character().get_health() <= 0)
+  {
+    std::cout << "p1 död :(" << std::endl;
+    running = false;
+  }
+  if (player2.get_curr_character().get_health() <= 0)
+  {
+    std::cout << "p2 död :(" << std::endl;
+    running = false;
+  }
   //stopwalking() fuckar med direction för character, sätter bara x_speed till 0 i move() istället
   //player1.stopwalking();
   //player2.stopwalking();

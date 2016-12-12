@@ -7,9 +7,9 @@
 class Menu_Button : public Object
 {
 public:
-  Menu_Button(int width ,int height,int x,int y,int index,std::string state);
+  Menu_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il,std::string state);
   std::string get_state();
-  void render(sf::RenderWindow &, Texture_handler &);
+  void render(sf::RenderWindow &);
   bool inside_button(int x, int y);
 private:
   std::string state{};
@@ -18,52 +18,52 @@ private:
 class Play_Button : public Menu_Button
 {
 public:
-  Play_Button(int width ,int height,int x,int y,int index);
+  Play_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 class Instructions_Button : public Menu_Button
 {
 public:
-  Instructions_Button(int width ,int height,int x,int y,int index);
+  Instructions_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 class Quit_Button : public Menu_Button
 {
 public:
-  Quit_Button(int width ,int height,int x,int y,int index);
+  Quit_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 //choose_char1
 class FattigJohan_Button : public Menu_Button
 {
 public:
-  FattigJohan_Button(int width ,int height,int x,int y,int index);
+  FattigJohan_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 class Kresper_Button : public Menu_Button
 {
 public:
-  Kresper_Button(int width ,int height,int x,int y,int index);
+  Kresper_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
 class Krallex_Button : public Menu_Button
 {
 public:
-  Krallex_Button(int width ,int height,int x,int y,int index);
+  Krallex_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
 class Kraxel_Button : public Menu_Button
 {
 public:
-  Kraxel_Button(int width ,int height,int x,int y,int index);
+  Kraxel_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
 class Instructionsloop_Button : public Menu_Button
 {
 public:
-  Instructionsloop_Button(int width ,int height,int x,int y,int index);
+  Instructionsloop_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
 class Playingfield_Button : public Menu_Button
 {
 public:
-  Playingfield_Button(int width ,int height,int x,int y,int index);
+  Playingfield_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
 #endif

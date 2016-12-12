@@ -10,7 +10,7 @@ int main()
 {
   /*
   Menu menu();
-  menu.run;
+  menu.run();
   char1 = menu.char1;
   char2 = menu.char2;
   background = {menu.background};

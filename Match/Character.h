@@ -26,7 +26,7 @@ class Character : public Movable
     Speed_vector speed_vector{};
 
     int health{};
-    
+
     bool in_air{};
 
     Attack curr_attack{}; //Kanske måsvingar vid Attack
@@ -83,6 +83,8 @@ class Character : public Movable
     void attack(int,int);
 
     void lose_health(int);
+
+    int get_health();
 
     std::vector<Projectile> & get_projectiles();
 
