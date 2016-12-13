@@ -19,7 +19,7 @@ class Match
 
     ~Match() = default;
 
-    void run();
+    void run(bool &);
 
     void graphic_update(sf::Clock &,sf::RenderWindow &);
 

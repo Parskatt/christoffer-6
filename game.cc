@@ -3,6 +3,7 @@
 //
 
 #include "Match/Match.h"
+#include "Menu/Menu.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -19,6 +20,5 @@ int main()
   Match match{char1,char2,background};
   match.run(running);
   }
-
   return 0;
 }

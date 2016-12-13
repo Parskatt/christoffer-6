@@ -26,10 +26,10 @@ Match::Match(int char1,int char2,int playing_field)
   p2_commands[3] = sf::Keyboard::Space; //Attack
 }
 
-void Match::run()
+void Match::run(bool & running)
 {
     //Texture_handler handler{};
-    bool running{true};
+    bool match_running{true};
     sf::Event event;
     sf::Clock clock;
     sf::Time targetFrameDelay {sf::milliseconds(10)};
@@ -39,11 +39,11 @@ void Match::run()
     window.setVerticalSyncEnabled(true);
     Physics_engine engine{};
 
-    while(running)
+    while(running && match_running)
     {
       clock.restart();
       keyboard_handler(window,event,running);
-      is_dead(running,window);
+      is_dead(match_running,window);
       position_update(engine,running);
       graphic_update(clock,window);
       auto frameDelay = clock.getElapsedTime();
@@ -112,7 +112,7 @@ void Match::position_update(Physics_engine & engine, bool & running)
   engine.collision(playing_field, player1, player2);
 }
 
-void Match::is_dead(bool & running, sf::RenderWindow & window)
+void Match::is_dead(bool & match_running, sf::RenderWindow & window)
 {
   if (player1.get_curr_character().get_health() <= 0)
   {
@@ -128,7 +128,7 @@ void Match::is_dead(bool & running, sf::RenderWindow & window)
 
     sf::sleep(sf::seconds(7));
 
-    running = false;
+    match_running = false;
   }
   else if (player2.get_curr_character().get_health() <= 0)
   {
@@ -144,6 +144,6 @@ void Match::is_dead(bool & running, sf::RenderWindow & window)
 
     sf::sleep(sf::seconds(7));
 
-    running = false;
+    match_running = false;
   }
 }

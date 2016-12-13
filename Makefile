@@ -1,7 +1,7 @@
 
 CXXFLAGS=-Wall -Wextra -std=c++17 -Wno-unused-parameter
 SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o Player.o Movable.o Character.o Attack.o Projectile.o Physics_engine.o
+OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o Player.o Movable.o Character.o Attack.o Projectile.o Physics_engine.o Menu.o Menu_Button.o Menu_Text.o
 OBJECTS2 = game_menu.o Menu.o Menu_Button.o Menu_Text.o Texture_handler.o Object.o
 #NEWSFML = -I${SFML_ROOT}/include -L${SFML_ROOT}/lib
 
