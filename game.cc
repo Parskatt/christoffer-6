@@ -15,7 +15,7 @@ int main()
   char2 = menu.char2;
   background = {menu.background};
   */
-  Match match{1,2,1};
+  Match match{1,1,1};
   match.run();
 
   return 0;
