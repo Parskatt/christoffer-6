@@ -156,14 +156,14 @@ void Character::render(sf::RenderWindow & window)
     if(direction == 1)
     {
       sf::Sprite sprite{};
-      sprite.setTexture(texture_handler.get_texture(1));
+      sprite.setTexture(texture_handler.get_texture(0));
       sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
       window.draw(sprite);
     }
     else
     {
       sf::Sprite sprite{};
-      sprite.setTexture(texture_handler.get_texture(0));
+      sprite.setTexture(texture_handler.get_texture(1));
       sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
       window.draw(sprite);
     }
@@ -201,23 +201,16 @@ void Character::attack(int attack_type,int character_id)
         if(direction == 1)
         {
     	     curr_attack = Punch{size.width,size.height,position.xpos + size.width,position.ypos,
-             {"Bilder/Krallex/attans00.png","Bilder/Krallex/attans01.png","Bilder/Krallex/attans02.png",
-             "Bilder/Krallex/attans03.png","Bilder/Krallex/attans04.png","Bilder/Krallex/attans05.png",
-             "Bilder/Krallex/attans06.png","Bilder/Krallex/attans07.png","Bilder/Krallex/attans08.png",
-             "Bilder/Krallex/attans09.png","Bilder/Krallex/attans10.png","Bilder/Krallex/attans11.png",
-             "Bilder/Krallex/attans12.png","Bilder/Krallex/attans13.png","Bilder/Krallex/attans14.png",
-             "Bilder/Krallex/attans15.png"}/*,"Bilder/Krallex/attans16.png","Bilder/Krallex/attans17.png",
-             "Bilder/Krallex/attans18.png","Bilder/Krallex/attans19.png","Bilder/Krallex/attans20.png",
-             "Bilder/Krallex/attans21.png","Bilder/Krallex/attans22.png","Bilder/Krallex/attans23.png",
-             "Bilder/Krallex/attans24.png","Bilder/Krallex/attans25.png","Bilder/Krallex/attans26.png",
-             "Bilder/Krallex/attans27.png","Bilder/Krallex/attans28.png","Bilder/Krallex/attans29.png",
-             "Bilder/Krallex/attans30.png","Bilder/Krallex/attans31.png","Bilder/Krallex/attans32.png",*/
-             //{"Bilder/Krallex/attans00.png","Bilder/Krallex/attans01.png","Bilder/Krallex/attans02.png"}
-             ,direction,projectiles};//{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
+             {"Bilder/Krallex/KrallexSlagH01.png", "Bilder/Krallex/KrallexSlagH02.png", "Bilder/Krallex/KrallexSlagH03.png",
+              "Bilder/Krallex/KrallexSlagH07.png", "Bilder/Krallex/KrallexSlagH08.png"},
+              direction,projectiles};//{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
         }
         else
         {
-          curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
+          curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,
+            {"Bilder/Krallex/KrallexSlagV01.png", "Bilder/Krallex/KrallexSlagV02.png", "Bilder/Krallex/KrallexSlagV03.png",
+             "Bilder/Krallex/KrallexSlagV07.png", "Bilder/Krallex/KrallexSlagV08.png"}
+             direction,projectiles};
         }
         std::cout << "skapar attack" << std::endl;
         has_attack = true;

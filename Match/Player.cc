@@ -12,7 +12,7 @@ Player::Player(int character,int player)//--------------------------------------
     case 1:
     {
       //curr_character = Character{character,player}
-      curr_character = Character{173,297,1000,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,-1};
+      curr_character = Character{173,297,1000,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV4.png"},5,100,-1};
       //movable_objects.push_back(std::make_unique<Character>(curr_character));//(100,100,600,350,2,5,100,1,nonmovable_objects));
 
       //curr_character = *dynamic_cast<Character*>(movable_objects.back());
@@ -24,7 +24,7 @@ Player::Player(int character,int player)//--------------------------------------
    case 2:
    {
 
-      curr_character = Character{173,297,100,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,1};
+      curr_character = Character{173,297,100,350,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png"},5,100,1};
       break;
    }
     //default:
