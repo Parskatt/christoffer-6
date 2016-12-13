@@ -5,6 +5,7 @@
 #ifndef MATCH_H
 #define MATCH_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Non_movables.h"
 #include "../Texture_handler.h"
 #include "Player.h"

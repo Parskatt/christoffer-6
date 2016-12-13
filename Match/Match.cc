@@ -29,6 +29,12 @@ Match::Match(int char1,int char2,int playing_field)
 void Match::run(bool & running)
 {
     //Texture_handler handler{};
+    sf::Music music;
+    if (!music.openFromFile("Menu/BackgroundMusic.wav"))
+      {
+        std::cout << "attans grabbar!";
+      } // error
+    music.play();
     bool match_running{true};
     sf::Event event;
     sf::Clock clock;
