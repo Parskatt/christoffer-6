@@ -30,7 +30,7 @@ void Match::run(bool & running)
 {
     //Texture_handler handler{};
     sf::Music music;
-    if (!music.openFromFile("Menu/BackgroundMusic.wav"))
+    if (!music.openFromFile("eott.wav"))
       {
         std::cout << "attans grabbar!";
       } // error
