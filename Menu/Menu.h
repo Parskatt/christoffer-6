@@ -34,7 +34,7 @@ public:
 
   Menu();
 
-  void menu_loop();
+  void menu_loop(bool &);
 
   bool main_loop(sf::Clock &,sf::RenderWindow &, sf::Event &);
 
@@ -48,7 +48,7 @@ public:
 
   void draw_sprite(std::vector<Menu_Button>::iterator &,sf::RenderWindow &,int);
 
-  void krallex_pick(sf::RenderWindow &);
+  void krallex_pick(sf::RenderWindow &,sf::Event &);
 
   int get_char1();
   int get_char2();

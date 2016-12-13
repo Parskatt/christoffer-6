@@ -12,7 +12,7 @@ Menu::Menu()
 
 
 
-void Menu::menu_loop()
+void Menu::menu_loop(bool & running)
 {
   sf::Music music;
   if (!music.openFromFile("Menu/BackgroundMusic.wav"))
@@ -22,7 +22,7 @@ void Menu::menu_loop()
   music.play();
 
   //Menu_Texture_handler handler{};
-  bool running{true};
+  //bool running{true};
   sf::Event event;
   sf::Clock clock;
   sf::Time targetFrameDelay {sf::milliseconds(10)};
@@ -125,7 +125,10 @@ void Menu::menu_loop()
         sf::sleep(sleepTime);
     }
   }
-  if(state == "quit"){}
+  if(state == "quit")
+  {
+    running = false;
+  }
   }
 
 bool Menu::main_loop(sf::Clock & clock,sf::RenderWindow & window,sf::Event & event)
@@ -324,8 +327,6 @@ void Menu::krallex_pick(sf::RenderWindow & window, sf::Event & event)
     string << "Bilder/Menu/Cena/" << it << ".png";
     cenatextures[it].loadFromFile(string.str());
   }
-  while (window.pollEvent(event))
-  {
 
   for (int i {0}; i < 8; ++i)
   {
@@ -342,7 +343,6 @@ void Menu::krallex_pick(sf::RenderWindow & window, sf::Event & event)
       }
   }
 }
-}
 
 int Menu::get_char1()
 {
@@ -356,11 +356,11 @@ int Menu::get_char1()
   }
   else if (char1 == "Krallex")
   {
-    return 3;
+    return 1;
   }
   else
   {
-    return 4;
+    return 1;
   }
 }
 
@@ -376,15 +376,16 @@ int Menu::get_char2()
   }
   else if (char2 == "Krallex")
   {
-    return 3;
+    return 1;
   }
   else
   {
-    return 4;
+    return 1;
   }
 }
 
 int Menu::get_playingfield()
 {
+
   return 1;
 }

@@ -3,9 +3,11 @@
 
 int main()
 {
-
+  bool running{true};
+  while(running)
+  {
   Menu menu{};
-  menu.menu_loop();
-
+  menu.menu_loop(running);
+  }
   return 0;
 }
