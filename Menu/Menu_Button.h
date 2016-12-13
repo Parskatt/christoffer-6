@@ -9,7 +9,8 @@ class Menu_Button : public Object
 public:
   Menu_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il,std::string state);
   std::string get_state();
-  void render(sf::RenderWindow &);
+  void render(sf::RenderWindow &) override;
+  void render(sf::RenderWindow &,int);
   bool inside_button(int x, int y);
 private:
   std::string state{};
