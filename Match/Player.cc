@@ -14,7 +14,7 @@ Player::Player(int player,int character)//--------------------------------------
       //curr_character = Character{character,player}
       if(player == 1)
       {
-        curr_character = Character{173,297,1000,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV4.png",
+        curr_character = Character{173,297,1000,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
                                                      "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},5,100,-1};
       }
       else
