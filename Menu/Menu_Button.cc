@@ -13,8 +13,21 @@ bool Menu_Button::inside_button(int x, int y)
 {
   return !(x > limit.right || x < limit.left || y > limit.lower || y < limit.upper);
 }
-void Menu_Button::render(sf::RenderWindow &)
-{}
+
+void Menu_Button::render(sf::RenderWindow & window)
+{
+  sf::Sprite sprite{};
+  sprite.setTexture(texture_handler.get_texture(0));
+  sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+  window.draw(sprite);
+}
+void Menu_Button::render(sf::RenderWindow & window,int plus)
+{
+  sf::Sprite sprite{};
+  sprite.setTexture(texture_handler.get_texture(plus));
+  sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
+  window.draw(sprite);
+}
 
 Play_Button::Play_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il)
 :Menu_Button{width,height,x,y,il,"char1"}
@@ -49,5 +62,5 @@ Instructionsloop_Button::Instructionsloop_Button(int width ,int height,int x,int
 {}
 
 Playingfield_Button::Playingfield_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il)
-:Menu_Button{width,height,x,y,il,"kappa"}
+:Menu_Button{width,height,x,y,il,"match"}
 {}

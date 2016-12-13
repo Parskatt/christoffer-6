@@ -2,7 +2,7 @@
 CXXFLAGS=-Wall -Wextra -std=c++17 -Wno-unused-parameter
 SFML_FLAGS= -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 OBJECTS =  game.o Object.o Non_movables.o Match.o Texture_handler.o Player.o Movable.o Character.o Attack.o Projectile.o Physics_engine.o
-OBJECTS2 = game_menu.o Menu.o Menu_Button.o Menu_Texture_handler.o Object.o
+OBJECTS2 = game_menu.o Menu.o Menu_Button.o Menu_Text.o Texture_handler.o Object.o
 #NEWSFML = -I${SFML_ROOT}/include -L${SFML_ROOT}/lib
 
 CCC = g++
@@ -23,6 +23,9 @@ Menu_Button.o: Menu/Menu_Button.h Menu/Menu_Button.cc
 
 Menu_Texture_handler.o: Menu_Texture_handler.h Menu_Texture_handler.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu_Texture_handler.cc
+
+Menu_Text.o: Menu/Menu_Text.h Menu/Menu_Text.cc
+	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c Menu/Menu_Text.cc
 
 game_menu.o: game_menu.cc
 	$(CCC) $(CPPFLAGS) $(CXXFLAGS) -c game_menu.cc

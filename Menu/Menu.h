@@ -5,9 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include "../Menu_Texture_handler.h"
 #include "Menu_Button.h"
+#include "Menu_Text.h"
+#include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 #include <SFML/Audio.hpp>
+#include <initializer_list>
 
 class Menu
 {
@@ -19,6 +23,8 @@ private:
   std::vector<Menu_Button> choose_char2_buttons{};
   std::vector<Menu_Button> choose_playingfield_buttons{};
   std::vector<Menu_Button> show_instructions_buttons{};
+  std::vector<Menu_Text> show_character_texts{};
+  Menu_Text show_instructions_text;
   std::string char1{};
   std::string char2{};
   std::string playingfield{};
@@ -30,19 +36,23 @@ public:
 
   void menu_loop();
 
-  bool main_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool main_loop(sf::Clock &,sf::RenderWindow &, sf::Event &);
 
-  bool choose_char1_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool choose_char1_loop(sf::Clock &,sf::RenderWindow &, sf::Event &);
 
-  bool choose_char2_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool choose_char2_loop(sf::Clock &,sf::RenderWindow &, sf::Event &);
 
-  bool choose_playingfield_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool choose_playingfield_loop(sf::Clock &,sf::RenderWindow &, sf::Event &);
 
-  bool show_instructions_loop(sf::Clock &,sf::RenderWindow &,Menu_Texture_handler &, sf::Event &);
+  bool show_instructions_loop(sf::Clock &,sf::RenderWindow &, sf::Event &);
 
-  void draw_sprite(std::vector<Menu_Button>::iterator &,sf::RenderWindow &, Menu_Texture_handler &,int);
+  void draw_sprite(std::vector<Menu_Button>::iterator &,sf::RenderWindow &,int);
 
-  void krallex_pick(sf::RenderWindow &, Menu_Texture_handler &);
+  void krallex_pick(sf::RenderWindow &);
+
+  int get_char1();
+  int get_char2();
+  int get_playingfield();
 
 };
 
