@@ -58,5 +58,5 @@ void Attack::set_ypos(int ypos)
 Punch::Punch(int width,int height,int x,int y,std::initializer_list<std::string> il,int direction,std::vector<Projectile> & projectiles)
     :Attack{width,height,x,y,il,direction}
 {
-  projectiles.push_back(Punch_projectile{20,20,x,y,{"Bilder/tom.png"},0,direction,30});
+  projectiles.push_back(Punch_projectile{20,20,x,y+50,{"Bilder/tom.png"},5,direction,30});
 }

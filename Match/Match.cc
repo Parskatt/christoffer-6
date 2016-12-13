@@ -124,9 +124,9 @@ void Match::is_dead(bool & match_running, sf::RenderWindow & window)
   {
     sf::Font font;
     font.loadFromFile("Bilder/DaStreets.ttf");
-    sf::Text text("Player 1 got demolished :'('",font);
+    sf::Text text("Player 1 got demolished :'(",font);
     text.setCharacterSize(70);
-    text.setColor(sf::Color(0,0,0));
+    text.setColor(sf::Color::Black);
     text.setPosition(sf::Vector2f(250,200));
 
     window.draw(text);
@@ -142,7 +142,7 @@ void Match::is_dead(bool & match_running, sf::RenderWindow & window)
     font.loadFromFile("Bilder/DaStreets.ttf");
     sf::Text text("Player 2 got demolished :/",font);
     text.setCharacterSize(70);
-    text.setColor(sf::Color(0,0,0));
+    text.setColor(sf::Color::Black);
     text.setPosition(sf::Vector2f(250,200));
 
     window.draw(text);

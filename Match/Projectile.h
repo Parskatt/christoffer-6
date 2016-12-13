@@ -12,7 +12,7 @@ class Projectile : public Movable
 {
   public:
 
-    Projectile(int,int,int,int,std::initializer_list<std::string>,int,int,int);
+    Projectile(int,int,int,int,std::initializer_list<std::string>,int,int,int,int);
 
     ~Projectile() = default;
 
@@ -20,6 +20,7 @@ class Projectile : public Movable
 
     void render(sf::RenderWindow &);
 
+    int get_range();
 
     int get_damage() const;
 
@@ -28,8 +29,10 @@ class Projectile : public Movable
 
   private:
 
+
     int damage;
     int done_counter;
+    int range;
 
 };
 
@@ -42,11 +45,11 @@ class Punch_projectile : public Projectile
 
     ~Punch_projectile() = default;
 
-    int get_range();
+
 
   private:
 
-    int range;
+
 
 };
 

@@ -240,7 +240,7 @@ void Character::attack(int character_id)  //(int attack_type,int character_id)
     {
       if(direction == 1)
       {
-        curr_attack = Punch{size.width,size.height,position.xpos + size.width,position.ypos,
+        curr_attack = Punch{size.width,size.height,position.xpos + size.width/2,position.ypos,
           {"Bilder/Kresper/KresperSlagH00.png", "Bilder/Kresper/KresperSlagH01.png", "Bilder/Kresper/KresperSlagH02.png", "Bilder/Kresper/KresperSlagH03.png",
            "Bilder/Kresper/KresperSlagH04.png", "Bilder/Kresper/KresperSlagH05.png", "Bilder/Kresper/KresperSlagH06.png", "Bilder/Kresper/KresperSlagH07.png",
            "Bilder/Kresper/KresperSlagH08.png", "Bilder/Kresper/KresperSlagH09.png"},
@@ -248,7 +248,7 @@ void Character::attack(int character_id)  //(int attack_type,int character_id)
       }
       else
       {
-        curr_attack = Punch{size.width,size.height,position.xpos + size.width,position.ypos,
+        curr_attack = Punch{size.width,size.height,position.xpos + size.width/2,position.ypos,
           {"Bilder/Kresper/KresperSlagV00.png", "Bilder/Kresper/KresperSlagV01.png", "Bilder/Kresper/KresperSlagV02.png", "Bilder/Kresper/KresperSlagV03.png",
            "Bilder/Kresper/KresperSlagV04.png", "Bilder/Kresper/KresperSlagV05.png", "Bilder/Kresper/KresperSlagV06.png", "Bilder/Kresper/KresperSlagV07.png",
            "Bilder/Kresper/KresperSlagV08.png", "Bilder/Kresper/KresperSlagV09.png"},
