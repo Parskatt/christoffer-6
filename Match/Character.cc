@@ -16,6 +16,7 @@ Character::Character(int width, int height,int x, int y,std::initializer_list<st
     :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{},health{health},
      curr_attack{}, has_attack{false},projectiles{},health_bar{health,direction},old_position{0,0} //health_bar{health,direction}
 {
+  /*
     if(player == 1)
     {
       direction = -1;
@@ -26,9 +27,10 @@ Character::Character(int width, int height,int x, int y,std::initializer_list<st
     }
 
     switch(character)
-    {Character{173,297,1000,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,-1};
+    {
       case 1:
       {
+        Character{173,297,1000,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,-1};
 
 
         break;
@@ -48,7 +50,7 @@ Character::Character(int width, int height,int x, int y,std::initializer_list<st
 
         break;
       }
-    }
+    }*/
     //Skapar och lägger till hälsomätaren i match's vector
 
 //---------------------------------------------------------------------------------------
