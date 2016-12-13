@@ -29,7 +29,9 @@ class Character : public Movable
 
     bool in_air{};
 
-    Attack curr_attack{}; //Kanske måsvingar vid Attack
+    bool is_stumped{};
+
+    Attack curr_attack{};
 
     bool has_attack;
 
@@ -48,19 +50,21 @@ class Character : public Movable
 
     Character(int,int,int,int,std::initializer_list<std::string>,int,int,int);//---------------------------------------------------------
 
-    //Character & operator=(const Character &);
-
     void set_x_pos(int);
 
     void set_y_pos(int);
 
     void set_in_air(bool);
 
+    void set_is_stumped(bool);
+
     void set_x_speed(int);
 
     void set_y_speed(int);
 
     bool get_in_air() const;
+
+    bool get_is_stumped() const;
 
     int get_x_speed() const;
 
@@ -72,15 +76,11 @@ class Character : public Movable
 
     void move() override;
 
-    void move(int);
+    //void move(int); //behövs denna?
 
     void render(sf::RenderWindow &) override;
 
-    //void jump();
-
-    int get_texture_index();// override;
-
-    void attack(int,int);
+    void attack(int); //(int,int)
 
     void lose_health(int);
 

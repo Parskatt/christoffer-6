@@ -10,14 +10,10 @@
 
 
 Match::Match(int char1,int char2,int playing_field)
-  :/*movable_objects{}, nonmovable_objects{},*/ playing_field{1280,720,0,0,playing_field},
-   player1{char1,1},player2{char2,2},p1_commands{4},p2_commands{4}//---------------------------------------------------
+  :playing_field{1280,720,0,0,playing_field},
+   player1{1,char1},player2{2,char2},p1_commands{4},p2_commands{4}
 {
 
-  //auto it = nonmovable_objects.begin();
-  //it = nonmovable_objects.insert(it,&playing_field);
-  //nonmovable_objects.push_back(playing_field.get_platform());
-  //movable_objects.push_back(std::make_unique<Character>(player1.get_curr_character()));
   //Initialize commands, order is important
   p1_commands[0] = sf::Keyboard::Left;
   p1_commands[1] = sf::Keyboard::Right;
@@ -29,18 +25,6 @@ Match::Match(int char1,int char2,int playing_field)
   p2_commands[2] = sf::Keyboard::W; //Hoppa
   p2_commands[3] = sf::Keyboard::Space; //Attack
 }
-
-/*Match::~Match()
-{
-  for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)
-  {
-    delete (*it);
-  }
-  for (std::vector<Object*>::iterator it = nonmovable_objects.begin() ; it != nonmovable_objects.end(); ++it)
-  {
-    delete (*it);
-  }
-}*/
 
 void Match::run()
 {
@@ -118,36 +102,14 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
 
 }
 
-
-/*void Match::position_update(std::unique_ptr<Movable> & object) //-----------------------------------------------------------------------------------
-{
-  object->move();
-}*/
-
 void Match::position_update(Physics_engine & engine, bool & running)
 {
-  //engine.gravity(playing_field, player1, player2);
   engine.gravity(player1, player2);
+
   player1.position_update();
   player2.position_update();
 
-
   engine.collision(playing_field, player1, player2);
-
-
-  //physics_engine.gravity();
-  //for (std::vector<std::unique_ptr<Movable>>::iterator it = movable_objects.begin() ; it != movable_objects.end(); ++it) //-------------------------------------------------------------------------------
-  //  {
-  //    position_update(*it);
-  //    //collision_update(*it);
-  //  }
-
-    /*
-  for (std::vector<Object>::iterator it = nonmovable_objects.begin() ; it != nonmoveable_objects.end(); ++it)
-      {
-        //collision_update(*it);
-      }*/
-
 }
 
 void Match::is_dead(bool & running, sf::RenderWindow & window)
@@ -156,7 +118,7 @@ void Match::is_dead(bool & running, sf::RenderWindow & window)
   {
     sf::Font font;
     font.loadFromFile("Bilder/DaStreets.ttf");
-    sf::Text text("Player 1 got demolished :/",font);
+    sf::Text text("Player 1 got demolished :'('",font);
     text.setCharacterSize(70);
     text.setColor(sf::Color(0,0,0));
     text.setPosition(sf::Vector2f(250,200));
@@ -185,19 +147,3 @@ void Match::is_dead(bool & running, sf::RenderWindow & window)
     running = false;
   }
 }
-
-/*
-void collision_update(Object object)
-{
-  for (std::vector<Movable>::iterator it = movable_objects.begin() ; it != moveable_objects.end(); ++it)
-      {
-        if(physics_engine.collision(object, *it))
-        //if(((object.get_limits().right < *it.get_limits().left)
-        //|| (object.get_limits().lower < *it.get_limits().upper))
-        {
-          std::cout << "attans!";
-        }
-      }
-}
-
-*/

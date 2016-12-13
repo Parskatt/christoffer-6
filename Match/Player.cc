@@ -4,32 +4,25 @@
 
 #include "Player.h"
 
-Player::Player(int character,int player)//-----------------------------------------------------
+Player::Player(int player,int character)//-----------------------------------------------------
   :curr_character{}/*curr_character{character,player}*/, character_id{character}
 {
-  switch(player)
+  switch(character)
   {
     case 1:
     {
       //curr_character = Character{character,player}
-      curr_character = Character{173,297,1000,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV4.png"},5,100,-1};
-      //movable_objects.push_back(std::make_unique<Character>(curr_character));//(100,100,600,350,2,5,100,1,nonmovable_objects));
-
-      //curr_character = *dynamic_cast<Character*>(movable_objects.back());
-
-      //curr_character = (new Character{100,100,600,350,2,5,100,1,nonmovable_objects});
-      //movable_objects.push_back(curr_character);//-----------------------------------------------------------------
+      curr_character = Character{173,297,1000,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV4.png",
+                                                   "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},5,100,-1};
     break;
    }
    case 2:
    {
 
-      curr_character = Character{173,297,100,350,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png"},5,100,1};
+      curr_character = Character{173,297,100,350,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
+                                                  "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},5,100,1};
       break;
    }
-    //default:
-      //curr_character = (new Character{100,100,600,350,2,10,100,1,nonmovable_objects});
-      //movable_objects.push_back(curr_character);
   }
 }
 
@@ -55,43 +48,34 @@ void Player::send_key(int key) //Borde va enum
     //Gå ät vänster
     case 0:
     {
-      curr_character.set_x_speed(-7); //var -1 innan
+      curr_character.set_x_speed(-7);
       break;
     }
     //Gå åt höger
     case 1:
     {
-      curr_character.set_x_speed(7);   //var 1 innan
+      curr_character.set_x_speed(7);
       break;
     }
     //Hoppa
     case 2:
     {
-      if (curr_character.get_in_air() == false)
+      if (!curr_character.get_in_air() && !curr_character.get_is_stumped())
       {
         curr_character.set_y_speed(-27);
       }
       break;
     }
-    //Ducka??????
+    //Slagattack
     case 3:
     {
-      //curr_character.lose_health(5);
-      if (character_id == 1)
-      {
-      curr_character.attack(1,1);
-      }
+    //  if (character_id == 1)
+      //{
+      curr_character.attack(character_id);      //curr_character.attack(1,character_id);
+      //}
       break;
     }
-    //Slagattack
-  /*  case 4:
-    {
-      curr_character.has_attack = true;
-      curr_character.attack(1);
-      break;
-    }*/
   }
-
 }
 
 Character & Player::get_curr_character()

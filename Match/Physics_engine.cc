@@ -198,7 +198,7 @@ bool Physics_engine::object_outside_x(Object const & obj)
 
 bool Physics_engine::object_above (Object const & obj)
 {
-    return (obj.get_position().ypos < 0);
+    return (obj.get_position().ypos < -2000);
 }
 
 bool Physics_engine::object_below (Object const & obj)
@@ -252,6 +252,44 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
 */
     player1.get_curr_character().set_in_air(true);
     player2.get_curr_character().set_in_air(true);
+    player1.get_curr_character().set_is_stumped(false);
+    player2.get_curr_character().set_is_stumped(false);
+
+    if (square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
+    {
+        //std::cout << "p1platt" << std::endl;
+        player1.get_curr_character().set_y_pos(playing_field_obj.get_platform().get_limits().upper - player1.get_curr_character().get_size().height);
+        player1.get_curr_character().set_y_speed(0);
+        player1.get_curr_character().set_in_air(false);
+    }
+    else
+    {
+
+        if (square_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
+        {
+            //std::cout << "p1xplatt" << std::endl;
+            player1.get_curr_character().set_x_pos(player1.get_curr_character().get_old_position().xpos);
+            player1.get_curr_character().set_y_pos(player1.get_curr_character().get_old_position().ypos);
+        }
+    }
+    if (square_above_collision(player2.get_curr_character(),playing_field_obj.get_platform()))
+    {
+        player2.get_curr_character().set_y_pos(playing_field_obj.get_platform().get_limits().upper - player2.get_curr_character().get_size().height);
+        player2.get_curr_character().set_y_speed(0);
+        player2.get_curr_character().set_in_air(false);
+    }
+
+    else
+    {
+
+        if (square_collision(player2.get_curr_character(),playing_field_obj.get_platform()))
+        {
+          player2.get_curr_character().set_x_pos(player2.get_curr_character().get_old_position().xpos);
+          player2.get_curr_character().set_y_pos(player2.get_curr_character().get_old_position().ypos);
+      //c2.set_y_speed(0);
+        }
+    }
+
     if (square_super_collision(player1.get_curr_character(),player2.get_curr_character()) == 1)
       {
         std::cout << "1" << std::endl;
@@ -273,6 +311,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
         player1.get_curr_character().set_in_air(false);
         player1.get_curr_character().set_y_pos(player2.get_curr_character().get_limits().upper - player1.get_curr_character().get_size().height);
         player1.get_curr_character().set_y_speed(0);
+        player2.get_curr_character().set_is_stumped(true);
       }
     if (square_super_collision(player1.get_curr_character(),player2.get_curr_character()) == 4)
       {
@@ -280,6 +319,7 @@ void Physics_engine::collision(Playing_field const & playing_field_obj, Player &
         player2.get_curr_character().set_in_air(false);
         player2.get_curr_character().set_y_pos(player1.get_curr_character().get_limits().upper - player2.get_curr_character().get_size().height);
         player2.get_curr_character().set_y_speed(0);
+        player1.get_curr_character().set_is_stumped(true);
       }
 
     if (object_below(player1.get_curr_character()))
@@ -364,40 +404,7 @@ for(std::vector<Projectile>::iterator it = player1.get_curr_character().get_proj
     //for(std::vector<Platform>::iterator it = Playing_field.platforms.begin(); it != playing_field.patforms.end(); it++)
     //
     //	plat = *it;
-    	if (square_above_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
-    	{
-          //std::cout << "p1platt" << std::endl;
-    	    player1.get_curr_character().set_y_pos(playing_field_obj.get_platform().get_limits().upper - player1.get_curr_character().get_size().height);
-    	    player1.get_curr_character().set_y_speed(0);
-          player1.get_curr_character().set_in_air(false);
-    	}
-    	else
-    	{
 
-    	    if (square_collision(player1.get_curr_character(),playing_field_obj.get_platform()))
-    	    {
-              //std::cout << "p1xplatt" << std::endl;
-              player1.get_curr_character().set_x_pos(player1.get_curr_character().get_old_position().xpos);
-              player1.get_curr_character().set_y_pos(player1.get_curr_character().get_old_position().ypos);
-    	    }
-    	}
-    	if (square_above_collision(player2.get_curr_character(),playing_field_obj.get_platform()))
-    	{
-    	    player2.get_curr_character().set_y_pos(playing_field_obj.get_platform().get_limits().upper - player2.get_curr_character().get_size().height);
-    	    player2.get_curr_character().set_y_speed(0);
-          player2.get_curr_character().set_in_air(false);
-    	}
-
-    	else
-    	{
-
-    	    if (square_collision(player2.get_curr_character(),playing_field_obj.get_platform()))
-    	    {
-            player2.get_curr_character().set_x_pos(player2.get_curr_character().get_old_position().xpos);
-            player2.get_curr_character().set_y_pos(player2.get_curr_character().get_old_position().ypos);
-    		//c2.set_y_speed(0);
-    	    }
-    	}
 
   }
 /*

@@ -17,8 +17,6 @@ private:
     int height{};
   };
 
-
-
   struct Limit
   {
     int left{};
@@ -29,16 +27,13 @@ private:
 
   protected:
     Object() = default;
-    Object(int width ,int height,int x,int y,std::initializer_list<std::string> = {"Bilder/tom.png"});//,int index);
+    Object(int width ,int height,int x,int y,std::initializer_list<std::string> = {"Bilder/tom.png"});
 
     struct Position
     {
       int xpos{};
       int ypos{};
     };
-
-    //int texture_index{};
-    //sf::Texture texture{};
 
     Texture_handler texture_handler{};
 
@@ -61,13 +56,6 @@ private:
     virtual void render(sf::RenderWindow &) = 0;
 
     void update_limits();
-
-    //Antingen spara en texture och skapa en sprite vid utritning, eller som nu
-    //spara ett index till en texture som ligger någon annanstans
-    //Kan den va const och sen overrideas till inte const längre ner?
-    //int get_texture_index();
-
-    //sf::Texture const & get_texture() const;
 };
 
 #endif

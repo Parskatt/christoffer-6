@@ -22,14 +22,9 @@ void Platform::render(sf::RenderWindow & window)
 //
 //Playing_field
 //
-Playing_field::Playing_field(int w,int h, int x, int y,int playing_field) //sätt enum senare---------------------------------------------------------------------
-  :/*Object{w,h,x,y,il}*/ platform{1280,200,0,700} //Skickar in il till platform även fast den är osynlig för enkelhetens skull
+Playing_field::Playing_field(int w,int h, int x, int y,int playing_field)
+  :Object{w,h,x,y}, platform{1280,200,0,700}
 {
-  size.width = w;
-  size.height = h;
-  position.xpos = x;
-  position.ypos = y;
-
   switch(playing_field)
   {
     case 1:
@@ -43,12 +38,6 @@ Playing_field::Playing_field(int w,int h, int x, int y,int playing_field) //sät
       break;
     }
   }
-
-    //nonmovable_objects.push_back(std::make_unique<Platform>(platform));//(1280,200,0,500,1));
-    //platform = *dynamic_cast<Platform*>(nonmovable_objects.back().get());
-
-      //platform = Platform{1280,200,0,500,1};
-      //nonmovable_objects.push_back(&platform);//------------------------------------------------------------------------------------------------
 }
 
 Platform Playing_field::get_platform() const
@@ -73,7 +62,7 @@ void Playing_field::render(sf::RenderWindow & window)
 Health_bar::Health_bar(int health,int direction)
   :bar_size{health},direction{direction}
 {
-  switch(direction)//Det här är fult, borde bara skicka in health och direction till healthbar så sätter den position
+  switch(direction)
   {
     case 1:
     {
@@ -96,7 +85,6 @@ Health_bar::Health_bar(int health,int direction)
 
 void Health_bar::render(sf::RenderWindow & window)
 {
-  //Kanske göra en separat rectangle som är bakgrunden till den som finns nu
   sf::RectangleShape bar;
   bar.setSize(sf::Vector2f(3*direction*bar_size,40));
   bar.setOutlineColor(sf::Color::Black);
@@ -109,12 +97,4 @@ void Health_bar::render(sf::RenderWindow & window)
 void Health_bar::set_size(int health)
 {
   bar_size = health;
-  //std::cout << "health " << health << std::endl;
-  //sf::RectangleShape black;
-  //bar.setSize(100 - health, 20);
-  //bar.setFillColor(sf::Color::Black);
-  //bar.setPosition(sf::Vector2f(health, 20));
-
-  //sprite.scale((health/100), 1);
-
 }

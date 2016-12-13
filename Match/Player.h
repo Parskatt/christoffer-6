@@ -5,7 +5,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-//#include "Match.h"
 #include "Character.h"
 #include <memory>
 #include <SFML/Graphics.hpp>
@@ -17,7 +16,7 @@ class Player
 
     Player() = default;
 
-    Player(int,int);//-----------------------------------------------------------
+    Player(int,int);
 
     void send_key(int);
 
