@@ -35,7 +35,7 @@ class Playing_field : public Object
 
     Playing_field() = default;
 
-     Playing_field(int,int,int,int,int);//--------------------------------------------------------------------------
+     Playing_field(int,int,int,int,int);
 
      Platform get_platform() const;
 

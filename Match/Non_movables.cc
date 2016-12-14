@@ -29,12 +29,12 @@ Playing_field::Playing_field(int w,int h, int x, int y,int playing_field)
   {
     case 1:
     {
-      texture_handler = Texture_handler{{"Bilder/background1.png"}};
+      texture_handler = Texture_handler{{"Bilder/boxing_ring.png"}};
       break;
     }
     case 2:
     {
-      texture_handler = Texture_handler{{"Bilder/background.png"}};
+      texture_handler = Texture_handler{{"Bilder/background1.png"}};
       break;
     }
   }

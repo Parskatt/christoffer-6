@@ -6,7 +6,6 @@
 #include "../Menu_Texture_handler.h"
 #include "Menu_Button.h"
 #include "Menu_Text.h"
-#include <iostream>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -63,7 +62,7 @@ public:
   int get_char1();
 
   int get_char2();
-  
+
   int get_playingfield();
 
 };

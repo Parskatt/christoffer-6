@@ -13,12 +13,12 @@ Player::Player(int player,int character)
     {
       if(player == 1)
       {
-        curr_character = Character{173,297,1000,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
+        curr_character = Character{173,297,1000,100,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
                                                      "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},100,-1};
       }
       else
       {
-      curr_character = Character{173,297,100,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
+      curr_character = Character{173,297,100,100,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
                                                    "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},100,1};
       }
     break;
@@ -27,12 +27,12 @@ Player::Player(int player,int character)
    {
      if(player == 1)
      {
-       curr_character = Character{173,297,1000,350,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
+       curr_character = Character{173,297,1000,100,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
                                                    "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},100,-1};
      }
      else
      {
-       curr_character = Character{173,297,100,350,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
+       curr_character = Character{173,297,100,100,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
                                                    "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},100,1};
      }
 
@@ -61,19 +61,25 @@ void Player::send_key(int key) //Borde va enum
 {
   switch(key)
   {
-    //Gå ät vänster
+    //Go left
     case 0:
     {
+      if(!curr_character.has_attack)
+      {
       curr_character.set_x_speed(-7);
+      }
       break;
     }
-    //Gå åt höger
+    //Go right
     case 1:
     {
+      if(!curr_character.has_attack)
+      {
       curr_character.set_x_speed(7);
+      }
       break;
     }
-    //Hoppa
+    //Jump
     case 2:
     {
       if (!curr_character.get_in_air() && !curr_character.get_is_stumped())
@@ -82,7 +88,7 @@ void Player::send_key(int key) //Borde va enum
       }
       break;
     }
-    //Slagattack
+    //Punch
     case 3:
     {
       curr_character.attack(character_id);      //curr_character.attack(1,character_id);

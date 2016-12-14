@@ -1,16 +1,14 @@
+//
+//Menu.cc
+//
+
 #include "Menu.h"
-
-
 
 
 Menu::Menu()
 :state{"main"},main_buttons{}, choose_char1_buttons{}, choose_char2_buttons{}, choose_playingfield_buttons{}, show_instructions_buttons{}
 ,show_character_texts{}
 {}
-
-
-
-
 
 void Menu::menu_loop(bool & running)
 {
@@ -38,10 +36,10 @@ void Menu::menu_loop(bool & running)
   main_buttons.push_back(Quit);
 
   //Choose character knappar
-  FattigJohan_Button FattigJohan{200,200,280,260,{"Bilder/Menu/FattigJohan.png"}};
+  FattigJohan_Button FattigJohan{200,200,280,260,{"Bilder/Menu/FattigJohan1.png"}};
   Kresper_Button Kresper{200,200,480,260,{"Bilder/Menu/Kresper.png"}};
   Krallex_Button Krallex{200,200,680,260,{"Bilder/Menu/Krallex.png"}};
-  Kraxel_Button Kraxel{200,200,880,260,{"Bilder/Menu/Kraxel.png"}};
+  Kraxel_Button Kraxel{200,200,880,260,{"Bilder/Menu/Kraxel1.png"}};
   choose_char1_buttons.push_back(FattigJohan);
   choose_char1_buttons.push_back(Kresper);
   choose_char1_buttons.push_back(Krallex);
@@ -56,7 +54,7 @@ void Menu::menu_loop(bool & running)
   show_instructions_buttons.push_back(Back);
 
   //Playingfieldknappar
-  Playingfield_Button Playingfield{1280,720,0,0,{"Bilder/Menu/Playingfield.png"}};
+  Playingfield_Button Playingfield{1280,720,0,0,{"Bilder/Menu/boxing_ring.png"}};
   choose_playingfield_buttons.push_back(Playingfield);
 
   //Text för olika grejer
@@ -109,10 +107,6 @@ void Menu::menu_loop(bool & running)
     else if(state == "playingfield")
     {
       choose_playingfield_loop(clock,window,event);
-      if(state == "match")
-      {
-        std::cout << "i match" << std::endl;
-      }
     }
     else if(state == "instructions")
     {

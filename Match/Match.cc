@@ -3,7 +3,6 @@
 */
 
 #include "Match.h"
-#include <typeinfo>
 #include <string>
 
 
@@ -13,36 +12,41 @@ Match::Match(int char1,int char2,int playing_field)
 {
 
   //Initialize commands, order is important
-  p1_commands[0] = sf::Keyboard::Left; //Gå vänster
-  p1_commands[1] = sf::Keyboard::Right; //Gå höger
-  p1_commands[2] = sf::Keyboard::Up; //Hoppa
-  p1_commands[3] = sf::Keyboard::M; //Attack
+  //Player 1
+  p1_commands[0] = sf::Keyboard::Left; //Go left
+  p1_commands[1] = sf::Keyboard::Right; //Go right
+  p1_commands[2] = sf::Keyboard::Up; //Jump
+  p1_commands[3] = sf::Keyboard::Period; //Punch
 
-  p2_commands[0] = sf::Keyboard::A; //Gå vänster
-  p2_commands[1] = sf::Keyboard::D; //Gå höger
-  p2_commands[2] = sf::Keyboard::W; //Hoppa
-  p2_commands[3] = sf::Keyboard::Space; //Attack
+  //Player 2
+  p2_commands[0] = sf::Keyboard::A; //Go left
+  p2_commands[1] = sf::Keyboard::D; //Go right
+  p2_commands[2] = sf::Keyboard::W; //Jump
+  p2_commands[3] = sf::Keyboard::Num1; //Punch
 }
 
+//Main loop in match
 void Match::run(bool & running)
 {
-
+    //Game music
     sf::Music music;
     if (!music.openFromFile("eott.wav"))
       {
         throw 1;
       }
     music.play();
+
     bool match_running{true};
     sf::Event event;
     sf::Clock clock;
     sf::Time targetFrameDelay {sf::milliseconds(10)};
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
-    sf::RenderWindow window{sf::VideoMode{1280,720},"Gatukämpe 6 - Return of the Streetfighter?!", sf::Style::Default, settings};
+    sf::RenderWindow window{sf::VideoMode{1280,720},"Gatukämpe 6 - Return of the Streetfighter", sf::Style::Default, settings};
     window.setVerticalSyncEnabled(true);
     Physics_engine engine{};
 
+    //Do every loop
     while(running && match_running)
     {
       clock.restart();
@@ -53,7 +57,6 @@ void Match::run(bool & running)
       auto frameDelay = clock.getElapsedTime();
       if ( targetFrameDelay > frameDelay )
       {
-          // only wait if it is actually needed
           auto sleepTime = targetFrameDelay - frameDelay;
           sf::sleep(sleepTime);
       }
@@ -72,7 +75,6 @@ void Match::graphic_update(sf::Clock & clock,sf::RenderWindow & window)
       window.display();
 }
 
-
 void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool & running)
 {
     while(window.pollEvent(event))
@@ -82,8 +84,7 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
         running = false;
       }
     }
-    //Alternativet till isKeyPressed vore att kolla KeyReleased, men fick det inte att funka vid första försöket,
-    //men kanske vore bättre
+    //Alternative to isKeyPressed would be to check KeyPressed and KeyReleased, might be better
     int i{0};
     for(std::vector<sf::Keyboard::Key>::iterator it{p1_commands.begin()}; it != p1_commands.end(); ++it)
     {
@@ -103,7 +104,6 @@ void Match::keyboard_handler(sf::RenderWindow & window, sf::Event & event, bool 
       }
       ++y;
     }
-
 }
 
 void Match::position_update(Physics_engine & engine, bool & running)
@@ -122,10 +122,10 @@ void Match::is_dead(bool & match_running, sf::RenderWindow & window)
   {
     sf::Font font;
     font.loadFromFile("Bilder/DaStreets.ttf");
-    sf::Text text("Player 1 got demolished :'(",font);
+    sf::Text text("Spelare 1 blev mosad :'(",font);
     text.setCharacterSize(70);
     text.setColor(sf::Color::Black);
-    text.setPosition(sf::Vector2f(250,200));
+    text.setPosition(sf::Vector2f(270,200));
 
     window.draw(text);
     window.display();
@@ -138,10 +138,10 @@ void Match::is_dead(bool & match_running, sf::RenderWindow & window)
   {
     sf::Font font;
     font.loadFromFile("Bilder/DaStreets.ttf");
-    sf::Text text("Player 2 got demolished :/",font);
+    sf::Text text("Spelare 2 blev mosad :'(",font);
     text.setCharacterSize(70);
     text.setColor(sf::Color::Black);
-    text.setPosition(sf::Vector2f(250,200));
+    text.setPosition(sf::Vector2f(270,200));
 
     window.draw(text);
     window.display();

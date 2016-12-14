@@ -45,5 +45,4 @@ class Punch_projectile : public Projectile
     ~Punch_projectile() = default;
 };
 
-
 #endif

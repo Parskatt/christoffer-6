@@ -31,8 +31,6 @@ class Character : public Object
 
     Attack curr_attack{};
 
-    bool has_attack;
-
     std::vector<Projectile> projectiles{};
 
     Health_bar health_bar;
@@ -83,6 +81,8 @@ class Character : public Object
     int get_health();
 
     std::vector<Projectile> & get_projectiles();
+
+    bool has_attack;
 
 };
 
