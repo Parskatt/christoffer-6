@@ -4,50 +4,13 @@
 
 
 #include "Character.h"
-#include <iostream>
 #include <utility>
 
 
-Character::Character(int width, int height,int x, int y,std::initializer_list<std::string> il,int speed,int health,int direction)//---------------------------------------
-    :Movable{width,height,x,y,il,speed,direction,1}, speed_vector{0,0},health{health},
-     curr_attack{}, has_attack{false},projectiles{},health_bar{health,direction},old_position{0,0} //health_bar{health,direction}
+Character::Character(int width, int height,int x, int y,std::initializer_list<std::string> il,int health,int direction)//---------------------------------------
+    :Object{width,height,x,y,il}, speed_vector{0,0},health{health},
+     curr_attack{}, has_attack{false},projectiles{},health_bar{health,direction},old_position{0,0},direction{direction}
 {
-  /*
-    if(player == 1)
-    {
-      direction = -1;
-    }
-    else
-    {
-      direction = 1;
-    }
-
-    switch(character)
-    {
-      case 1:
-      {
-        Character{173,297,1000,350,{"Bilder/cammy.png","Bilder/cammy1.png"},5,100,-1};
-
-
-        break;
-      }
-      case 2:
-      {
-
-        break;
-      }
-      case 3:
-      {
-
-        break;
-      }
-      case 4:
-      {
-
-        break;
-      }
-    }*/
-    //Skapar och lägger till hälsomätaren i match's vector
 
 }
 
@@ -108,11 +71,6 @@ int Character::get_y_speed() const
     return speed_vector.y_speed;
 }
 
-int Character::get_speed() const
-{
-    return speed;
-}
-
 void Character::move()
 {
     old_position.xpos = position.xpos;
@@ -135,19 +93,6 @@ void Character::move()
     }
     update_limits();
 }
-
-/*void Character::move(int step_direction)
-{
-  std::cout << "move-1" << std::endl;
-  if (speed_vector.x_speed != 0)
-  {
-    std::cout << "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK" << std::endl;
-  }
-
-  position.xpos += step_direction*speed_vector.x_speed;
-  position.ypos += step_direction*speed_vector.y_speed;
-  update_limits();
-}*/
 
 void Character::render(sf::RenderWindow & window)
 {
@@ -193,10 +138,6 @@ void Character::render(sf::RenderWindow & window)
      if(curr_attack.done())
       {
         has_attack = false;
-        /*sf::Sprite sprite{};
-        sprite.setTexture(texture_handler.get_texture(0));
-        sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
-        window.draw(sprite);*/
       }
       else
       {
@@ -220,7 +161,7 @@ void Character::attack(int character_id)  //(int attack_type,int character_id)
       {
         if(direction == 1)
         {
-    	     curr_attack = Punch{size.width,size.height,position.xpos + size.width,position.ypos,
+    	     curr_attack = Punch{size.width,size.height,position.xpos + size.width/2,position.ypos,
              {"Bilder/Krallex/KrallexSparkH00.png", "Bilder/Krallex/KrallexSparkH01.png", "Bilder/Krallex/KrallexSparkH02.png", "Bilder/Krallex/KrallexSparkH03.png",
               "Bilder/Krallex/KrallexSparkH04.png", "Bilder/Krallex/KrallexSparkH05.png", "Bilder/Krallex/KrallexSparkH06.png", "Bilder/Krallex/KrallexSparkH07.png",
               "Bilder/Krallex/KrallexSparkH08.png", "Bilder/Krallex/KrallexSparkH09.png"},
@@ -228,7 +169,7 @@ void Character::attack(int character_id)  //(int attack_type,int character_id)
         }
         else
         {
-          curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,
+          curr_attack = Punch{size.width,size.height,position.xpos + size.width/2,position.ypos,
             {"Bilder/Krallex/KrallexSparkV00.png", "Bilder/Krallex/KrallexSparkV01.png", "Bilder/Krallex/KrallexSparkV02.png", "Bilder/Krallex/KrallexSparkV03.png",
              "Bilder/Krallex/KrallexSparkV04.png", "Bilder/Krallex/KrallexSparkV05.png", "Bilder/Krallex/KrallexSparkV06.png", "Bilder/Krallex/KrallexSparkV07.png",
              "Bilder/Krallex/KrallexSparkV08.png", "Bilder/Krallex/KrallexSparkV09.png"},
@@ -258,20 +199,10 @@ void Character::attack(int character_id)  //(int attack_type,int character_id)
     }
   }
 }
-  /*  else
-    {
-      if(curr_attack.done())
-      {
-        curr_attack = Punch{size.width,size.height,position.xpos,position.ypos,{"Bilder/cammy5.png","Bilder/cammy7.png","Bilder/cammy8.png"},direction,projectiles};
-      }
-    }
-}*/
 
 void Character::lose_health(int damage)
 {
-  std::cout << health << std::endl;
   health = health - damage;
-  std::cout << health << std::endl;
   if (health > 0)
   {
     health_bar.set_size(health);

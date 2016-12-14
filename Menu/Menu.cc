@@ -17,11 +17,10 @@ void Menu::menu_loop(bool & running)
   sf::Music music;
   if (!music.openFromFile("Menu/BackgroundMusic.wav"))
     {
-      std::cout << "attans grabbar!";
-    } // error
+      throw 1;
+    }
   music.play();
 
-  //Menu_Texture_handler handler{};
   //bool running{true};
   sf::Event event;
   sf::Clock clock;
@@ -29,6 +28,7 @@ void Menu::menu_loop(bool & running)
   sf::ContextSettings settings;
   settings.antialiasingLevel = 8;
   sf::RenderWindow window{sf::VideoMode{1280,720},"SFML Test", sf::Style::Default, settings};
+
   //Mainknappar
   Play_Button Play{320,100,480,210,{"Bilder/Menu/Play.png","Bilder/Menu/Play2.png"}};
   Instructions_Button Instructions{320,100,480,310,{"Bilder/Menu/Instructions.png","Bilder/Menu/Instructions2.png"}};
@@ -36,6 +36,7 @@ void Menu::menu_loop(bool & running)
   main_buttons.push_back(Play);
   main_buttons.push_back(Instructions);
   main_buttons.push_back(Quit);
+
   //Choose character knappar
   FattigJohan_Button FattigJohan{200,200,280,260,{"Bilder/Menu/FattigJohan.png"}};
   Kresper_Button Kresper{200,200,480,260,{"Bilder/Menu/Kresper.png"}};
@@ -49,9 +50,11 @@ void Menu::menu_loop(bool & running)
   choose_char2_buttons.push_back(Kresper);
   choose_char2_buttons.push_back(Krallex);
   choose_char2_buttons.push_back(Kraxel);
+
   //Instructionsknappar
   Instructionsloop_Button Back{280,720,0,0,{"Bilder/Menu/Back.png"}};
   show_instructions_buttons.push_back(Back);
+
   //Playingfieldknappar
   Playingfield_Button Playingfield{1280,720,0,0,{"Bilder/Menu/Playingfield.png"}};
   choose_playingfield_buttons.push_back(Playingfield);
@@ -67,6 +70,7 @@ void Menu::menu_loop(bool & running)
   show_character_texts.push_back(Krallextext);
   Menu_Text Instructionstext{200,200,280,0,{"Bilder/Menu/Instructionstext.png"}};
   show_instructions_text = Instructionstext;
+
   while(state != "quit" && state != "match" && running == true)
   {
     clock.restart();
@@ -148,7 +152,6 @@ bool Menu::main_loop(sf::Clock & clock,sf::RenderWindow & window,sf::Event & eve
                 {
                   state = it->get_state();
                 }
-
               }
           }
       else
@@ -163,7 +166,6 @@ bool Menu::main_loop(sf::Clock & clock,sf::RenderWindow & window,sf::Event & eve
   }
   window.display();
   return true;
-  //Kolla om knapp intryckt
 }
 
 bool Menu::choose_char1_loop(sf::Clock & clock,sf::RenderWindow & window,sf::Event & event)
@@ -332,8 +334,6 @@ void Menu::krallex_pick(sf::RenderWindow & window, sf::Event & event)
   {
       for(int it{1}; it < 23; ++it)
       {
-
-        //std::cout << "hallå";
         sf::Sprite sprite{};
         sprite.setTexture(cenatextures[it]);
         sprite.setPosition(sf::Vector2f(450,250));

@@ -5,7 +5,6 @@
 #include <string>
 
 
-
 class Menu_Text : public Object
 {
 public:
@@ -14,4 +13,5 @@ public:
 
   void render(sf::RenderWindow &) override;
 };
+
 #endif

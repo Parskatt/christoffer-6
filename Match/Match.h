@@ -10,7 +10,6 @@
 #include "../Texture_handler.h"
 #include "Player.h"
 #include <vector>
-#include <memory>
 #include "Physics_engine.h"
 
 class Match

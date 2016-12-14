@@ -21,6 +21,7 @@ void Menu_Button::render(sf::RenderWindow & window)
   sprite.setPosition(sf::Vector2f(position.xpos,position.ypos));
   window.draw(sprite);
 }
+
 void Menu_Button::render(sf::RenderWindow & window,int plus)
 {
   sf::Sprite sprite{};

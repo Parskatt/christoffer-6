@@ -3,10 +3,8 @@
 */
 
 #include "Match.h"
-#include <iostream>
 #include <typeinfo>
 #include <string>
-#include <iostream>
 
 
 Match::Match(int char1,int char2,int playing_field)
@@ -15,25 +13,25 @@ Match::Match(int char1,int char2,int playing_field)
 {
 
   //Initialize commands, order is important
-  p1_commands[0] = sf::Keyboard::Left;
-  p1_commands[1] = sf::Keyboard::Right;
+  p1_commands[0] = sf::Keyboard::Left; //Gå vänster
+  p1_commands[1] = sf::Keyboard::Right; //Gå höger
   p1_commands[2] = sf::Keyboard::Up; //Hoppa
   p1_commands[3] = sf::Keyboard::M; //Attack
 
-  p2_commands[0] = sf::Keyboard::A;
-  p2_commands[1] = sf::Keyboard::D;
+  p2_commands[0] = sf::Keyboard::A; //Gå vänster
+  p2_commands[1] = sf::Keyboard::D; //Gå höger
   p2_commands[2] = sf::Keyboard::W; //Hoppa
   p2_commands[3] = sf::Keyboard::Space; //Attack
 }
 
 void Match::run(bool & running)
 {
-    //Texture_handler handler{};
+
     sf::Music music;
     if (!music.openFromFile("eott.wav"))
       {
-        std::cout << "attans grabbar!";
-      } // error
+        throw 1;
+      }
     music.play();
     bool match_running{true};
     sf::Event event;

@@ -11,7 +11,6 @@ class Attack : public Object
 {
   protected:
 
-  //  Projectile curr_projectile;
   int direction;
   int done_counter{};
   public:
@@ -22,15 +21,13 @@ class Attack : public Object
 
     Attack(int,int,int,int,std::initializer_list<std::string>,int);
 
-
-
-    //void wait();
-
     void render(sf::RenderWindow &) override;
-    bool done();
-    void set_xpos(int);
-    void set_ypos(int);
 
+    bool done();
+
+    void set_xpos(int);
+
+    void set_ypos(int);
 };
 
 
@@ -39,9 +36,6 @@ class Punch : public Attack
   private:
 
   public:
-    //~Punch() = default;
-
-    //Punch() = default;
 
     Punch(int,int,int,int,std::initializer_list<std::string>,int,std::vector<Projectile> &);
 };

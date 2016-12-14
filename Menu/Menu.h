@@ -18,15 +18,25 @@ class Menu
 private:
 
   std::string state{};
+
   std::vector<Menu_Button> main_buttons{};
+
   std::vector<Menu_Button> choose_char1_buttons{};
+
   std::vector<Menu_Button> choose_char2_buttons{};
+
   std::vector<Menu_Button> choose_playingfield_buttons{};
+
   std::vector<Menu_Button> show_instructions_buttons{};
+
   std::vector<Menu_Text> show_character_texts{};
+
   Menu_Text show_instructions_text;
+
   std::string char1{};
+
   std::string char2{};
+
   std::string playingfield{};
 
 
@@ -51,7 +61,9 @@ public:
   void krallex_pick(sf::RenderWindow &,sf::Event &);
 
   int get_char1();
+
   int get_char2();
+  
   int get_playingfield();
 
 };

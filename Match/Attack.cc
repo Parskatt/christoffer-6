@@ -4,22 +4,13 @@
 
 #include "Attack.h"
 
-//#include time
-
 
 //
 //Attack
 //
 Attack::Attack(int width,int height,int x,int y,std::initializer_list<std::string> il,int direction)
     :Object{width,height,x,y,il},direction{direction},done_counter{0}
-{
-}
-
-/*void Attack::wait()
-{
-  sleep(1);
-  delete curr_projectile;
-}*/
+{}
 
 void Attack::render(sf::RenderWindow & window)
 {
@@ -58,5 +49,5 @@ void Attack::set_ypos(int ypos)
 Punch::Punch(int width,int height,int x,int y,std::initializer_list<std::string> il,int direction,std::vector<Projectile> & projectiles)
     :Attack{width,height,x,y,il,direction}
 {
-  projectiles.push_back(Punch_projectile{20,20,x,y+50,{"Bilder/tom.png"},5,direction,30});
+  projectiles.push_back(Punch_projectile{20,20,x,y+50,5,direction,30});
 }

@@ -5,10 +5,10 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include "Movable.h"
+#include "../Object.h"
 #include <iostream>
 
-class Projectile : public Movable
+class Projectile : public Object
 {
   public:
 
@@ -16,7 +16,7 @@ class Projectile : public Movable
 
     ~Projectile() = default;
 
-    void move() override;
+    void move();
 
     void render(sf::RenderWindow &);
 
@@ -26,14 +26,13 @@ class Projectile : public Movable
 
     bool done();
 
-
   private:
-
 
     int damage;
     int done_counter;
     int range;
-
+    int speed{};
+    int direction{};
 };
 
 
@@ -41,16 +40,9 @@ class Punch_projectile : public Projectile
 {
   public:
 
-    Punch_projectile(int,int,int,int,std::initializer_list<std::string>,int,int,int);
+    Punch_projectile(int,int,int,int,int,int,int);
 
     ~Punch_projectile() = default;
-
-
-
-  private:
-
-
-
 };
 
 

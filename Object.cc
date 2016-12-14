@@ -3,7 +3,7 @@
 #include "Object.h"
 
 Object::Object(int width,int height,int x,int y,std::initializer_list<std::string> il)
-  :texture_handler{il},size{width,height},position{x,y},limit{x,x+width,y,y+height} //Object()
+  :texture_handler{il},size{width,height},position{x,y},limit{x,x+width,y,y+height}
 {
   limit.left = x;
   limit.right = x + width;

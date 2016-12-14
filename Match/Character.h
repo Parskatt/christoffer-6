@@ -5,14 +5,12 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-//#include "Match.h"
-#include "Movable.h"
+#include "../Object.h"
 #include "Non_movables.h"
-#include <memory>
 #include "Attack.h"
 
 
-class Character : public Movable
+class Character : public Object
 {
   private:
 
@@ -41,6 +39,8 @@ class Character : public Movable
 
     Position old_position{};
 
+    int direction{};
+
 
   public:
 
@@ -48,7 +48,7 @@ class Character : public Movable
 
     Character() = default;
 
-    Character(int,int,int,int,std::initializer_list<std::string>,int,int,int);//---------------------------------------------------------
+    Character(int,int,int,int,std::initializer_list<std::string>,int,int);
 
     void set_x_pos(int);
 
@@ -70,13 +70,9 @@ class Character : public Movable
 
     int get_y_speed() const;
 
-    int get_speed() const;
-
     Object::Position & get_old_position();
 
-    void move() override;
-
-    //void move(int); //behövs denna?
+    void move();
 
     void render(sf::RenderWindow &) override;
 

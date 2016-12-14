@@ -4,19 +4,14 @@
 #include "Projectile.h"
 
 Projectile::Projectile(int width,int height,int x,int y,std::initializer_list<std::string> il,int speed,int direction,int damage,int range)
-    :Movable{width,height,x,y,il,speed,direction,0}, damage{damage}, done_counter{0}, range{range}
-{
-
-}
-
+    :Object{width,height,x,y,il}, damage{damage}, done_counter{0}, range{range}, speed{speed}, direction{direction}
+{}
 
 void Projectile::move()
 {
   position.xpos += direction * speed;
   update_limits();
 }
-
-
 
 int Projectile::get_damage() const
 {
@@ -53,8 +48,6 @@ int Projectile::get_range()
 
 //-----------------------------------------------------------------------------
 
-Punch_projectile::Punch_projectile(int width,int height,int x,int y,std::initializer_list<std::string> il,int speed,int direction,int damage)
-    :Projectile{width,height,x,y,il,speed,direction,damage,25}
-{
-
-}
+Punch_projectile::Punch_projectile(int width,int height,int x,int y,int speed,int direction,int damage)
+    :Projectile{width,height,x,y,{"Bilder/tom.png"},speed,direction,damage,25}
+{}

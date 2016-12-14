@@ -4,23 +4,22 @@
 
 #include "Player.h"
 
-Player::Player(int player,int character)//-----------------------------------------------------
-  :curr_character{}/*curr_character{character,player}*/, character_id{character}
+Player::Player(int player,int character)
+  :curr_character{}, character_id{character}
 {
   switch(character)
   {
     case 1:
     {
-      //curr_character = Character{character,player}
       if(player == 1)
       {
         curr_character = Character{173,297,1000,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
-                                                     "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},5,100,-1};
+                                                     "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},100,-1};
       }
       else
       {
       curr_character = Character{173,297,100,350,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
-                                                   "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},5,100,1};
+                                                   "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},100,1};
       }
     break;
    }
@@ -29,12 +28,12 @@ Player::Player(int player,int character)//--------------------------------------
      if(player == 1)
      {
        curr_character = Character{173,297,1000,350,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
-                                                   "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},5,100,-1};
+                                                   "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},100,-1};
      }
      else
      {
        curr_character = Character{173,297,100,350,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
-                                                   "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},5,100,1};
+                                                   "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},100,1};
      }
 
       break;
@@ -86,10 +85,7 @@ void Player::send_key(int key) //Borde va enum
     //Slagattack
     case 3:
     {
-    //  if (character_id == 1)
-      //{
       curr_character.attack(character_id);      //curr_character.attack(1,character_id);
-      //}
       break;
     }
   }
