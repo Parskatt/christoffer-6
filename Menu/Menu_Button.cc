@@ -62,6 +62,10 @@ Instructionsloop_Button::Instructionsloop_Button(int width ,int height,int x,int
 :Menu_Button{width,height,x,y,il,"main"}
 {}
 
-Playingfield_Button::Playingfield_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il)
-:Menu_Button{width,height,x,y,il,"match"}
+Playingfield_Button1::Playingfield_Button1(int width ,int height,int x,int y,std::initializer_list<std::string> il)
+:Menu_Button{width,height,x,y,il,"bana1"}
+{}
+
+Playingfield_Button2::Playingfield_Button2(int width ,int height,int x,int y,std::initializer_list<std::string> il)
+:Menu_Button{width,height,x,y,il,"bana2"}
 {}

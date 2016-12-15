@@ -54,8 +54,10 @@ void Menu::menu_loop(bool & running)
   show_instructions_buttons.push_back(Back);
 
   //Playingfieldknappar
-  Playingfield_Button Playingfield{1280,720,0,0,{"Bilder/Menu/boxing_ring.png"}};
-  choose_playingfield_buttons.push_back(Playingfield);
+  Playingfield_Button1 Playingfield1{640,720,0,0,{"Bilder/Menu/boxing_ring.png"}};
+  Playingfield_Button2 Playingfield2{640,720,640,0,{"Bilder/background1.png"}};
+  choose_playingfield_buttons.push_back(Playingfield1);
+  choose_playingfield_buttons.push_back(Playingfield2);
 
   //Text för olika grejer
   Menu_Text FattigJohantext{200,200,280,175,{"Bilder/Menu/FattigJohantext.png"}};
@@ -106,7 +108,7 @@ void Menu::menu_loop(bool & running)
     }
     else if(state == "playingfield")
     {
-      choose_playingfield_loop(clock,window,event);
+      running = choose_playingfield_loop(clock,window,event);
     }
     else if(state == "instructions")
     {
@@ -196,6 +198,14 @@ bool Menu::choose_char1_loop(sf::Clock & clock,sf::RenderWindow & window,sf::Eve
   {
     it->render(window);
   }
+  sf::Font font;
+  font.loadFromFile("Bilder/DaStreets.ttf");
+  sf::Text text("Spelare 1",font);
+  text.setCharacterSize(70);
+  text.setColor(sf::Color::Red);
+  text.setPosition(sf::Vector2f(550,100));
+  window.draw(text);
+
   window.display();
   return true;
 }
@@ -235,6 +245,14 @@ for(std::vector<Menu_Text>::iterator it = show_character_texts.begin() ; it != s
 {
   it->render(window);
 }
+  sf::Font font;
+  font.loadFromFile("Bilder/DaStreets.ttf");
+  sf::Text text("Spelare 2",font);
+  text.setCharacterSize(70);
+  text.setColor(sf::Color::Red);
+  text.setPosition(sf::Vector2f(550,100));
+  window.draw(text);
+
   window.display();
   return true;
 }
@@ -304,6 +322,13 @@ bool Menu::choose_playingfield_loop(sf::Clock & clock,sf::RenderWindow & window,
     }
   }
 }
+  sf::Font font;
+  font.loadFromFile("Bilder/DaStreets.ttf");
+  sf::Text text("Välj bana",font);
+  text.setCharacterSize(70);
+  text.setColor(sf::Color::Red);
+  text.setPosition(sf::Vector2f(550,100));
+  window.draw(text);
   window.display();
   return true;
 }
@@ -380,6 +405,13 @@ int Menu::get_char2()
 
 int Menu::get_playingfield()
 {
-
+  if(playingfield == "bana1")
+  {
   return 1;
+  }
+  else
+  {
+    return 2;
+  }
+
 }

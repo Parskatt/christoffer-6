@@ -25,7 +25,7 @@ private:
 //main buttons
 class Play_Button : public Menu_Button
 {
-public:  
+public:
   Play_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
@@ -72,10 +72,15 @@ public:
   Instructionsloop_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
-class Playingfield_Button : public Menu_Button
+class Playingfield_Button1 : public Menu_Button
 {
 public:
-  Playingfield_Button(int width ,int height,int x,int y,std::initializer_list<std::string> il);
+  Playingfield_Button1(int width ,int height,int x,int y,std::initializer_list<std::string> il);
+};
+class Playingfield_Button2 : public Menu_Button
+{
+public:
+  Playingfield_Button2(int width ,int height,int x,int y,std::initializer_list<std::string> il);
 };
 
 #endif

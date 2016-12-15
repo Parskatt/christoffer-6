@@ -13,12 +13,12 @@ Player::Player(int player,int character)
     {
       if(player == 1)
       {
-        curr_character = Character{173,297,1000,100,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
+        curr_character = Character{100,297,1000,100,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
                                                      "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},100,-1};
       }
       else
       {
-      curr_character = Character{173,297,100,100,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
+      curr_character = Character{100,297,100,100,{"Bilder/Krallex/KrallexStanceH04.png","Bilder/Krallex/KrallexStanceV04.png",
                                                    "Bilder/Krallex/KrallexHoppH11.png","Bilder/Krallex/KrallexHoppV11.png"},100,1};
       }
     break;
@@ -27,12 +27,12 @@ Player::Player(int player,int character)
    {
      if(player == 1)
      {
-       curr_character = Character{173,297,1000,100,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
+       curr_character = Character{100,297,1000,100,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
                                                    "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},100,-1};
      }
      else
      {
-       curr_character = Character{173,297,100,100,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
+       curr_character = Character{100,297,100,100,{"Bilder/Kresper/KresperStanceH05.png","Bilder/Kresper/KresperStanceV05.png",
                                                    "Bilder/Kresper/KresperHoppH09.png","Bilder/Kresper/KresperHoppV09.png"},100,1};
      }
 
